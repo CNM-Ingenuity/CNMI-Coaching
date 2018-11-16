@@ -1,0 +1,131 @@
+/* # Genesis Custom Starter Theme
+ *Theme Name: Theme Name
+ *Theme URI: http://11online.us
+ *Description: This is the 11 Online Starter Theme
+ *Author: 11 Online
+ *Author URI: http://www.11online.us
+ *Template: genesis
+ *Template Version: 2.2.2
+ *Tags: black, orange, white, one-column, two-columns, three-columns, left-sidebar, right-sidebar, responsive-layout, custom-menu, full-width-template, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
+ *License: GPL-2.0+
+ *License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+/* # Table of Contents
+ *- HTML5 Reset
+ *	- Baseline Normalize
+ *	- Box Sizing
+ *	- Float Clearing
+ *- Defaults
+ *	- Typographical Elements
+ *	- Headings
+ *	- Objects
+ *	- Gallery
+ *	- Forms
+ *	- Tables
+ *	- Screen Reader Text
+ *- Structure and Layout
+ *	- Site Containers
+ *	- Column Widths and Positions
+ *	- Column Classes
+ *- Common Classes
+ *	- Avatar
+ *	- Genesis
+ *	- Search Form
+ *	- Titles
+ *	- WordPress
+ *- Widgets
+ *	- Featured Content
+ *- Plugins
+ *	- Genesis eNews Extended
+ *	- Jetpack
+ *- Site Header
+ *	- Title Area
+ *	- Widget Area
+ *- Site Navigation
+ *	- Accessible Menu
+ *	- Site Header Navigation
+ *	- Primary Navigation
+ *	- Secondary Navigation
+ *	- Skip Links
+ *- Content Area
+ *	- Entries
+ *	- Entry Meta
+ *	- Pagination
+ *	- Comments
+ *- Sidebars
+ *- Footer Widgets
+ *- Site Footer
+ *- Media Queries
+ *	- Retina Display
+ *	- Max-width: 1200px
+ *	- Max-width: 960px
+ *	- Max-width: 800px
+ *- Print Styles */
+
+/* Variables */
+$textColor : #000
+$accentColor : #fff
+$backgroundColor : #333
+$secondaryBackgroundColor : #f5f5f5
+$thirdBackgroundColor : #fff
+$footerTextColor : #aaa
+$linkColor : #c3251d
+$buttonColor : #c3251d
+$bodyFont : Lato, sans-serif
+$headingFont : Lato, sans-serif
+$headerHeight: 160px
+
+/* Mixins */
+@mixin linearGradient($top, $bottom)
+  background: $top
+  background: -moz-linear-gradient(top,  $top 0%, $bottom 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom))
+  background: -webkit-linear-gradient(top,  $top 0%,$bottom 100%)
+  background: -o-linear-gradient(top,  $top 0%,$bottom 100%)
+  background: -ms-linear-gradient(top,  $top 0%,$bottom 100%)
+  background: linear-gradient(to bottom,  $top 0%,$bottom 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 )
+@mixin radialGradient($from, $mid, $to)
+  background: -moz-radial-gradient(center, circle cover, $from 0%, $mid 40%, $to 100%)
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, $from), color-stop(40%, $mid), color-stop(100%, $to))
+  background: -webkit-radial-gradient(center, circle cover, $from 0%, $mid 40%, $to 100%)
+  background: -o-radial-gradient(center, circle cover, $from 0%, $mid 40%, $to 100%)
+  background: -ms-radial-gradient(center, circle cover, $from 0%, $mid 40%, $to 100%)
+  background: radial-gradient(center, circle cover, $from 0%, $mid 40%, $to 100%)
+  background-color: $to
+@mixin borderRadius($amount)
+  -moz-border-radius: $amount
+  -webkit-border-radius: $amount
+  border-radius: $amount
+@mixin boxShadow($topLeft, $topRight, $bottomRight, $bottomLeft, $color)
+  -webkit-box-shadow: $topLeft $topRight $bottomRight $bottomLeft $color
+  -moz-box-shadow: $topLeft $topRight $bottomRight $bottomLeft $color
+  box-shadow: $topLeft $topRight $bottomRight $bottomLeft $color
+
+@import 'sass-partials/html5-reset', 'sass-partials/defaults', 'sass-partials/structure-and-layout', 'sass-partials/common-classes', 'sass-partials/widgets', 'sass-partials/plugins', 'sass-partials/site-header', 'sass-partials/site-navigation', 'sass-partials/content-area', 'sass-partials/sidebars', 'sass-partials/footer-widgets', 'sass-partials/site-footer', 'sass-partials/media-queries', 'sass-partials/home-widgets', 'sass-partials/blog', 'sass-partials/single-post', 'sass-partials/checkerboard'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

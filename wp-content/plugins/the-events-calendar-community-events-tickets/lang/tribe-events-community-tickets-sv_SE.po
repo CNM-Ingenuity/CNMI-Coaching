@@ -1,0 +1,394 @@
+# Translation of Community Tickets in Swedish
+# This file is distributed under the same license as the Community Tickets package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2016-12-05 21:50:15+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.3.1\n"
+"Language: sv_SE\n"
+"Project-Id-Version: Community Tickets\n"
+
+#: src/Tribe/Event_Form.php:271
+msgctxt "attendee event actions"
+msgid "View Event"
+msgstr ""
+
+#: src/Tribe/Event_Form.php:270
+msgctxt "attendee event actions"
+msgid "View"
+msgstr ""
+
+#: src/Tribe/Main.php:489
+msgid "To begin using The Events Calendar: Community Events Tickets, please install and activate the latest versions of %1$s, %2$s, %3$s, %4$s, and %5$s."
+msgstr ""
+
+#: src/Tribe/Event_Form.php:129
+msgid "RSVP"
+msgstr ""
+
+#: src/Tribe/Event_Form.php:65
+msgid "Are you sure you want to delete this ticket? This cannot be undone."
+msgstr "Är du säker på att du vill ta bort denna biljett? Det har kan inte ångras."
+
+#: src/admin-views/payment-options.php:173
+msgid "PayPal Application ID"
+msgstr "PayPal ansökan ID"
+
+#: src/Tribe/Adapter/WooCommerce_PayPal.php:34
+msgid "Split the distribution of money between the site owner and event organizer at the time of ticket purchase with Community Tickets. Settings are available in %1$sEvents > Settings > Community%2$s"
+msgstr "Fördela distributionen av pengarna mellan webbplatsägaren och evenemangsarrangören vid det tillfället biljettköpen görs genom Community Tickets. Inställningarna är tillgängliga i %1$sEvenemang > Inställningar > Community%2$s"
+
+#: src/Tribe/Adapter/WooCommerce_PayPal.php:31
+msgid "PayPal Split Payments"
+msgstr "Uppdelad betalning med Paypal"
+
+#: src/Tribe/Templates.php:46
+msgid "Community Events Tickets"
+msgstr ""
+
+#: src/Tribe/Event_Form.php:130
+#: src/views/community-tickets/modules/tickets.php:45
+msgid "Tickets"
+msgstr "Biljetter"
+
+#: src/views/community-tickets/modules/payment-options.php:113
+msgid "Fees are %s%% per transaction."
+msgstr "Avgiften är %s%% per transaktion."
+
+#: src/views/community-tickets/modules/payment-options.php:105
+msgid "Fees are a flat fee of $%1$s per ticket."
+msgstr "Avgifterna är en fast kostnad av $%1$s per biljett"
+
+#: src/admin-views/payment-options.php:118
+msgid "Read more"
+msgstr "Läs mer"
+
+#: src/admin-views/payment-options.php:107
+msgid ""
+"Leaving this box unchecked means that all funds will go to the PayPal account configured in WooCommerce.\n"
+"\t\t\tCheck this box if you wish money for tickets to be distributed to the site and the event\n"
+"\t\t\torganizer at the time of ticket purchasing. You will need a PayPal %1$sdeveloper account%2$s.\n"
+"\t\t\tNote: when split payments are enabled, ticket creators can override the \"Fee option defaults\".\n"
+"\t\t\t%3$s\n"
+"\t\t\t"
+msgstr ""
+
+#: src/admin-views/payment-options.php:75
+msgid "The flat fee charged for each event in an order."
+msgstr "Den fasta avgiften som dras för varje event i ordning."
+
+#. Author URI of the plugin/theme
+msgid "http://m.tri.be/21"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Modern Tribe, Inc."
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Community Events Tickets is an add-on providing additional a way for community organizers to offer paid tickets for community events."
+msgstr "Community Events Tickets är ett tillägg som ger ett extra sätt för individuella arrangörer att erbjuda och ta betalt för deras evenemang."
+
+#. Plugin Name of the plugin/theme
+msgid "The Events Calendar: Community Events Tickets"
+msgstr ""
+
+#: src/views/community-tickets/modules/tickets.php:64
+msgid "Before you can create tickets, please add your PayPal email address on the %1$sPayment options%2$s form."
+msgstr "Innan du kan skapa biljetter behöver du ange din PayPal emailadress i %1$sBetalningsinställningar%2$s formuläret."
+
+#: src/views/community-tickets/modules/payment-options.php:154
+msgid "Save"
+msgstr "Spara"
+
+#: src/views/community-tickets/modules/payment-options.php:138
+msgid "Display fees in addition to ticket price"
+msgstr "Visa avgifter utöver biljettpriset"
+
+#: src/views/community-tickets/modules/payment-options.php:129
+msgid "Options:"
+msgstr "Inställningar:"
+
+#: src/views/community-tickets/modules/payment-options.php:96
+msgid "Fees are %s%% per transaction plus a $%s flat fee per ticket."
+msgstr "Avgifterna är %s%% per transaktion plus en $%s fast avgift per biljett."
+
+#: src/views/community-tickets/modules/payment-options.php:89
+msgid "Fee Structure:"
+msgstr "Avgiftsstruktur:"
+
+#: src/views/community-tickets/modules/payment-options.php:83
+msgid "Ticket Fees"
+msgstr "Biljettavgifter"
+
+#: src/views/community-tickets/modules/payment-options.php:55
+msgid "Tickets cannot be created without an email address that is associated with PayPal"
+msgstr "Biljetter kan inte bli skapade utan en email adress som har kopplats med Paypal"
+
+#: src/views/community-tickets/modules/payment-options.php:46
+msgid "Email:"
+msgstr ""
+
+#: src/views/community-tickets/modules/payment-options.php:39
+msgid "Please enter your PayPal email address; this is needed in order to take payment."
+msgstr "Ange din Paypal emailadress då den krävs för att ta emot betalningar för evenemang."
+
+#: src/views/community-tickets/modules/payment-options.php:35
+msgid "PayPal Options"
+msgstr "PayPal inställningar"
+
+#: src/views/community-tickets/modules/orders-report-after-organizer.php:17
+msgid "Organizer PayPal:"
+msgstr "Arrangörens PayPal"
+
+#: src/admin-views/payment-options.php:193
+msgid "Enter a prefix for your PayPal invoices. If you run multiple stores/event sites, entering a value here will ensure that your invoice numbers are unique - PayPal does not accept duplicate invoice numbers."
+msgstr "Ange ett prefix för dina PayPal fakturor. När du anger detta försäkrar det dig om att dina fakturanummer är unika, vilket kan vara bra om du hanterar flera webbbutiker/evenemangssidor. PayPal accepterar inte dubletter av fakturanummer."
+
+#: src/admin-views/payment-options.php:192
+msgid "Invoice prefix"
+msgstr "Faktura prefix"
+
+#: src/admin-views/payment-options.php:183
+msgid "This is the email address for the PayPal account that will receive payments."
+msgstr "Det här är emailadressen för PayPal kontot som kommer att ta emot betalningar."
+
+#: src/admin-views/payment-options.php:182
+msgid "Receiver email"
+msgstr "Mottagarens email"
+
+#: src/admin-views/payment-options.php:164
+msgid "PayPal API signature"
+msgstr "PayPal API signatur"
+
+#: src/admin-views/payment-options.php:155
+msgid "PayPal API password"
+msgstr "PayPal API lösenord"
+
+#: src/admin-views/payment-options.php:146
+msgid "PayPal API username"
+msgstr "PayPal API användarnamn"
+
+#: src/admin-views/payment-options.php:138
+msgid "Check this box if you wish all payments to be test payments via PayPal sandbox."
+msgstr "Markera denna rutan om du önskar att alla betalningar ska vara testbetalningar visa PayPal sandbox."
+
+#: src/admin-views/payment-options.php:137
+msgid "Use PayPal sandbox"
+msgstr "Använd PayPal sandbox"
+
+#: src/admin-views/payment-options.php:132
+msgid "The following PayPal settings are required for enabling split payments."
+msgstr "Följande PayPal inställningar krävs för att tillåta uppdelade betalningar."
+
+#: src/admin-views/payment-options.php:105
+msgid "Enable split payments"
+msgstr "Tillåt uppdelade betalningar"
+
+#: src/admin-views/payment-options.php:96
+#: src/views/community-tickets/modules/payment-options.php:140
+msgid "Additional fees will be added to the total ticket price"
+msgstr "Tillkomna avgifter kommer att adderas till det totala biljettpriset."
+
+#: src/admin-views/payment-options.php:93
+msgid "Display fees in addition to subtotal on the Cart page"
+msgstr "Visa avgifter utöver delsumman på kundvagnssidan"
+
+#: src/admin-views/payment-options.php:91
+#: src/views/community-tickets/modules/payment-options.php:135
+msgid "Fees will be subtracted from the cost of the ticket"
+msgstr "Avgifter kommer att räknas av från kostnaden på biljetten"
+
+#: src/admin-views/payment-options.php:88
+#: src/views/community-tickets/modules/payment-options.php:133
+msgid "Include fees in ticket price"
+msgstr "Inkludera avgifter i biljettpriset"
+
+#: src/admin-views/payment-options.php:84
+msgid "Fee option defaults:"
+msgstr "Avgiftsinställningar förval:"
+
+#: src/admin-views/payment-options.php:65
+msgid "The percentage fee charged to each ticket transaction."
+msgstr "Procentavgifter som dras för varje biljettransaktion."
+
+#: src/admin-views/payment-options.php:64
+msgid "Fee percentage"
+msgstr "Avgiftsprocent"
+
+#: src/admin-views/payment-options.php:56
+msgid "Flat fee & percentage"
+msgstr "Fast avgift & procent"
+
+#: src/admin-views/payment-options.php:55
+msgid "Percentage"
+msgstr "Procent"
+
+#: src/admin-views/payment-options.php:54
+#: src/admin-views/payment-options.php:74
+msgid "Flat fee"
+msgstr "Fast avgift"
+
+#: src/admin-views/payment-options.php:53
+msgid "None"
+msgstr "Inget"
+
+#: src/admin-views/payment-options.php:49
+msgid "What type of fee will be charged on a per-ticket basis?"
+msgstr "Vilken avgiftstyp ska dras på per-biljett basis?"
+
+#: src/admin-views/payment-options.php:48
+msgid "Per-ticket fee type"
+msgstr "Per-biljett avgiftstyp"
+
+#: src/admin-views/payment-options.php:39
+msgid "The maximum number of tickets per order. Leaving this blank or setting to 0 means there is no limit. Once a limit greater than 0 has been set, this value can be overridden when tickets are created."
+msgstr "Maximala antalet biljetter per order. Att lämna blankt eller att ange 0 betyder att det inte finns någon gräns. När en gräns större än 0 har satts kan det här värdet skrivas över när biljetter skapas."
+
+#: src/admin-views/payment-options.php:38
+msgid "Default purchase limit"
+msgstr "Förvald köpgräns"
+
+#: src/admin-views/payment-options.php:30
+msgid "Check this box if you wish to allow community organizers to upload images for their tickets."
+msgstr "Markera denna ruta om du vill tillåta organisatörer att ladda upp bilder till deras biljetter. "
+
+#: src/admin-views/payment-options.php:29
+msgid "Enable ticket images"
+msgstr "Tillåt biljettbilder"
+
+#: src/admin-views/payment-options.php:21
+msgid "Check this box if you wish all Subscribers to receive the ability to create tickets. Uncheck it if you will be altering the <code>edit_event_tickets</code> capability either via a plugin or custom filter."
+msgstr "Markera denna kryssrutan om du önskar att alla prenumeranter ska ha förmågan att skapa biljetter. Avmarkera den om du kommer att ändra  <code>edit_event_tickets</code> möjligheten antingen via ett plugin eller via ett egendefinierat filter."
+
+#: src/admin-views/payment-options.php:20
+msgid "Allow any user to create tickets"
+msgstr "Tillåt alla användare att skapa biljetter"
+
+#: src/admin-views/payment-options.php:12
+msgid "Check this box if you wish to turn on Community Tickets functionality"
+msgstr "Markera denna ruta om du önskar att aktivera Community Tickets funktionalitet"
+
+#: src/admin-views/payment-options.php:11
+msgid "Enable Community Tickets"
+msgstr "Aktivera Community Tickets"
+
+#: src/admin-views/payment-options.php:6
+msgid "Community Tickets"
+msgstr ""
+
+#: src/Tribe/Route/Sales_Report.php:39
+msgid "Sales Report"
+msgstr "Försäljningsrapporter"
+
+#: src/Tribe/Route/Sales_Report.php:37
+msgid "sales"
+msgstr "försäljning"
+
+#: src/Tribe/Route/Payment_Options.php:107
+msgid "Payment options"
+msgstr "Betalningsinställningar"
+
+#: src/Tribe/Route/Payment_Options.php:23
+msgid "Payment Options"
+msgstr "Betalningsinställningar"
+
+#: src/Tribe/Route/Payment_Options.php:21
+msgid "payment-options"
+msgstr "betalnings-inställningar"
+
+#: src/Tribe/Route/Attendees_Report.php:83 src/Tribe/Route/Sales_Report.php:80
+#: src/views/community-tickets/modules/payment-options.php:23
+msgid "My %s"
+msgstr "Mina %s"
+
+#: src/Tribe/Route/Attendees_Report.php:39
+msgid "Attendees Report"
+msgstr "Deltagare rapport"
+
+#: src/Tribe/Route/Attendees_Report.php:37
+msgid "attendees"
+msgstr "deltagare"
+
+#: src/Tribe/Main.php:1136
+msgid "Limited to %1$s per order."
+msgstr "Begränsad till %1$s per order."
+
+#: src/Tribe/Main.php:1017
+msgid "Editing ticket prices is not allowed once purchases have been made."
+msgstr "Att redigera biljetter tillåts inte när köp har gjorts."
+
+#: src/Tribe/Main.php:939
+msgid "Site Fee Percentage: %s%%"
+msgstr "Webbplatsens avgiftsprocent %s%%"
+
+#: src/Tribe/Main.php:934
+msgid "Site Fee: %s per order"
+msgstr "Webbplats avgift: %s per order"
+
+#: src/Tribe/Main.php:696
+msgid "Sales"
+msgstr "Försäljning"
+
+#: src/Tribe/Main.php:695
+msgid "Attendees"
+msgstr "Deltagare"
+
+#: src/Tribe/Main.php:694
+msgid "Reports:"
+msgstr "Rapporter:"
+
+#: src/Tribe/Event_Form.php:73
+msgid "Set as ticket header"
+msgstr "Använd som biljettrubrik"
+
+#: src/Tribe/Event_Form.php:72
+msgid "Ticket header image"
+msgstr "Biljettens rubrikbild"
+
+#: src/Tribe/Cart.php:127
+msgid "Site Fees"
+msgstr "Webbplatsavgifter"
+
+#: src/Tribe/Adapter/WooCommerce_PayPal.php:441
+msgid "The payment is awaiting processing."
+msgstr "Betalningen väntar på att bearbetas."
+
+#: src/Tribe/Adapter/WooCommerce_PayPal.php:437
+msgid "The payment is in progress."
+msgstr "Betalningen är under bearbetning."
+
+#: src/Tribe/Adapter/WooCommerce_PayPal.php:433
+msgid "One or more transfers failed when attempting to reverse a payment."
+msgstr "En eller flera överföringar misslyckades när försök gjordes att återställa en betalning."
+
+#: src/Tribe/Adapter/WooCommerce_PayPal.php:429
+msgid "The payment failed and all attempted transfers failed or all completed transfers were successfully reversed."
+msgstr "Betalningen misslyckades och alla försök till överföringar misslyckades eller så har alla slutförda betalningar blivit framgångsrikt återställda."
+
+#: src/Tribe/Adapter/WooCommerce_PayPal.php:425
+msgid "Some transfers succeeded and some failed for a parallel payment or, for a delayed chained payment, secondary receivers have not been paid."
+msgstr "Vissa överföringar lyckades och några misslyckades för en parallell betalning eller, via en fördröjd kedjad betalning, så har inte sekundära mottagare blivit betalda."
+
+#: src/Tribe/Adapter/WooCommerce_PayPal.php:420
+msgid "The payment was successful."
+msgstr "Betalningen lyckades."
+
+#: src/Tribe/Adapter/WooCommerce_PayPal.php:404
+msgid "The payment request was received. Funds will be transferred once the payment is approved."
+msgstr "Betalningsförfrågan har mottagits. Betalmedlet kommer överföras när betalningen har godkänts."
+
+#: src/Tribe/Adapter/WooCommerce_PayPal.php:400
+msgid "Payment canceled via IPN."
+msgstr "Betalningen annullerades via IPN."
+
+#: src/Tribe/Adapter/WooCommerce_PayPal.php:338
+msgid "An error has occurred while processing your payment, please try again. Or contact us for assistance."
+msgstr "Ett fel inträffade när din betalning bearbetades, var vänlig att prova ingen senare. Eller kontakta oss för hjälp med att lösa problemet."
+
+#: src/Tribe/Adapter/WooCommerce_PayPal.php:37
+msgid "Proceed to PayPal"
+msgstr "Gå vidare till PayPal"
