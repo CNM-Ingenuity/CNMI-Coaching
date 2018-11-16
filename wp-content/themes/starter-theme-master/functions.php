@@ -200,16 +200,10 @@ function eleven_online_add_hero_area()
     }
 }
 
-// add_action( 'woocommerce_after_cart', 'but_whats_in_the_cart' );
-// function but_whats_in_the_cart() {
-//     $cart = WC()->cart->get_cart();
-//     echo '<pre>';
-//     print_r($cart);
-//     echo '</pre>';
-// }
 add_action('woocommerce_payment_complete', 'custom_add_to_cart');
 function custom_add_to_cart($order_id) {
-    $order = wc_get_order($order_id);
+		//Need to add conditional to only run on ticket purchases
+		$order = wc_get_order($order_id);
 		$order_array = json_decode($order);
 		var_dump($order_array);
 		$order_meta = $order_array->meta_data[0];
@@ -219,6 +213,7 @@ function custom_add_to_cart($order_id) {
 		for($i= 0; $i < count($meta_array); $i++) {
 		$first_name = $meta_array[$i]->{'first-name'};
 		$last_name = $meta_array[$i]->{'last-name'};
+		//need to check if user exists and if user does exist, pass the user id into the insert user function
 		$user_email = $meta_array[$i]->email;
 		$user_data = array(
 			'user_pass' => '',
@@ -229,10 +224,10 @@ function custom_add_to_cart($order_id) {
 			'role' => 'subscriber'
 		);
 		$user_id = wp_insert_user($user_data);
-		var_dump($user_id);
+		//Send notification email. We will probably want to customize the message
 		$notification = wp_new_user_notification($user_id, '' , 'user');
-		var_dump($notification);
-
+		// Need to add custom meta to user saying which event they registered for.
+		//Do we want to try to send this data to salesforce using the API or Zapier? 
 
 
 		// 	// code...
