@@ -199,37 +199,102 @@ function eleven_online_add_hero_area()
         }
     }
 }
-
+//Register users for site on ticket purchase.
 add_action('woocommerce_payment_complete', 'custom_add_to_cart');
 function custom_add_to_cart($order_id) {
 		//Need to add conditional to only run on ticket purchases
 		$order = wc_get_order($order_id);
+		// var_dump($order);
 		$order_array = json_decode($order);
-		var_dump($order_array);
+		print_r($order_array);
+
 		$order_meta = $order_array->meta_data[0];
-		//Need to get all ticket product ids and then pass them into this next variable
-		$meta_array = $order_meta->value->{'116'};
-		$count = 0;
-		for($i= 0; $i < count($meta_array); $i++) {
-		$first_name = $meta_array[$i]->{'first-name'};
-		$last_name = $meta_array[$i]->{'last-name'};
-		//need to check if user exists and if user does exist, pass the user id into the insert user function
-		$user_email = $meta_array[$i]->email;
-		$user_data = array(
-			'user_pass' => '',
-			'user_login' => $user_email,
-			'user_email' => $user_email,
-			'first_name' => $first_name,
-			'last_name' => $last_name,
-			'role' => 'subscriber'
-		);
-		$user_id = wp_insert_user($user_data);
-		//Send notification email. We will probably want to customize the message
-		$notification = wp_new_user_notification($user_id, '' , 'user');
+
+		$meta_array = $order_meta->value;
+
+		foreach ($meta_array as $var => $value) {
+			print_r($var);
+			$product = wc_get_product($var);
+			print_r($product);
+		 	foreach ($value as $key => $ticket_meta_array) {
+				$first_name = $ticket_meta_array->{'first-name'};
+				$last_name = $ticket_meta_array->{'last-name'};
+				$user_email = $ticket_meta_array->email;
+				$user_title = $ticket_meta_array->title;
+				print_r($user_title);
+				$user_data = array(
+					'user_pass' => '',
+					'user_login' => $user_email,
+					'user_email' => $user_email,
+					'first_name' => $first_name,
+					'last_name' => $last_name,
+					'role' => 'subscriber'
+				);
+				if(! email_exists($user_email)){
+					echo 'I would have registered'. $user_email .'but we are testing';
+					$user_id = wp_insert_user($user_data);
+					// print_r($user_id);
+				} else {
+					echo 'This user already exists!';
+				}
+			}
+		}
+		//need to go through meta array and
+
+		// for($i= 0; $i < count($meta_array); $i++) {
+		// $first_name = $meta_array[$i]->{'first-name'};
+		// $last_name = $meta_array[$i]->{'last-name'};
+		// //need to check if user exists and if user does exist, pass the user id into the insert user function
+		// $user_email = $meta_array[$i]->email;
+		// $user_data = array(
+		// 	'user_pass' => '',
+		// 	'user_login' => $user_email,
+		// 	'user_email' => $user_email,
+		// 	'first_name' => $first_name,
+		// 	'last_name' => $last_name,
+		// 	'role' => 'subscriber'
+		// );
+		// $user_id = wp_insert_user($user_data);
+		// // Send notification email. We will probably want to customize the message
+		// $notification = wp_new_user_notification($user_id, '' , 'user');
 		// Need to add custom meta to user saying which event they registered for.
-		//Do we want to try to send this data to salesforce using the API or Zapier? 
+		// Do we want to try to send this data to salesforce using the API or Zapier?
 
 
 		// 	// code...
 		}
+// }
+
+//Change dashboard based on the member's account type
+add_action('genesis_after_header','set_user_dashboard');
+function set_user_dashboard(){
+	$user_id = get_current_user_id();
+	$memberships = wc_memberships_get_user_active_memberships( $user_id );
+	$plan_id = $memberships[0]->{"plan_id"};
+	if ($plan_id == 406) {
+		echo '<h2>You are a Certified Coach!</h2>';
+	} elseif ($plan_id == 407) {
+		echo '<h2>You are a Coach in Training!</h2>';
+	} elseif ($plan_id == 408) {
+		echo '<h2>You are a Contracting Organization!</h2>';
+	} elseif ($plan_id == 410) {
+		echo '<h2>You are a Licensed Organization!</h2>';
+	} elseif ($plan_id == 411) {
+		echo '<h2>You are a Certified Coach Trainer!</h2>';
+	}
+
+
+}
+
+add_filter( 'wp_nav_menu_items', 'wti_loginout_menu_link', 10, 2 );
+
+function wti_loginout_menu_link( $items, $args ) {
+   if ($args->theme_location == 'primary') {
+      if (is_user_logged_in()) {
+         $items .= '<li class="right"><a href="'. wp_logout_url() .'">'. __("Log Out") .'</a></li>';
+      } else {
+         $items .= '<li class="right"><a href="'. wp_login_url(get_permalink()) .'">'. __("Log In") .'</a></li>';
+      }
+   }
+   return $items;
 }
