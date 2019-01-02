@@ -10,8 +10,10 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 /*
  * TABLE OF CONTENTS
- * 1. CMB2
- * 2. CUSTOM POST TYPES
+ * 1. Custom Post Types
+ * 2. CMB2
+ * 3. Custom Tables
+ *
  */
 
  /*
@@ -34,7 +36,7 @@ function create_certifications_cpt()
         'label' => __('Certifications', 'text_domain'),
         'description' => __('Certifications', 'text_domain'),
         'supports' => array('title', 'editor', 'excerpt', 'publicize', 'thumbnail', 'trackbacks', 'revisions', 'custom-fields', 'page-attributes',),
-        'taxonomies' => array('file-under', 'super-cat'),
+        'taxonomies' => array('file-under'),
         'hierarchical' => false,
         'menu_position' => 7,
         'menu_icon' => 'dashicons-awards',
@@ -48,3 +50,30 @@ function create_certifications_cpt()
     register_post_type('certifications', $args);
 }
 add_action('init', 'create_certifications_cpt');
+
+/*
+ * CMB2
+ */
+
+
+/*
+ * Custom Tables
+ */
+
+function create_progress_table()
+{
+  global $wpdb;
+  $table_name = $wpdb->prefix . "progress";
+  require_once(ABSPATH . 'wp-admin/includes/upgrade.php' );
+
+  $sql = "CREATE TABLE $table_name (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    user_id mediumint(9) DEFAULT 111 NOT NULL,
+    coach_id mediumint(9) DEFAULT 222 NOT NULL,
+    PRIMARY KEY (id)
+  ) $charset_collate;";
+
+  dbDelta( $sql );
+}
+
+register_activation_hook(__FILE__, 'create_progress_table');
