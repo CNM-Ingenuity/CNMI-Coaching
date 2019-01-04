@@ -54,7 +54,7 @@ add_action('init', 'create_certifications_cpt');
 /*
  * CMB2
  */
-
+include_once dirname(__FILE__) . '/metaboxes/certification-cmb2.php';
 
 /*
  * Custom Tables
@@ -68,8 +68,8 @@ function create_progress_table()
 
   $sql = "CREATE TABLE $table_name (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
-    user_id mediumint(9) DEFAULT 111 NOT NULL,
-    coach_id mediumint(9) DEFAULT 222 NOT NULL,
+    user_id mediumint(9) NOT NULL,
+    coach_id mediumint(9) NOT NULL,
     PRIMARY KEY (id)
   ) $charset_collate;";
 
