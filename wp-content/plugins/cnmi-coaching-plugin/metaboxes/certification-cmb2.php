@@ -45,6 +45,16 @@ if(!function_exists('cnmi_register_certification_metabox')) {
       'id' => $prefix . 'coach_end_user_agreement',
       'type' => 'text_url',
     ));
+    $cmb->add_field( array(
+      'name' => __('Training', 'cmb2'),
+      'desc' => __('Link to Training', 'cmb2'),
+      'id' => $prefix . 'training',
+      'type' => 'text_url',
+      'repeatable' => true,
+    	'text' => array(
+        'add_row_text' => 'Add Training',
+      ),
+    ));
   }
 }
 
