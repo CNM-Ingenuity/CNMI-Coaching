@@ -15,6 +15,24 @@ if(!function_exists('cnmi_register_certification_metabox')) {
 			'priority' => 'high',
     ));
     $cmb->add_field( array(
+      'name' => __('Hours', 'cmb2'),
+      'desc' => __('Number of hours', 'cmb2'),
+      'id' => $prefix . 'hours',
+      'type' => 'text',
+    ));
+    $cmb->add_field( array(
+      'name' => __('Training Type', 'cmb2'),
+      'desc' => __('Number of hours', 'cmb2'),
+      'id' => $prefix . 'training_type',
+      'type' => 'text',
+    ));
+    $cmb->add_field( array(
+      'name' => __('One ', 'cmb2'),
+      'desc' => __('Number of hours', 'cmb2'),
+      'id' => $prefix . 'training_type',
+      'type' => 'text',
+    ));
+    $cmb->add_field( array(
       'name' => __('Transcripts', 'cmb2'),
       'desc' => __('Transcript of instruction', 'cmb2'),
       'id' => $prefix . 'transcript',
