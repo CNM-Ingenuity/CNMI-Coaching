@@ -1,10 +1,9 @@
 .certifications
-  max-width: 60%
-  margin-left: 20%
+  max-width: 85%
+  margin: 0 auto
   .entry-title
     font-size: 18px
   .certification-single
-    max-width: 80%
     .certification-description
       max-width: 80%
       font-size: 14px
@@ -12,15 +11,18 @@
       font-weight: 300
       line-height: 2.29
       margin-bottom: 3%
-      .certification-links
-        font: $headingFont
-        font-size: 16px
-        .transcript
-            max-width: 50px
-            background: $backgroundColor
-            img
-              margin-left: 20%
-        .training
-          margin-left: 5%            
-        a
-          color: #ffffff
+    .certification-links
+      font: $headingFont
+      font-size: 16px
+      .transcript, .training
+        min-width: 296px
+        background: $backgroundColor
+        img
+          margin-left: 15%
+      .transcript
+        img
+          margin-left: 30%
+      .button:nth-child(2)
+        margin-left: 20%
+      a
+        color: #ffffff
