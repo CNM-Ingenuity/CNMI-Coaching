@@ -19,17 +19,17 @@ function get_progress(){
 	$current_user = wp_get_current_user();
   $table_name  = $wpdb->prefix."progress";
 	$original_status = 'active';
-	$new_status = 'suspended';
-	$user_id = 1;
+	$new_status = '';
+	$user_id = '';
 	$progresses = $wpdb->get_results("SELECT * FROM wp_progress;");
 	// $progress_2 = $wpdb->get_results("SELECT * FROM ". $table_name ." WHERE status = 'suspended';");
 
 	echo '<div class="one-half first"><form id="test-form" action="/">';
-	echo '<label for="user_id">user ID</label>';
-	echo '<input id="test-form-user-id" label="User ID" name="user_id" type="number" class="one-half first">';
-	echo '<label for="status">Select Status</label>';
+	echo '<div class="one-half first"><label for="user_id">user ID</label>';
+	echo '<input id="test-form-user-id" label="User ID" name="user_id" type="number" class="user_id"></div>';
+	echo '<div class="one-half"><label for="status">Select Status</label>';
 	echo '<select name="status" id="test-form-status" class="one-half"><option value="active">Active</option>';
-	echo '<option value="suspended">Suspended</option></select><input type="submit" value="Change"></form></div>';
+	echo '<option value="suspended">Suspended</option></select></div><input type="submit" value="Change"></form></div>';
 
 	//output progress
 	echo '<div class="one-half"><h2> Progress</h2>';
@@ -41,15 +41,22 @@ function get_progress(){
 			$progress_user_id = $progress->user_id;
 			$progress_coach_id = $progress->coach_id;
 			$progress_status = $progress->status;
-			echo '<li> User ID:'. $progress_user_id . 'Coach ID: ' . $progress_coach_id . 'Status:' . $progress_status .'</li>';
-
+			echo '<li> <p>  User ID: '. $progress_user_id . '  Coach ID: ' . $progress_coach_id . '  Status: ' . $progress_status .'</p></li>';
 	}
 	echo '</ul></div>';
+		if(isset($_GET['user_id']) && $_GET['user_id'] !='') {
+			$user_id = $_GET['user_id'];
+		}
+		if(isset($_GET['status']) && $_GET['status'] !='') {
+			$new_status = $_GET['status'];
+		}
+		if(isset($_GET['user_id']) && $_GET['user_id'] !='' && isset($_GET['status']) && $_GET['status'] !='') {
+		$wpdb->query( $wpdb->prepare("UPDATE $table_name
+		  SET status = %s
+		 WHERE user_id = %s", $new_status, $user_id)
+		);
+		}
 
-  $wpdb->query( $wpdb->prepare("UPDATE $table_name
-    SET status = %s
-   WHERE user_id = %s", $new_status, $user_id)
-  );
 }
 
 //* Force full width content layout
