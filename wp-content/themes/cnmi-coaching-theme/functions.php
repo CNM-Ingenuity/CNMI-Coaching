@@ -270,21 +270,62 @@ add_action('genesis_after_header','set_user_dashboard');
 function set_user_dashboard(){
 	$user_id = get_current_user_id();
 	$memberships = wc_memberships_get_user_active_memberships( $user_id );
-	$plan_id = $memberships[0]->{"plan_id"};
-	if ($plan_id == 406) {
-		echo '<h2>You are a Certified Coach!</h2>';
-	} elseif ($plan_id == 407) {
-		echo '<h2>You are a Coach in Training!</h2>';
-	} elseif ($plan_id == 408) {
-		echo '<h2>You are a Contracting Organization!</h2>';
-	} elseif ($plan_id == 410) {
-		echo '<h2>You are a Licensed Organization!</h2>';
-	} elseif ($plan_id == 411) {
-		echo '<h2>You are a Certified Coach Trainer!</h2>';
+	if($memberships){
+
+		$plan_id = $memberships[0]->{"plan_id"};
+		if ($plan_id == 406) {
+			echo '<h2>You are a Certified Coach!</h2>';
+		} elseif ($plan_id == 407) {
+			echo '<h2>You are a Coach in Training!</h2>';
+		} elseif ($plan_id == 408) {
+			echo '<h2>You are a Contracting Organization!</h2>';
+		} elseif ($plan_id == 410) {
+			echo '<h2>You are a Licensed Organization!</h2>';
+		} elseif ($plan_id == 411) {
+			echo '<h2>You are a Certified Coach Trainer!</h2>';
+		}
 	}
 
-
 }
+
+// add_action('genesis_after_header', 'get_progress');
+// function get_progress(){
+// 	global $wpdb;
+// 	$current_user = wp_get_current_user();
+//   $table_name  = $wpdb->prefix."progress";
+// 	$original_status = 'active';
+// 	$new_status = 'suspended';
+// 	$user_id = 1;
+// 	$progresses = $wpdb->get_results("SELECT * FROM wp_progress;");
+// 	// $progress_2 = $wpdb->get_results("SELECT * FROM ". $table_name ." WHERE status = 'suspended';");
+//
+// 	echo '<div class="one-half first"><form id="test-form" action="/">';
+// 	echo '<label for="user_id">user ID</label>';
+// 	echo '<input id="test-form-user-id" label="User ID" name="user_id" type="number" class="one-half first">';
+// 	echo '<label for="status">Select Status</label>';
+// 	echo '<select name="status" id="test-form-status" class="one-half"><option value="active">Active</option>';
+// 	echo '<option value="suspended">Suspended</option></select><input type="submit" value="Change"></form></div>';
+//
+// 	//output progress
+// 	echo '<div class="one-half"><h2> Progress</h2>';
+// 	// print_r($progresses);
+// 	echo '<ul>';
+// 	$count = 0;
+// 	foreach ($progresses as $progress) {
+// 			$count++;
+// 			$progress_user_id = $progress->user_id;
+// 			$progress_coach_id = $progress->coach_id;
+// 			$progress_status = $progress->status;
+// 			echo '<li> User ID:'. $progress_user_id . 'Coach ID: ' . $progress_coach_id . 'Status:' . $progress_status .'</li>';
+//
+// 	}
+// 	echo '</ul></div>';
+//
+//   $wpdb->query( $wpdb->prepare("UPDATE $table_name
+//     SET status = %s
+//    WHERE user_id = %s", $new_status, $user_id)
+//   );
+// }
 
 add_filter( 'wp_nav_menu_items', 'wti_loginout_menu_link', 10, 2 );
 

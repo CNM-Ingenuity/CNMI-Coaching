@@ -12,6 +12,46 @@ function starter_theme_home_genesis_meta(){
 //* Remove the default Genesis loop (don't do the posts)
 remove_action( 'genesis_loop', 'genesis_do_loop' );
 
+
+add_action('genesis_after_header', 'get_progress');
+function get_progress(){
+	global $wpdb;
+	$current_user = wp_get_current_user();
+  $table_name  = $wpdb->prefix."progress";
+	$original_status = 'active';
+	$new_status = 'suspended';
+	$user_id = 1;
+	$progresses = $wpdb->get_results("SELECT * FROM wp_progress;");
+	// $progress_2 = $wpdb->get_results("SELECT * FROM ". $table_name ." WHERE status = 'suspended';");
+
+	echo '<div class="one-half first"><form id="test-form" action="/">';
+	echo '<label for="user_id">user ID</label>';
+	echo '<input id="test-form-user-id" label="User ID" name="user_id" type="number" class="one-half first">';
+	echo '<label for="status">Select Status</label>';
+	echo '<select name="status" id="test-form-status" class="one-half"><option value="active">Active</option>';
+	echo '<option value="suspended">Suspended</option></select><input type="submit" value="Change"></form></div>';
+
+	//output progress
+	echo '<div class="one-half"><h2> Progress</h2>';
+	// print_r($progresses);
+	echo '<ul>';
+	$count = 0;
+	foreach ($progresses as $progress) {
+			$count++;
+			$progress_user_id = $progress->user_id;
+			$progress_coach_id = $progress->coach_id;
+			$progress_status = $progress->status;
+			echo '<li> User ID:'. $progress_user_id . 'Coach ID: ' . $progress_coach_id . 'Status:' . $progress_status .'</li>';
+
+	}
+	echo '</ul></div>';
+
+  $wpdb->query( $wpdb->prepare("UPDATE $table_name
+    SET status = %s
+   WHERE user_id = %s", $new_status, $user_id)
+  );
+}
+
 //* Force full width content layout
 add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' );
 
