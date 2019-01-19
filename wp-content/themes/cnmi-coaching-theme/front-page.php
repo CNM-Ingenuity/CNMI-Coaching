@@ -62,28 +62,44 @@ function get_progress(){
 //* Force full width content layout
 add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' );
 
-add_action('genesis_after_header', 'add_home_page_widgets');
-function add_home_page_widgets() {
-  genesis_widget_area( 'home-widget-1', array(
-		'before' => '<div id="home-widget-1" class="home-widget-1 widget-area"><div class="wrap">',
-		'after'  => '</div></div>',
-  ) );
-  genesis_widget_area( 'home-widget-2', array(
-		'before' => '<div id="home-widget-2" class="home-widget-2 widget-area"><div class="wrap">',
-		'after'  => '</div></div>',
-  ) );
-  genesis_widget_area( 'home-widget-3', array(
-		'before' => '<div id="home-widget-3" class="home-widget-3 widget-area"><div class="wrap">',
-		'after'  => '</div></div>',
-  ) );
-  genesis_widget_area( 'home-widget-4', array(
-		'before' => '<div id="home-widget-4" class="home-widget-4 widget-area"><div class="wrap">',
-		'after'  => '</div></div>',
-  ) );
-  genesis_widget_area( 'home-widget-5', array(
-		'before' => '<div id="home-widget-5" class="home-widget-5 widget-area"><div class="wrap">',
-		'after'  => '</div></div>',
-  ) );
+add_action('genesis_before_footer', 'add_event_section', 8);
+function add_event_section() {
+ 	// upcoming events section
+	$tz = new DateTimeZone('America/Denver');
+	$start_date = new DateTime();
+	
+	// this is the latest events section
+	$events = tribe_get_events( array(
+		'start_date'     => $start_date->format('Y-m-d 00:00:00'),
+		'eventDisplay'   => 'custom',
+		'posts_per_page' => 4
+	));
+	
+	echo "<div class='upcoming-events-section content'><div class='wrap'>";
+	echo "<h1>Training Calendar</h1>";
+	$count = 0;
+	foreach($events as $event) {
+		$eventStartTime = new DateTime($event->EventStartDate, $tz);
+		$eventEndTime = new DateTime($event->EventEndDate, $tz);
+		if($count % 2 === 0) {
+			echo "<div class='one-half first'>";
+		} else {
+			echo "<div class='one-half'>";
+		}
+		echo "<div>";
+		echo $eventStartTime->format('M d');
+		echo "</div><div><a href='" . get_permalink($event->ID) . "'>";
+		echo $event->post_title;
+		echo "</a>";
+		echo "<p>";
+		echo $eventStartTime->format('g:i a');
+		echo " - ";
+		echo $eventEndTime->format('g:i a');
+		echo "</p></div></div>";
+		$count++;
+	}
+	echo "<p><a href='/events'>VIEW MORE</a></p>";
+	echo "</div></div>";
 }
 
 genesis();

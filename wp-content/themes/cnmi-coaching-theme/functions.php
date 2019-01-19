@@ -63,33 +63,6 @@ function add_before_footer_widget_area()
   ));
 }
 
-//* register homepage 5 widgets
-genesis_register_sidebar(array(
-    'id' => 'home-widget-1',
-    'name' => __('Home Widget 1', 'genesis'),
-    'description' => __('First widget on the home page', 'CNM Coaching'),
-));
-genesis_register_sidebar(array(
-    'id' => 'home-widget-2',
-    'name' => __('Home Widget 2', 'genesis'),
-    'description' => __('Second widget on the home page', 'CNM Coaching'),
-));
-genesis_register_sidebar(array(
-    'id' => 'home-widget-3',
-    'name' => __('Home Widget 3', 'genesis'),
-    'description' => __('Third widget on the home page', 'CNM Coaching'),
-));
-genesis_register_sidebar(array(
-    'id' => 'home-widget-4',
-    'name' => __('Home Widget 4', 'genesis'),
-    'description' => __('Fourth widget on the home page', 'CNM Coaching'),
-));
-genesis_register_sidebar(array(
-    'id' => 'home-widget-5',
-    'name' => __('Home Widget 5', 'genesis'),
-    'description' => __('Fifth widget on the home page', 'CNM Coaching'),
-));
-
 //* allow shortcodes in widgets
 add_filter('widget_text', 'do_shortcode');
 
