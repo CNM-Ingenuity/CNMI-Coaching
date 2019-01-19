@@ -242,6 +242,22 @@ html, input[type="search"] {
   content: " ";
   display: table; }
 
+/* # Skip Links
+ *---------------------------------------------------------------------------------------------------- */
+.genesis-skip-link {
+  margin: 0; }
+  .genesis-skip-link li {
+    height: 0;
+    width: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+
+/* Display outline on focus */
+:focus {
+  color: #2e2e2e;
+  outline: #ccc solid 1px; }
+
 /* # Defaults
  *---------------------------------------------------------------------------------------------------- */
 /* ## Typographical Elements
@@ -284,7 +300,7 @@ textarea:focus, .button, .gallery img {
   transition: all 0.1s ease-in-out; }
 
 a {
-  color: #c3251d;
+  color: #c19022;
   text-decoration: none; }
   a:hover, a:focus {
     color: #2e2e2e;
@@ -478,36 +494,36 @@ input[type="button"], input[type="reset"], input[type="submit"] {
   width: auto; }
 
 button:hover {
-  background-color: #c3251d;
+  background-color: #c19022;
   color: #fff; }
 
 input:hover[type="button"], input:hover[type="reset"], input:hover[type="submit"] {
-  background-color: #c3251d;
+  background-color: #c19022;
   color: #fff; }
 
 .button:hover, button:focus {
-  background-color: #c3251d;
+  background-color: #c19022;
   color: #fff; }
 
 input:focus[type="button"], input:focus[type="reset"], input:focus[type="submit"] {
-  background-color: #c3251d;
+  background-color: #c19022;
   color: #fff; }
 
 .button:focus {
-  background-color: #c3251d;
+  background-color: #c19022;
   color: #fff; }
 
 .entry-content .button:hover, .entry-content .button:focus {
   color: #fff; }
 
 .footer-widgets button {
-  background-color: #c3251d;
+  background-color: #c19022;
   color: #fff; }
 .footer-widgets input[type="button"], .footer-widgets input[type="reset"], .footer-widgets input[type="submit"] {
-  background-color: #c3251d;
+  background-color: #c19022;
   color: #fff; }
 .footer-widgets .button {
-  background-color: #c3251d;
+  background-color: #c19022;
   color: #fff; }
 .footer-widgets button:hover {
   background-color: #fff;
@@ -753,7 +769,7 @@ th {
   color: #2e2e2e; }
 
 .entry-title a:hover, .entry-title a:focus {
-  color: #c3251d; }
+  color: #c19022; }
 
 .widget-title {
   font-size: 18px;
@@ -860,7 +876,7 @@ a.alignright, img.alignright, .wp-caption.alignright {
   .enews-widget input:focus {
     border: 1px solid #333; }
   .enews-widget input[type="submit"] {
-    background-color: #c3251d;
+    background-color: #c19022;
     color: #fff;
     margin: 0;
     width: 100%; }
@@ -880,15 +896,13 @@ a.alignright, img.alignright, .wp-caption.alignright {
  *---------------------------------------------------------------------------------------------------- */
 .site-header {
   background-color: #fff;
-  min-height: 160px; }
-  .site-header .wrap {
-    padding: 40px 0; }
+  min-height: 67px; }
 
 /* ## Title Area
  *--------------------------------------------- */
 .title-area {
   float: left;
-  padding: 10px 0;
+  padding: 11px 0;
   width: 360px; }
 
 .header-full-width .title-area {
@@ -907,7 +921,7 @@ a.alignright, img.alignright, .wp-caption.alignright {
 .header-image .site-title > a {
   background: url(images/logo.png) no-repeat left;
   float: left;
-  min-height: 60px;
+  min-height: 45px;
   width: 100%; }
 
 .site-description {
@@ -936,7 +950,7 @@ a.alignright, img.alignright, .wp-caption.alignright {
 .site-header {
   transition: all 1s ease-in-out;
   z-index: 0;
-  top: -160px;
+  top: -67px;
   left: 0;
   width: 100%; }
   .site-header.sticky {
@@ -947,7 +961,7 @@ a.alignright, img.alignright, .wp-caption.alignright {
     width: 100%; }
 
 body.sticky {
-  margin-top: 160px; }
+  margin-top: 67px; }
 
 /* # Site Navigation
  *---------------------------------------------------------------------------------------------------- */
@@ -959,18 +973,21 @@ body.sticky {
   width: 100%; }
   .genesis-nav-menu .menu-item {
     display: inline-block;
-    text-align: left; }
+    text-align: left;
+    margin-bottom: 0; }
   .genesis-nav-menu a {
     color: #2e2e2e;
     text-decoration: none;
+    font-family: Vitesse-Bold, sans-serif;
     display: block;
-    padding: 30px 24px; }
+    padding: 25px 0;
+    margin: 0 24px; }
     .genesis-nav-menu a:hover, .genesis-nav-menu a:focus {
-      color: #c3251d;
+      color: #c19022;
       text-decoration: underline; }
   .genesis-nav-menu .current-menu-item > a {
-    color: #c3251d;
-    text-decoration: none; }
+    text-decoration: none;
+    border-bottom: 3px solid #0b3254; }
   .genesis-nav-menu .sub-menu {
     left: -9999px;
     opacity: 0;
@@ -983,7 +1000,7 @@ body.sticky {
     width: 200px;
     z-index: 99; }
     .genesis-nav-menu .sub-menu .current-menu-item > a:hover, .genesis-nav-menu .sub-menu .current-menu-item > a:focus {
-      color: #c3251d;
+      color: #c19022;
       text-decoration: none; }
     .genesis-nav-menu .sub-menu a {
       background-color: #fff;
@@ -1052,10 +1069,10 @@ body.sticky {
   .nav-primary .genesis-nav-menu .sub-menu a {
     color: #2e2e2e; }
     .nav-primary .genesis-nav-menu .sub-menu a:hover, .nav-primary .genesis-nav-menu .sub-menu a:focus {
-      color: #c3251d;
+      color: #c19022;
       text-decoration: underline; }
   .nav-primary .genesis-nav-menu .sub-menu .current-menu-item > a {
-    color: #c3251d;
+    color: #c19022;
     text-decoration: underline; }
 
 /* ## Secondary Navigation
@@ -1070,7 +1087,7 @@ body.sticky {
   display: none; }
 
 .responsive-menu-icon::before {
-  color: #2e2e2e;
+  color: #0b3254;
   background-color: #fff;
   padding: 10px;
   text-align: center;
@@ -1145,10 +1162,10 @@ p.entry-meta {
     padding: 8px 12px;
     text-decoration: none; }
     .archive-pagination li a:hover, .archive-pagination li a:focus {
-      background-color: #c3251d;
+      background-color: #c19022;
       text-decoration: underline; }
 .archive-pagination .active a {
-  background-color: #c3251d;
+  background-color: #c19022;
   text-decoration: underline; }
 
 /* ## Comments
@@ -1306,7 +1323,7 @@ li.comment {
     width: 100%; }
 
   .site-header .wrap {
-    padding: 20px 5%; }
+    padding: 0px 5%; }
 
   .header-image .site-title > a {
     background-position: center top !important; }
@@ -1327,7 +1344,8 @@ li.comment {
     text-align: center; }
 
   .genesis-nav-menu a {
-    padding: 20px 16px; }
+    padding: 20px 0;
+    margin: 0 16px; }
   .genesis-nav-menu .first > a, .genesis-nav-menu .last > a {
     padding: 20px 16px; }
 

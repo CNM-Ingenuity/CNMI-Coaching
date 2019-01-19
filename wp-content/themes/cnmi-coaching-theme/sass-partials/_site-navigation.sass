@@ -1,5 +1,5 @@
 /* # Site Navigation
- *----------------------------------------------------------------------------------------------------
+ *----------------------------------------------------------------------------------------------------*/
 
 .genesis-nav-menu
   clear: both
@@ -10,17 +10,20 @@
   .menu-item
     display: inline-block
     text-align: left
+    margin-bottom: 0
   a
     color: $textColor
     text-decoration: none
+    font-family: $headingFont
     display: block
-    padding: 30px 24px
+    padding: 25px 0
+    margin: 0 24px
     &:hover, &:focus
       color: $linkColor
       text-decoration: underline
   .current-menu-item > a
-    color: $linkColor
     text-decoration: none
+    border-bottom: 3px solid $darkBlue
   .sub-menu
     .current-menu-item > a
       &:hover, &:focus
@@ -71,7 +74,7 @@
       padding: 10px 0 0
 
 /* ## Accessible Menu
- *---------------------------------------------
+ *---------------------------------------------*/
 
 .menu .menu-item
   &:focus
@@ -81,7 +84,7 @@
     opacity: 1
 
 /* ## Site Header Navigation
- *---------------------------------------------
+ *---------------------------------------------*/
 
 .site-header
   .sub-menu
@@ -92,7 +95,7 @@
     margin-left: 0
 
 /* ## Primary Navigation
- *---------------------------------------------
+ *---------------------------------------------*/
 
 .nav-primary
   background-color: $backgroundColor
@@ -117,20 +120,20 @@
         text-decoration: underline
 
 /* ## Secondary Navigation
- *---------------------------------------------
+ *---------------------------------------------*/
 
 .nav-secondary
   background-color: $thirdBackgroundColor
 
 /* Responsive Navigation
- *----------------------------------------------------------------------------------------------------
+ *----------------------------------------------------------------------------------------------------*/
 
 .responsive-menu-icon
   cursor: pointer
   display: none
 
 .responsive-menu-icon::before
-  color: $textColor
+  color: $darkBlue
   background-color: $accentColor
   padding: 10px
   text-align: center
