@@ -110,7 +110,7 @@ add_filter( 'excerpt_more', 'eleven_online_excerpt_more' );
 add_filter('genesis_footer_creds_text', 'sp_footer_creds_filter');
 function sp_footer_creds_filter($creds)
 {
-    $creds = 'Copyright '.date('Y').' -  By 11 Online';
+    $creds = 'Copyright '.date('Y').' -  By CNM Ingenuity';
 
     return $creds;
 }
@@ -185,6 +185,9 @@ if( function_exists( 'is_woocommerce' ) ){
 		}
 	}
 }
+
+//* Force full-width-content layout setting
+add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' );
 
 add_action( 'wp_enqueue_scripts', 'conditionally_load_woc_js_css' );
 

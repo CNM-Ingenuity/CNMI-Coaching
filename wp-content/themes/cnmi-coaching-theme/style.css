@@ -1239,13 +1239,18 @@ li.comment {
   background-color: #0b3254;
   clear: both;
   padding-top: 40px;
-  color: #aaa; }
+  color: #fff; }
+  .footer-widgets p {
+    font-size: 11px;
+    font-size: 1.1rem; }
   .footer-widgets a {
-    color: #aaa; }
+    color: #fff;
+    vertical-align: middle;
+    line-height: 20px; }
   .footer-widgets input {
     border: 1px solid #333; }
   .footer-widgets a.button, .footer-widgets a:hover, .footer-widgets a:focus {
-    color: #fff; }
+    color: #c19022; }
   .footer-widgets li {
     border-bottom: 1px dotted #666;
     margin-bottom: 10px;
@@ -1254,6 +1259,10 @@ li.comment {
     margin-bottom: 40px; }
   .footer-widgets p:last-child {
     margin-bottom: 0; }
+  .footer-widgets .dashicons {
+    margin-right: 5px; }
+  .footer-widgets .jetpack-social-widget-item {
+    margin-right: 14px; }
 
 .footer-widgets-1, .footer-widgets-2, .footer-widgets-3 {
   width: 340px; }
@@ -1275,7 +1284,7 @@ li.comment {
   font-size: 16px;
   font-size: 1.6rem;
   line-height: 1;
-  padding: 40px 0;
+  padding: 10px 0;
   text-align: center; }
   .site-footer p {
     margin-bottom: 0; }
