@@ -918,11 +918,15 @@ a.alignright, img.alignright, .wp-caption.alignright {
     .site-title a:hover, .site-title a:focus {
       color: #2e2e2e; }
 
-.header-image .site-title > a {
-  background: url(images/logo.png) no-repeat left;
+.site-title > a {
+  background: url(images/color-logo.png) no-repeat left;
+  background-size: contain;
+  color: transparent;
   float: left;
   min-height: 45px;
   width: 100%; }
+  .site-title > a:hover {
+    color: transparent; }
 
 .site-description {
   font-size: 16px;
@@ -1238,11 +1242,17 @@ li.comment {
 .footer-widgets {
   background-color: #0b3254;
   clear: both;
-  padding-top: 40px;
+  padding-top: 66px;
   color: #fff; }
   .footer-widgets p {
     font-size: 11px;
     font-size: 1.1rem; }
+  .footer-widgets li {
+    font-size: 12px;
+    font-size: 1.2rem;
+    line-height: 19px;
+    font-family: Vitesse-Bold, sans-serif;
+    margin-bottom: 20px; }
   .footer-widgets a {
     color: #fff;
     vertical-align: middle;
@@ -1251,18 +1261,25 @@ li.comment {
     border: 1px solid #333; }
   .footer-widgets a.button, .footer-widgets a:hover, .footer-widgets a:focus {
     color: #c19022; }
-  .footer-widgets li {
-    border-bottom: 1px dotted #666;
-    margin-bottom: 10px;
-    padding-bottom: 10px; }
   .footer-widgets .widget {
-    margin-bottom: 40px; }
+    margin-bottom: 30px; }
+  .footer-widgets .widget-title {
+    font-size: 12px;
+    font-size: 1.2rem; }
   .footer-widgets p:last-child {
     margin-bottom: 0; }
   .footer-widgets .dashicons {
-    margin-right: 5px; }
+    margin-right: 21px; }
   .footer-widgets .jetpack-social-widget-item {
     margin-right: 14px; }
+  .footer-widgets .logo-container {
+    max-width: 200px; }
+  .footer-widgets .widget_nav_menu {
+    max-width: 150px;
+    display: block;
+    margin: 0 auto; }
+  .footer-widgets .footer-widget-area {
+    margin-bottom: 40px; }
 
 .footer-widgets-1, .footer-widgets-2, .footer-widgets-3 {
   width: 340px; }
@@ -1365,7 +1382,10 @@ li.comment {
     display: none; }
 
   .footer-widgets-1 {
-    margin-right: 0; } }
+    margin-right: 0; }
+
+  .footer-widgets .widget_nav_menu {
+    max-width: 100%; } }
 @media only screen and (max-width: 800px) {
   body {
     background-color: #fff;

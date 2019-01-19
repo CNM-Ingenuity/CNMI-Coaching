@@ -110,7 +110,7 @@ add_filter( 'excerpt_more', 'eleven_online_excerpt_more' );
 add_filter('genesis_footer_creds_text', 'sp_footer_creds_filter');
 function sp_footer_creds_filter($creds)
 {
-    $creds = 'Copyright '.date('Y').' -  By CNM Ingenuity';
+    $creds = 'Copyright '.date('Y').' - CNM Ingenuity';
 
     return $creds;
 }
