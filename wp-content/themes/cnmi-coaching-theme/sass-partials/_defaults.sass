@@ -15,6 +15,7 @@ body
     font-size: 1.8rem
   color: $textColor
   font-family: $bodyFont
+  background: white
   font-size: 18px
   font-size: 1.8rem
   font-weight: 300
@@ -207,39 +208,47 @@ input
   font-weight: 300
 
 button
-  background-color: $backgroundColor
+  background-color: $buttonColor
   border: 0
   color: $accentColor
+  font-family: $buttonFont
+  border-radius: 3px
   cursor: pointer
-  font-size: 16px
-  font-size: 1.6rem
-  font-weight: 300
-  padding: 16px 24px
+  font-size: 11px
+  font-size: 1.1rem
+  padding: 17px 28px
   text-transform: uppercase
   width: auto
+  &:after
+    content: "\f344"
+    margin-left: 23px
+    font-family: "Dashicons"
+    vertical-align: bottom
 
 input
   &[type="button"], &[type="reset"], &[type="submit"]
-    background-color: $backgroundColor
+    background-color: $buttonColor
     border: 0
     color: $accentColor
+    font-family: $buttonFont
+    border-radius: 3px
     cursor: pointer
-    font-size: 16px
-    font-size: 1.6rem
-    font-weight: 300
-    padding: 16px 24px
+    font-size: 11px
+    font-size: 1.1rem
+    padding: 17px 28px
     text-transform: uppercase
     width: auto
 
 .button
-  background-color: $backgroundColor
+  background-color: $buttonColor
   border: 0
   color: $accentColor
   font-family: $buttonFont
+  border-radius: 3px
   cursor: pointer
   font-size: 11px
   font-size: 1.1rem
-  padding: 16px 24px
+  padding: 17px 28px
   text-transform: uppercase
   width: auto
   &:after
@@ -256,25 +265,25 @@ input
     color: $linkColor
 
 button:hover
-  background-color: $buttonColor
+  background-color: $backgroundColor
   color: $accentColor
 
 input:hover
   &[type="button"], &[type="reset"], &[type="submit"]
-    background-color: $buttonColor
+    background-color: $backgroundColor
     color: $accentColor
 
 .button:hover, button:focus
-  background-color: $buttonColor
+  background-color: $backgroundColor
   color: $accentColor
 
 input:focus
   &[type="button"], &[type="reset"], &[type="submit"]
-    background-color: $buttonColor
+    background-color: $backgroundColor
     color: $accentColor
 
 .button:focus
-  background-color: $buttonColor
+  background-color: $backgroundColor
   color: $accentColor
 
 .entry-content .button

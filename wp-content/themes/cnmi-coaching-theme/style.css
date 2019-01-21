@@ -270,6 +270,7 @@ html {
 body {
   color: #2e2e2e;
   font-family: Roboto, sans-serif;
+  background: white;
   font-size: 18px;
   font-size: 1.8rem;
   font-weight: 300;
@@ -458,38 +459,46 @@ input[type="checkbox"], input[type="image"], input[type="radio"] {
   font-weight: 300; }
 
 button {
-  background-color: #0b3254;
+  background-color: #c19022;
   border: 0;
   color: #fff;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 3px;
   cursor: pointer;
-  font-size: 16px;
-  font-size: 1.6rem;
-  font-weight: 300;
-  padding: 16px 24px;
+  font-size: 11px;
+  font-size: 1.1rem;
+  padding: 17px 28px;
   text-transform: uppercase;
   width: auto; }
+  button:after {
+    content: "";
+    margin-left: 23px;
+    font-family: "Dashicons";
+    vertical-align: bottom; }
 
 input[type="button"], input[type="reset"], input[type="submit"] {
-  background-color: #0b3254;
+  background-color: #c19022;
   border: 0;
   color: #fff;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 3px;
   cursor: pointer;
-  font-size: 16px;
-  font-size: 1.6rem;
-  font-weight: 300;
-  padding: 16px 24px;
+  font-size: 11px;
+  font-size: 1.1rem;
+  padding: 17px 28px;
   text-transform: uppercase;
   width: auto; }
 
 .button {
-  background-color: #0b3254;
+  background-color: #c19022;
   border: 0;
   color: #fff;
   font-family: "Open Sans", sans-serif;
+  border-radius: 3px;
   cursor: pointer;
   font-size: 11px;
   font-size: 1.1rem;
-  padding: 16px 24px;
+  padding: 17px 28px;
   text-transform: uppercase;
   width: auto; }
   .button:after {
@@ -507,23 +516,23 @@ input[type="button"], input[type="reset"], input[type="submit"] {
     color: #c19022; }
 
 button:hover {
-  background-color: #c19022;
+  background-color: #0b3254;
   color: #fff; }
 
 input:hover[type="button"], input:hover[type="reset"], input:hover[type="submit"] {
-  background-color: #c19022;
+  background-color: #0b3254;
   color: #fff; }
 
 .button:hover, button:focus {
-  background-color: #c19022;
+  background-color: #0b3254;
   color: #fff; }
 
 input:focus[type="button"], input:focus[type="reset"], input:focus[type="submit"] {
-  background-color: #c19022;
+  background-color: #0b3254;
   color: #fff; }
 
 .button:focus {
-  background-color: #c19022;
+  background-color: #0b3254;
   color: #fff; }
 
 .entry-content .button:hover, .entry-content .button:focus {

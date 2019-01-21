@@ -27,17 +27,27 @@ function get_progress(){
 	}
 	$progresses = CNMI_Progress::get_current_student_progress();
 
-	echo '<div class="one-half first"><form id="test-form" action="/" method="POST">';
-	echo '<div class="one-half first"><label for="id">ID</label>';
-	echo '<input id="test-form-user-id" label="ID" name="id" type="number" class="id"></div>';
-	echo '<div class="one-half"><label for="status">Select Status</label>';
-	echo '<select name="status" id="test-form-status" class="one-half"><option value="active">Active</option>';
-	echo '<option value="suspended">Suspended</option></select></div><input type="submit" value="Change"></form></div>';
+	?>
+		<div class="wrap">
+			<div class="one-half first">
+				<form action="/" method="POST">
+					<label for="id">ID</label>
+					<input label="ID" name="id" type="number">
+			
+					<label for="status">Select Status</label>
+					<select name="status">
+						<option value="active">Active</option>
+						<option value="suspended">Suspended</option>
+					</select>
+					<input type="submit" value="Change">
+				</form>
+			</div>
+	<?php
 
 	//output progress
 	echo '<div class="one-half"><h2> Progress</h2>';
 	// print_r($progresses);
-	echo '<ul>';
+	echo '<a class="button">Button Test</a><ul>';
 	$count = 0;
 	foreach ($progresses as $progress) {
 			$count++;
@@ -46,7 +56,7 @@ function get_progress(){
 			$progress_status = $progress->status;
 			echo '<li> <p>  User ID: '. $progress_user_id . '  Coach ID: ' . $progress_coach_id . '  Status: ' . $progress_status .'</p></li>';
 	}
-	echo '</ul></div>';
+	echo '</ul></div></div>';
 }
 
 //* Force full width content layout
