@@ -94,21 +94,53 @@ class CNMI_Progress {
         $this->coach_id = $coach_id;
     }
 
-    public static function get_all_progress()
-    {
-        global $wpdb;
-        $table_name  = $wpdb->prefix."progress";
-        return $wpdb->get_results("SELECT * FROM wp_progress;");
-    }
-
-    public static function update_status_by_user_id($user_id, $status)
-    {
+    public static function update_progress_by_id_for_coach($id, $status) {
+        // get the current user to prevent people from updating someone else's students
+        $current_user = wp_get_current_user();
+        $user_id = $current_user->ID;
         global $wpdb;
         $table_name  = $wpdb->prefix."progress";
         return $wpdb->query( $wpdb->prepare(
             "UPDATE $table_name
             SET status = %s
-            WHERE user_id = %s", $status, $user_id
+            WHERE id = %s AND coach_id = %s", $status, $id, $user_id
+        ));
+    }
+
+    public static function update_progress_by_id_for_student($id, $status){
+        // get the current user to prevent people from updating someone else's account
+        $current_user = wp_get_current_user();
+        $user_id = $current_user->ID;
+        global $wpdb;
+        $table_name  = $wpdb->prefix."progress";
+        return $wpdb->query( $wpdb->prepare(
+            "UPDATE $table_name
+            SET status = %s
+            WHERE id = %s AND user_id = %s", $status, $id, $user_id
+        ));
+    }
+
+    public static function get_current_student_progress() {
+        $current_user = wp_get_current_user();
+        $user_id = $current_user->ID;
+        global $wpdb;
+        $table_name  = $wpdb->prefix."progress";
+        return $wpdb->get_results($wpdb->prepare( 
+            "SELECT * 
+            FROM $table_name 
+            WHERE user_id = %s", $user_id
+        ));
+    }
+
+    public static function get_current_coach_progress() {
+        $current_user = wp_get_current_user();
+        $user_id = $current_user->ID;
+        global $wpdb;
+        $table_name  = $wpdb->prefix."progress";
+        return $wpdb->get_results($wpdb->prepare( 
+            "SELECT * 
+            FROM $table_name 
+            WHERE coach_id = %s", $user_id
         ));
     }
 }

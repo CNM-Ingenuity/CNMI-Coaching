@@ -16,20 +16,20 @@ remove_action( 'genesis_loop', 'genesis_do_loop' );
 add_action('genesis_after_header', 'get_progress');
 function get_progress(){
 	// need to update db before getting if there is a change
-	if(isset($_GET['user_id']) && $_GET['user_id'] !='') {
-			$user_id = $_GET['user_id'];
-		}
-		if(isset($_GET['status']) && $_GET['status'] !='') {
-			$new_status = $_GET['status'];
-		}
-		if(isset($_GET['user_id']) && $_GET['user_id'] !='' && isset($_GET['status']) && $_GET['status'] !='') {
-		CNMI_Progress::update_status_by_user_id($user_id, $new_status);
+	if(isset($_POST['id']) && $_POST['id'] !='') {
+		$id = $_POST['id'];
 	}
-	$progresses = CNMI_Progress::get_all_progress();
+	if(isset($_POST['status']) && $_POST['status'] !='') {
+		$new_status = $_POST['status'];
+	}
+		if(isset($_POST['id']) && $_POST['id'] !='' && isset($_POST['status']) && $_POST['status'] !='') {
+		CNMI_Progress::update_progress_by_id_for_student($id, $new_status);
+	}
+	$progresses = CNMI_Progress::get_current_student_progress();
 
-	echo '<div class="one-half first"><form id="test-form" action="/">';
-	echo '<div class="one-half first"><label for="user_id">user ID</label>';
-	echo '<input id="test-form-user-id" label="User ID" name="user_id" type="number" class="user_id"></div>';
+	echo '<div class="one-half first"><form id="test-form" action="/" method="POST">';
+	echo '<div class="one-half first"><label for="id">ID</label>';
+	echo '<input id="test-form-user-id" label="ID" name="id" type="number" class="id"></div>';
 	echo '<div class="one-half"><label for="status">Select Status</label>';
 	echo '<select name="status" id="test-form-status" class="one-half"><option value="active">Active</option>';
 	echo '<option value="suspended">Suspended</option></select></div><input type="submit" value="Change"></form></div>';
