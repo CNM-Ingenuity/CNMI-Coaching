@@ -177,7 +177,7 @@ img
     border: 1px solid #999
 
 /* ## Forms
- *---------------------------------------------
+ *---------------------------------------------*/
 
 input, select, textarea
   background-color: $thirdBackgroundColor
@@ -235,13 +235,25 @@ input
   background-color: $backgroundColor
   border: 0
   color: $accentColor
+  font-family: $buttonFont
   cursor: pointer
-  font-size: 16px
-  font-size: 1.6rem
-  font-weight: 300
+  font-size: 11px
+  font-size: 1.1rem
   padding: 16px 24px
   text-transform: uppercase
   width: auto
+  &:after
+    content: "\f344"
+    margin-left: 23px
+    font-family: "Dashicons"
+    vertical-align: bottom
+.button.secondary
+  background-color: transparent
+  color: $textColor
+  padding: 0
+  &:hover
+    background-color: transparent
+    color: $linkColor
 
 button:hover
   background-color: $buttonColor

@@ -72,23 +72,22 @@ function add_event_section() {
 		$eventStartTime = new DateTime($event->EventStartDate, $tz);
 		$eventEndTime = new DateTime($event->EventEndDate, $tz);
 		if($count % 2 === 0) {
-			echo "<div class='one-half first'>";
+			echo "<div class='one-half first event-block'>";
 		} else {
-			echo "<div class='one-half'>";
+			echo "<div class='one-half event-block'>";
 		}
-		echo "<div>";
+		echo "<div class='event-date'>";
 		echo $eventStartTime->format('M d');
-		echo "</div><div><a href='" . get_permalink($event->ID) . "'>";
+		echo "</div><div class='event-details'><h5>";
 		echo $event->post_title;
-		echo "</a>";
-		echo "<p>";
+		echo "</h5><p>";
 		echo $eventStartTime->format('g:i a');
 		echo " - ";
 		echo $eventEndTime->format('g:i a');
-		echo "</p></div></div>";
+		echo "</p><a class='button secondary' href='" . get_permalink($event->ID) . "'>Sign Up</a></div></div>";
 		$count++;
 	}
-	echo "<p><a href='/events'>VIEW MORE</a></p>";
+	echo "<p class='view-more-events-container'><a class='view-more-events' href='/events'>VIEW MORE</a></p>";
 	echo "</div></div>";
 }
 
