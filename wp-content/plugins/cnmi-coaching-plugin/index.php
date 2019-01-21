@@ -77,3 +77,38 @@ function create_progress_table()
 }
 
 register_activation_hook(__FILE__, 'create_progress_table');
+
+/* 
+ * Custom Class to deal with the progress table
+ */
+class CNMI_Progress {
+    public $id;
+    public $user_id;
+    public $coach_id;
+
+    public function __construct($id, $user_id, $coach_id)
+    {
+        global $wpdb;
+        $this->id = $id;
+        $this->user_id = $user_id;
+        $this->coach_id = $coach_id;
+    }
+
+    public static function get_all_progress()
+    {
+        global $wpdb;
+        $table_name  = $wpdb->prefix."progress";
+        return $wpdb->get_results("SELECT * FROM wp_progress;");
+    }
+
+    public static function update_status_by_user_id($user_id, $status)
+    {
+        global $wpdb;
+        $table_name  = $wpdb->prefix."progress";
+        return $wpdb->query( $wpdb->prepare(
+            "UPDATE $table_name
+            SET status = %s
+            WHERE user_id = %s", $status, $user_id
+        ));
+    }
+}

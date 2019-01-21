@@ -15,14 +15,17 @@ remove_action( 'genesis_loop', 'genesis_do_loop' );
 
 add_action('genesis_after_header', 'get_progress');
 function get_progress(){
-	global $wpdb;
-	$current_user = wp_get_current_user();
-  $table_name  = $wpdb->prefix."progress";
-	$original_status = 'active';
-	$new_status = '';
-	$user_id = '';
-	$progresses = $wpdb->get_results("SELECT * FROM wp_progress;");
-	// $progress_2 = $wpdb->get_results("SELECT * FROM ". $table_name ." WHERE status = 'suspended';");
+	// need to update db before getting if there is a change
+	if(isset($_GET['user_id']) && $_GET['user_id'] !='') {
+			$user_id = $_GET['user_id'];
+		}
+		if(isset($_GET['status']) && $_GET['status'] !='') {
+			$new_status = $_GET['status'];
+		}
+		if(isset($_GET['user_id']) && $_GET['user_id'] !='' && isset($_GET['status']) && $_GET['status'] !='') {
+		CNMI_Progress::update_status_by_user_id($user_id, $new_status);
+	}
+	$progresses = CNMI_Progress::get_all_progress();
 
 	echo '<div class="one-half first"><form id="test-form" action="/">';
 	echo '<div class="one-half first"><label for="user_id">user ID</label>';
@@ -44,19 +47,6 @@ function get_progress(){
 			echo '<li> <p>  User ID: '. $progress_user_id . '  Coach ID: ' . $progress_coach_id . '  Status: ' . $progress_status .'</p></li>';
 	}
 	echo '</ul></div>';
-		if(isset($_GET['user_id']) && $_GET['user_id'] !='') {
-			$user_id = $_GET['user_id'];
-		}
-		if(isset($_GET['status']) && $_GET['status'] !='') {
-			$new_status = $_GET['status'];
-		}
-		if(isset($_GET['user_id']) && $_GET['user_id'] !='' && isset($_GET['status']) && $_GET['status'] !='') {
-		$wpdb->query( $wpdb->prepare("UPDATE $table_name
-		  SET status = %s
-		 WHERE user_id = %s", $new_status, $user_id)
-		);
-		}
-
 }
 
 //* Force full width content layout
