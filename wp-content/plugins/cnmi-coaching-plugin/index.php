@@ -13,6 +13,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * 1. Custom Post Types
  * 2. CMB2
  * 3. Custom Tables
+ * 4. Progress Class for easy interaction
  *
  */
 
@@ -92,6 +93,16 @@ class CNMI_Progress {
         $this->id = $id;
         $this->user_id = $user_id;
         $this->coach_id = $coach_id;
+    }
+
+    public static function get_progress_by_id($id) {
+        global $wpdb;
+        $table_name  = $wpdb->prefix."progress";
+        return $wpdb->get_results($wpdb->prepare( 
+            "SELECT * 
+            FROM $table_name 
+            WHERE id = %s", $id
+        ));
     }
 
     public static function update_progress_by_id_for_coach($id, $status) {
