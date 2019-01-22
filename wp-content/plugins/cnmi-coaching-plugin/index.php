@@ -164,3 +164,42 @@ class CNMI_Progress {
         ));
     }
 }
+
+/* 
+ * Custom Class to deal with the progress media table
+ */
+class CNMI_Progress_Media {
+    public $id;
+    public $progress_id;
+    public $type;
+    public $url;
+
+    public function __construct($id, $progress_id, $type, $url)
+    {
+        global $wpdb;
+        $this->id = $id;
+        $this->progress_id = $progress_id;
+        $this->type = $type;
+        $this->url = $url;
+    }
+
+    public static function get_progress_media_by_id($id) {
+        global $wpdb;
+        $table_name  = $wpdb->prefix."progress_media";
+        return $wpdb->get_results($wpdb->prepare( 
+            "SELECT * 
+            FROM $table_name 
+            WHERE id = %s", $id
+        ));
+    }
+
+    public static function get_progress_media_by_progress_id($progress_id) {
+        global $wpdb;
+        $table_name  = $wpdb->prefix."progress_media";
+        return $wpdb->get_results($wpdb->prepare( 
+            "SELECT * 
+            FROM $table_name 
+            WHERE progress_id = %s", $progress_id
+        ));
+    }
+}
