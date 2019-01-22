@@ -96,12 +96,8 @@ class CNMI_Progress {
     public $user_id;
     public $coach_id;
 
-    public function __construct($id, $user_id, $coach_id)
-    {
-        global $wpdb;
-        $this->id = $id;
-        $this->user_id = $user_id;
-        $this->coach_id = $coach_id;
+    public function __construct($id, $user_id, $coach_id) {
+       
     }
 
     public static function get_progress_by_id($id) {
@@ -174,13 +170,8 @@ class CNMI_Progress_Media {
     public $type;
     public $url;
 
-    public function __construct($id, $progress_id, $type, $url)
-    {
-        global $wpdb;
-        $this->id = $id;
-        $this->progress_id = $progress_id;
-        $this->type = $type;
-        $this->url = $url;
+    public function __construct($id, $progress_id, $type, $url){
+
     }
 
     public static function get_progress_media_by_id($id) {
@@ -201,5 +192,22 @@ class CNMI_Progress_Media {
             FROM $table_name 
             WHERE progress_id = %s", $progress_id
         ));
+    }
+
+    public static function save_new_media($progress_id, $type, $file) {
+        $bits = file_get_contents($file["tmp_name"]);
+        $filetype = wp_check_filetype($file["name"]);
+        $filename = 'progress_' . $progress_id . '_type_' . $type . '_' . time() . '.' . $filetype['ext'];
+        var_dump($filename);
+        $upload = wp_upload_bits($filename, null, $bits);
+        global $wpdb;
+        $table_name  = $wpdb->prefix."progress_media";
+        return $wpdb->insert($table_name, array(
+                'progress_id' => $progress_id, 
+                'type' => $type,
+                'url' => $upload['url']
+            ),
+            array('%s','%s', '%s') 
+        );
     }
 }
