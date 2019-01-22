@@ -103,11 +103,16 @@ class CNMI_Progress {
     public static function get_progress_by_id($id) {
         global $wpdb;
         $table_name  = $wpdb->prefix."progress";
-        return $wpdb->get_results($wpdb->prepare( 
+        $results = $wpdb->get_results($wpdb->prepare( 
             "SELECT * 
             FROM $table_name 
             WHERE id = %s", $id
         ));
+        // attach files
+        foreach ($results as $result) {
+            $result->files = CNMI_Progress_Media::get_progress_media_by_progress_id($result->id);
+        }
+        return $results;
     }
 
     public static function update_progress_by_id_for_coach($id, $status) {
@@ -198,7 +203,6 @@ class CNMI_Progress_Media {
         $bits = file_get_contents($file["tmp_name"]);
         $filetype = wp_check_filetype($file["name"]);
         $filename = 'progress_' . $progress_id . '_type_' . $type . '_' . time() . '.' . $filetype['ext'];
-        var_dump($filename);
         $upload = wp_upload_bits($filename, null, $bits);
         global $wpdb;
         $table_name  = $wpdb->prefix."progress_media";
