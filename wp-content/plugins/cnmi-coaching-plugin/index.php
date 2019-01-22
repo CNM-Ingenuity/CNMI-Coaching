@@ -16,7 +16,6 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * 4. Progress Class for easy interaction
  *
  */
-
  /*
  * CUSTOM POST TYPES
  */
@@ -61,23 +60,33 @@ include_once dirname(__FILE__) . '/metaboxes/certification-cmb2.php';
  * Custom Tables
  */
 
-function create_progress_table()
+function create_custom_tables()
 {
   global $wpdb;
+  $wpdb_collate = $wpdb->collate;
+  
   $table_name = $wpdb->prefix . "progress";
-  require_once(ABSPATH . 'wp-admin/includes/upgrade.php' );
-
-  $sql = "CREATE TABLE $table_name (
+  $sql_progress = "CREATE TABLE {$table_name} (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
     user_id mediumint(9) NOT NULL,
     coach_id mediumint(9) NOT NULL,
     PRIMARY KEY (id)
-  ) $charset_collate;";
+  ) COLLATE {$wpdb_collate};";
 
-  dbDelta( $sql );
+  $media_table_name = $wpdb->prefix . "progress_media";
+  $sql_media_progress = "CREATE TABLE {$media_table_name} (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    progress_id mediumint(9) NOT NULL,
+    type varchar(255) NOT NULL,
+    url varchar(255) NOT NULL,
+    PRIMARY KEY (id)
+  ) COLLATE {$wpdb_collate};";
+  require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+  dbDelta( $sql_progress );
+  dbDelta( $sql_media_progress );
 }
 
-register_activation_hook(__FILE__, 'create_progress_table');
+register_activation_hook(__FILE__, 'create_custom_tables');
 
 /* 
  * Custom Class to deal with the progress table
