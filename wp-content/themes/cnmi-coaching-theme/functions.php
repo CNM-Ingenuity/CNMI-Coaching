@@ -299,6 +299,11 @@ add_action( 'enqueue_block_editor_assets', function() {
             'name'  => esc_html__( 'White', 'CNM Coaching' ),
             'slug' => 'white',
             'color' => '#fff',
+        ],
+        [
+            'name'  => esc_html__( 'Grey', 'CNM Coaching' ),
+            'slug' => 'grey',
+            'color' => '#f7f7f7',
         ]
     ] );
     add_theme_support( 'disable-custom-colors' );
