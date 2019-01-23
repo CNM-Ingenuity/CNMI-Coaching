@@ -1612,6 +1612,32 @@ li.comment {
     .upcoming-events-section .event-block .event-details {
       padding: 32px 21px 32px 47px; }
 
+.certifications-list {
+  width: 100%;
+  float: left;
+  margin-top: 50px; }
+  .certifications-list .certification {
+    background: #0b3254;
+    color: white;
+    padding: 53px 59px;
+    max-width: 732px;
+    margin: 50px auto; }
+    .certifications-list .certification h3 {
+      color: white;
+      font-size: 16px;
+      font-size: 1.6rem;
+      margin-bottom: 30px; }
+    .certifications-list .certification p {
+      font-size: 16px;
+      font-size: 1.6rem; }
+    .certifications-list .certification a {
+      color: #c19022; }
+    .certifications-list .certification a:hover {
+      color: white; }
+    .certifications-list .certification .dashicons {
+      margin-right: 20px;
+      color: #c19022; }
+
 .blog-hero {
   background-size: cover !important;
   background-position: center !important;
