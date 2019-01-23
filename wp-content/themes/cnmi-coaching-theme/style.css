@@ -1005,7 +1005,7 @@ body.sticky {
   .genesis-nav-menu a {
     color: #2e2e2e;
     text-decoration: none;
-    font-family: Vitesse-Bold, sans-serif;
+    font-family: Vitesse-Book, sans-serif;
     display: block;
     padding: 25px 0;
     margin: 0 24px; }
@@ -1301,6 +1301,8 @@ li.comment {
     max-width: 150px;
     display: block;
     margin: 0 auto; }
+    .footer-widgets .widget_nav_menu a {
+      font-family: Vitesse-Medium, sans-serif; }
   .footer-widgets .footer-widget-area {
     margin-bottom: 40px; }
 
@@ -1702,6 +1704,22 @@ li.comment {
         margin-left: 20%; }
       .single-certifications .content-sidebar-wrap .certifications .entry-content .certification-single .certification-links a {
         color: #ffffff; }
+
+@font-face {
+  font-family: "Vitesse-Bold";
+  src: url("/wp-content/themes/cnmi-coaching-theme/fonts/Vitesse-Bold.otf");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Vitesse-Book";
+  src: url("/wp-content/themes/cnmi-coaching-theme/fonts/Vitesse-Book.otf");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "Vitesse-Medium";
+  src: url("/wp-content/themes/cnmi-coaching-theme/fonts/Vitesse-Medium.otf");
+  font-weight: normal;
+  font-style: normal; }
 
 
 
