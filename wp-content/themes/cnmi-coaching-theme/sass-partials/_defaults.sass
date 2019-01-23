@@ -52,6 +52,8 @@ a
     text-decoration: none
 
 p
+  font-size: 16px
+  font-size: 1.6rem
   margin: 0 0 28px
   padding: 0
 
@@ -95,7 +97,7 @@ h1, h2, h3, h4, h5, h6
   font-family: $headingFont
   font-weight: 400
   line-height: 1.2
-  margin: 0 0 10px
+  margin: 0 0 35px
 
 h1
   font-size: 36px
@@ -281,6 +283,11 @@ input:focus
   &[type="button"], &[type="reset"], &[type="submit"]
     background-color: $backgroundColor
     color: $accentColor
+
+.block-editor
+  button, input, .button
+    &:after
+      display: none
 
 .button:focus
   background-color: $backgroundColor

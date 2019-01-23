@@ -275,9 +275,9 @@ function set_user_dashboard(){
 }
 
 // GUTENBERG Compatibility
-// add_action( 'enqueue_block_editor_assets', function() {
-//     wp_enqueue_style('eleven_online_theme_styles', get_theme_file_uri('/style.css') );
-// } );
+add_action( 'enqueue_block_editor_assets', function() {
+    wp_enqueue_style('eleven_online_theme_styles', get_theme_file_uri('/style.css') );
+} );
  add_action( 'after_setup_theme', function() {
     add_theme_support( 'editor-color-palette', [
         [
