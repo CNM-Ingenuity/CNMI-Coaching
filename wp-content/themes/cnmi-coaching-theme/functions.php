@@ -360,19 +360,19 @@ function certification_list(){
 			$output .= "</p>";
 
 			// hours
-			$output .= "<div class='one-third first'>";
+			$output .= "<div class='one-third first'><p><span class='dashicons dashicons-clock'></span>";
 			$output .= get_post_meta( get_the_ID(), '_cnmi_certification_metabox_hours', true );
-			$output .= "&nbsp;Hours</div>";	
+			$output .= "&nbsp;Hours</p></div>";	
 
 			// type
-			$output .= "<div class='one-third'>";
+			$output .= "<div class='one-third'><p><span class='dashicons dashicons-admin-site'></span>";
 			$output .= get_post_meta( get_the_ID(), '_cnmi_certification_metabox_training_type', true );
-			$output .= "</div>";
+			$output .= "</p></div>";
 
 			// type
-			$output .= "<div class='one-third'>";
+			$output .= "<div class='one-third'><p><span class='dashicons dashicons-awards'></span>";
 			$output .= "Master Your Craft";
-			$output .= "</div>";	
+			$output .= "</p></div>";	
 
 			// link
 			$output .= "<a href='" . get_the_permalink() . "' class='button secondary'>Get Started</a>";		
