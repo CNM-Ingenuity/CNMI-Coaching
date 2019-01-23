@@ -286,3 +286,43 @@ function wti_loginout_menu_link( $items, $args ) {
    }
    return $items;
 }
+
+function training_calendar_grid(){
+	// upcoming events section
+	$tz = new DateTimeZone('America/Denver');
+	$start_date = new DateTime();
+	
+	// this is the latest events section
+	$events = tribe_get_events( array(
+		'start_date'     => $start_date->format('Y-m-d 00:00:00'),
+		'eventDisplay'   => 'custom',
+		'posts_per_page' => 4
+	));
+	
+	$output = "<div class='upcoming-events-section content'><div class='wrap'>";
+	$output .= "<h1>Training Calendar</h1>";
+	$count = 0;
+	foreach($events as $event) {
+		$eventStartTime = new DateTime($event->EventStartDate, $tz);
+		$eventEndTime = new DateTime($event->EventEndDate, $tz);
+		if($count % 2 === 0) {
+			$output .= "<div class='one-half first event-block'>";
+		} else {
+			$output .= "<div class='one-half event-block'>";
+		}
+		$output .= "<div class='event-date'>";
+		$output .= $eventStartTime->format('M d');
+		$output .= "</div><div class='event-details'><h5>";
+		$output .= $event->post_title;
+		$output .= "</h5><p>";
+		$output .= $eventStartTime->format('g:i a');
+		$output .= " - ";
+		$output .= $eventEndTime->format('g:i a');
+		$output .= "</p><a class='button secondary' href='" . get_permalink($event->ID) . "'>Sign Up</a></div></div>";
+		$count++;
+	}
+	$output .= "<p class='view-more-events-container'><a class='view-more-events' href='/events'>VIEW MORE</a></p>";
+	$output .= "</div></div>";
+	return $output;
+}
+add_shortcode( 'training_calendar_grid', 'training_calendar_grid' );
