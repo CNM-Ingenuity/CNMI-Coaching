@@ -286,3 +286,110 @@ function wti_loginout_menu_link( $items, $args ) {
    }
    return $items;
 }
+
+function training_calendar_grid(){
+	// upcoming events section
+	$tz = new DateTimeZone('America/Denver');
+	$start_date = new DateTime();
+	
+	// this is the latest events section
+	$events = tribe_get_events( array(
+		'start_date'     => $start_date->format('Y-m-d 00:00:00'),
+		'eventDisplay'   => 'custom',
+		'posts_per_page' => 4
+	));
+	
+	$output = "<div class='upcoming-events-section content'><div class='wrap'>";
+	$output .= "<h1>Training Calendar</h1>";
+	$count = 0;
+	foreach($events as $event) {
+		$eventStartTime = new DateTime($event->EventStartDate, $tz);
+		$eventEndTime = new DateTime($event->EventEndDate, $tz);
+		if($count % 2 === 0) {
+			$output .= "<div class='one-half first event-block'>";
+		} else {
+			$output .= "<div class='one-half event-block'>";
+		}
+		$output .= "<div class='event-date'>";
+		$output .= $eventStartTime->format('M d');
+		$output .= "</div><div class='event-details'><h5>";
+		$output .= $event->post_title;
+		$output .= "</h5><p>";
+		$output .= $eventStartTime->format('g:i a');
+		$output .= " - ";
+		$output .= $eventEndTime->format('g:i a');
+		$output .= "</p><a class='button secondary' href='" . get_permalink($event->ID) . "'>Sign Up</a></div></div>";
+		$count++;
+	}
+	$output .= "<p class='view-more-events-container'><a class='view-more-events' href='/events'>VIEW MORE</a></p>";
+	$output .= "</div></div>";
+	return $output;
+}
+add_shortcode( 'training_calendar_grid', 'training_calendar_grid' );
+
+function certification_list(){
+	// WP_Query arguments
+	$args = array (
+		'post_type'              => array( 'certifications' ),
+		'post_status'            => array( 'publish' ),
+		'nopaging'               => true,
+		'order'                  => 'ASC',
+		'orderby'                => 'menu_order',
+	);
+
+	// The Query
+	$certifications = new WP_Query( $args );
+
+	$output = "<div class='certifications-list'>";
+
+	// The Loop
+	if ( $certifications->have_posts() ) {
+		while ( $certifications->have_posts() ) {
+			$certifications->the_post();
+			// set up container
+			$output .= "<div class='certification'>";
+
+			// title
+			$output .= "<h3>";
+			$output .= get_the_title();
+			$output .= "</h3>";
+
+			// content
+			$output .= "<p>";
+			$output .= get_the_content();
+			$output .= "</p>";
+
+			// hours
+			$output .= "<div class='one-third first'><p><span class='dashicons dashicons-clock'></span>";
+			$output .= get_post_meta( get_the_ID(), '_cnmi_certification_metabox_hours', true );
+			$output .= "&nbsp;Hours</p></div>";	
+
+			// type
+			$output .= "<div class='one-third'><p><span class='dashicons dashicons-admin-site'></span>";
+			$output .= get_post_meta( get_the_ID(), '_cnmi_certification_metabox_training_type', true );
+			$output .= "</p></div>";
+
+			// type
+			$output .= "<div class='one-third'><p><span class='dashicons dashicons-awards'></span>";
+			$output .= "Master Your Craft";
+			$output .= "</p></div>";	
+
+			// link
+			$output .= "<a href='" . get_the_permalink() . "' class='button secondary'>Get Started</a>";		
+
+			// close the container
+			$output .= "</div>";
+		}
+	} else {
+		// no posts found
+		$output .= "No certifications found.";
+	}
+
+	// Restore original Post Data
+	wp_reset_postdata();
+
+	$output .= "</div>";
+	
+	return $output;
+}
+add_shortcode( 'certification_list', 'certification_list' );
