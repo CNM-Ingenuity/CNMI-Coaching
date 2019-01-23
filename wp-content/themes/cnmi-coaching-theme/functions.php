@@ -326,3 +326,70 @@ function training_calendar_grid(){
 	return $output;
 }
 add_shortcode( 'training_calendar_grid', 'training_calendar_grid' );
+
+function certification_list(){
+	// WP_Query arguments
+	$args = array (
+		'post_type'              => array( 'certifications' ),
+		'post_status'            => array( 'publish' ),
+		'nopaging'               => true,
+		'order'                  => 'ASC',
+		'orderby'                => 'menu_order',
+	);
+
+	// The Query
+	$certifications = new WP_Query( $args );
+
+	$output = "<div class='certifications-list'>";
+
+	// The Loop
+	if ( $certifications->have_posts() ) {
+		while ( $certifications->have_posts() ) {
+			$certifications->the_post();
+			// set up container
+			$output .= "<div class='certification'>";
+
+			// title
+			$output .= "<h3>";
+			$output .= get_the_title();
+			$output .= "</h3>";
+
+			// content
+			$output .= "<p>";
+			$output .= get_the_content();
+			$output .= "</p>";
+
+			// hours
+			$output .= "<div class='one-third first'>";
+			$output .= get_post_meta( get_the_ID(), '_cnmi_certification_metabox_hours', true );
+			$output .= "&nbsp;Hours</div>";	
+
+			// type
+			$output .= "<div class='one-third'>";
+			$output .= get_post_meta( get_the_ID(), '_cnmi_certification_metabox_training_type', true );
+			$output .= "</div>";
+
+			// type
+			$output .= "<div class='one-third'>";
+			$output .= "Master Your Craft";
+			$output .= "</div>";	
+
+			// link
+			$output .= "<a href='" . get_the_permalink() . "' class='button secondary'>Get Started</a>";		
+
+			// close the container
+			$output .= "</div>";
+		}
+	} else {
+		// no posts found
+		$output .= "No certifications found.";
+	}
+
+	// Restore original Post Data
+	wp_reset_postdata();
+
+	$output .= "</div>";
+	
+	return $output;
+}
+add_shortcode( 'certification_list', 'certification_list' );
