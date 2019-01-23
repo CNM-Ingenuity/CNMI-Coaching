@@ -294,6 +294,11 @@ function set_user_dashboard(){
             'name'  => esc_html__( 'Black', 'CNM Coaching' ),
             'slug' => 'black',
             'color' => '#2e2e2e',
+        ],
+        [
+            'name'  => esc_html__( 'White', 'CNM Coaching' ),
+            'slug' => 'white',
+            'color' => '#fff',
         ]
     ] );
     add_theme_support( 'disable-custom-colors' );
