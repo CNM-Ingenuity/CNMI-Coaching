@@ -4,15 +4,14 @@
 .site-header
   background-color: $thirdBackgroundColor
   min-height: $headerHeight
-  .wrap
-    padding: 40px 0
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2)
 
 /* ## Title Area
  *---------------------------------------------*/
 
 .title-area
   float: left
-  padding: 10px 0
+  padding: 11px 0
   width: 360px
 
 .header-full-width .title-area
@@ -28,11 +27,15 @@
     &:hover, &:focus
       color: $textColor
 
-.header-image .site-title > a
-  background: url(images/logo.png) no-repeat left
+.site-title > a
+  background: url(images/color-logo.png) no-repeat left
+  background-size: contain
+  color: transparent
   float: left
-  min-height: 60px
+  min-height: 45px
   width: 100%
+  &:hover
+    color: transparent
 
 .site-description
   font-size: 16px

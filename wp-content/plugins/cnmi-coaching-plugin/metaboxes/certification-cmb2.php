@@ -77,11 +77,3 @@ if(!function_exists('cnmi_register_certification_metabox')) {
 }
 
 add_action('cmb2_admin_init', 'cnmi_register_certification_metabox');
-
-
-
-
-
-
-
-?>

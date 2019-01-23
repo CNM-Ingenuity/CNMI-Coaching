@@ -15,26 +15,18 @@ remove_action( 'genesis_loop', 'genesis_do_loop' );
 
 add_action('genesis_after_header', 'get_progress');
 function get_progress(){
-	global $wpdb;
-	$current_user = wp_get_current_user();
-  $table_name  = $wpdb->prefix."progress";
-	$original_status = 'active';
-	$new_status = '';
-	$user_id = '';
-	$progresses = $wpdb->get_results("SELECT * FROM wp_progress;");
-	// $progress_2 = $wpdb->get_results("SELECT * FROM ". $table_name ." WHERE status = 'suspended';");
-
-	echo '<div class="one-half first"><form id="test-form" action="/">';
-	echo '<div class="one-half first"><label for="user_id">user ID</label>';
-	echo '<input id="test-form-user-id" label="User ID" name="user_id" type="number" class="user_id"></div>';
-	echo '<div class="one-half"><label for="status">Select Status</label>';
-	echo '<select name="status" id="test-form-status" class="one-half"><option value="active">Active</option>';
-	echo '<option value="suspended">Suspended</option></select></div><input type="submit" value="Change"></form></div>';
-
+	?>
+		<div class="wrap">
+			<div class="one-half first">
+				<?php get_template_part( 'partials/progress-form' ); ?>
+				<?php get_template_part( 'partials/file-form' ); ?>
+			</div>
+	<?php
+	$progresses = CNMI_Progress::get_progress_by_id(1);
 	//output progress
 	echo '<div class="one-half"><h2> Progress</h2>';
 	// print_r($progresses);
-	echo '<ul>';
+	echo '<a class="button">Button Test</a><ul>';
 	$count = 0;
 	foreach ($progresses as $progress) {
 			$count++;
@@ -42,48 +34,57 @@ function get_progress(){
 			$progress_coach_id = $progress->coach_id;
 			$progress_status = $progress->status;
 			echo '<li> <p>  User ID: '. $progress_user_id . '  Coach ID: ' . $progress_coach_id . '  Status: ' . $progress_status .'</p></li>';
+			if(isset($progress->files)) {
+				foreach ($progress->files as $file) {
+					?>
+					<li><img src="<?php echo $file->url; ?>"/></li>
+					<?php
+				}
+			}
 	}
-	echo '</ul></div>';
-		if(isset($_GET['user_id']) && $_GET['user_id'] !='') {
-			$user_id = $_GET['user_id'];
-		}
-		if(isset($_GET['status']) && $_GET['status'] !='') {
-			$new_status = $_GET['status'];
-		}
-		if(isset($_GET['user_id']) && $_GET['user_id'] !='' && isset($_GET['status']) && $_GET['status'] !='') {
-		$wpdb->query( $wpdb->prepare("UPDATE $table_name
-		  SET status = %s
-		 WHERE user_id = %s", $new_status, $user_id)
-		);
-		}
-
+	echo '</ul></div></div>';
 }
 
 //* Force full width content layout
 add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' );
 
-add_action('genesis_after_header', 'add_home_page_widgets');
-function add_home_page_widgets() {
-  genesis_widget_area( 'home-widget-1', array(
-		'before' => '<div id="home-widget-1" class="home-widget-1 widget-area"><div class="wrap">',
-		'after'  => '</div></div>',
-  ) );
-  genesis_widget_area( 'home-widget-2', array(
-		'before' => '<div id="home-widget-2" class="home-widget-2 widget-area"><div class="wrap">',
-		'after'  => '</div></div>',
-  ) );
-  genesis_widget_area( 'home-widget-3', array(
-		'before' => '<div id="home-widget-3" class="home-widget-3 widget-area"><div class="wrap">',
-		'after'  => '</div></div>',
-  ) );
-  genesis_widget_area( 'home-widget-4', array(
-		'before' => '<div id="home-widget-4" class="home-widget-4 widget-area"><div class="wrap">',
-		'after'  => '</div></div>',
-  ) );
-  genesis_widget_area( 'home-widget-5', array(
-		'before' => '<div id="home-widget-5" class="home-widget-5 widget-area"><div class="wrap">',
-		'after'  => '</div></div>',
-  ) );
+add_action('genesis_before_footer', 'add_event_section', 8);
+function add_event_section() {
+ 	// upcoming events section
+	$tz = new DateTimeZone('America/Denver');
+	$start_date = new DateTime();
+	
+	// this is the latest events section
+	$events = tribe_get_events( array(
+		'start_date'     => $start_date->format('Y-m-d 00:00:00'),
+		'eventDisplay'   => 'custom',
+		'posts_per_page' => 4
+	));
+	
+	echo "<div class='upcoming-events-section content'><div class='wrap'>";
+	echo "<h1>Training Calendar</h1>";
+	$count = 0;
+	foreach($events as $event) {
+		$eventStartTime = new DateTime($event->EventStartDate, $tz);
+		$eventEndTime = new DateTime($event->EventEndDate, $tz);
+		if($count % 2 === 0) {
+			echo "<div class='one-half first event-block'>";
+		} else {
+			echo "<div class='one-half event-block'>";
+		}
+		echo "<div class='event-date'>";
+		echo $eventStartTime->format('M d');
+		echo "</div><div class='event-details'><h5>";
+		echo $event->post_title;
+		echo "</h5><p>";
+		echo $eventStartTime->format('g:i a');
+		echo " - ";
+		echo $eventEndTime->format('g:i a');
+		echo "</p><a class='button secondary' href='" . get_permalink($event->ID) . "'>Sign Up</a></div></div>";
+		$count++;
+	}
+	echo "<p class='view-more-events-container'><a class='view-more-events' href='/events'>VIEW MORE</a></p>";
+	echo "</div></div>";
 }
 
 genesis();

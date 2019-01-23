@@ -8,10 +8,10 @@ define( 'CHILD_THEME_URL', 'http://www.11online.us/' );
 define( 'CHILD_THEME_VERSION', '2.2.2' );
 
 //* Enqueue Google Fonts
-add_action( 'wp_enqueue_scripts', 'genesis_sample_google_fonts' );
+add_action( 'wp_enqueue_scripts', 'genesis_sample_google_fonts', 100 );
 function genesis_sample_google_fonts() {
 
-	wp_enqueue_style( 'google-fonts', '//fonts.googleapis.com/css?family=Lato:300,400,700', array(), CHILD_THEME_VERSION );
+	wp_enqueue_style( 'google-fonts', '//fonts.googleapis.com/css?family=Roboto:300|Open+Sans:700', array(), CHILD_THEME_VERSION );
 	wp_enqueue_script( 'genesis-responsive-menu', get_bloginfo('stylesheet_directory').'/js/responsive-menu.js', array('jquery'), '1.0.0');
     wp_enqueue_script( 'genesis-smooth-scrolling', get_bloginfo('stylesheet_directory').'/js/smooth-scrolling.js', array('jquery'), '1.0.0');
     wp_enqueue_script( 'genesis-sticky-header', get_bloginfo('stylesheet_directory').'/js/sticky-header.js', array('jquery'), '1.0.0');
@@ -19,6 +19,10 @@ function genesis_sample_google_fonts() {
 	wp_enqueue_style( 'dashicons' );
 
 }
+
+// change stylesheet load order
+remove_action( 'genesis_meta', 'genesis_load_stylesheet' );
+add_action( 'wp_enqueue_scripts', 'genesis_enqueue_main_stylesheet', 100 ); 
 
 //* Add HTML5 markup structure
 add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
@@ -46,7 +50,7 @@ add_action( 'wp_enqueue_scripts', 'unregister_superfish' );
 genesis_register_sidebar(array(
     'id' => 'before-footer-widget',
     'name' => __('Before Footer', 'genesis'),
-    'description' => __('Area right before the footer', 'Starter Theme'),
+    'description' => __('Area right before the footer', 'CNM Coaching'),
 ));
 
 //* use the before footer widget
@@ -58,33 +62,6 @@ function add_before_footer_widget_area()
         'after' => '</div></div>',
   ));
 }
-
-//* register homepage 5 widgets
-genesis_register_sidebar(array(
-    'id' => 'home-widget-1',
-    'name' => __('Home Widget 1', 'genesis'),
-    'description' => __('First widget on the home page', 'Starter Theme'),
-));
-genesis_register_sidebar(array(
-    'id' => 'home-widget-2',
-    'name' => __('Home Widget 2', 'genesis'),
-    'description' => __('Second widget on the home page', 'Starter Theme'),
-));
-genesis_register_sidebar(array(
-    'id' => 'home-widget-3',
-    'name' => __('Home Widget 3', 'genesis'),
-    'description' => __('Third widget on the home page', 'Starter Theme'),
-));
-genesis_register_sidebar(array(
-    'id' => 'home-widget-4',
-    'name' => __('Home Widget 4', 'genesis'),
-    'description' => __('Fourth widget on the home page', 'Starter Theme'),
-));
-genesis_register_sidebar(array(
-    'id' => 'home-widget-5',
-    'name' => __('Home Widget 5', 'genesis'),
-    'description' => __('Fifth widget on the home page', 'Starter Theme'),
-));
 
 //* allow shortcodes in widgets
 add_filter('widget_text', 'do_shortcode');
@@ -106,7 +83,7 @@ add_filter( 'excerpt_more', 'eleven_online_excerpt_more' );
 add_filter('genesis_footer_creds_text', 'sp_footer_creds_filter');
 function sp_footer_creds_filter($creds)
 {
-    $creds = 'Copyright '.date('Y').' -  By 11 Online';
+    $creds = 'Copyright '.date('Y').' - CNM Ingenuity';
 
     return $creds;
 }
@@ -181,6 +158,9 @@ if( function_exists( 'is_woocommerce' ) ){
 		}
 	}
 }
+
+//* Force full-width-content layout setting
+add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' );
 
 add_action( 'wp_enqueue_scripts', 'conditionally_load_woc_js_css' );
 
@@ -293,45 +273,6 @@ function set_user_dashboard(){
 	}
 
 }
-
-// add_action('genesis_after_header', 'get_progress');
-// function get_progress(){
-// 	global $wpdb;
-// 	$current_user = wp_get_current_user();
-//   $table_name  = $wpdb->prefix."progress";
-// 	$original_status = 'active';
-// 	$new_status = 'suspended';
-// 	$user_id = 1;
-// 	$progresses = $wpdb->get_results("SELECT * FROM wp_progress;");
-// 	// $progress_2 = $wpdb->get_results("SELECT * FROM ". $table_name ." WHERE status = 'suspended';");
-//
-// 	echo '<div class="one-half first"><form id="test-form" action="/">';
-// 	echo '<label for="user_id">user ID</label>';
-// 	echo '<input id="test-form-user-id" label="User ID" name="user_id" type="number" class="one-half first">';
-// 	echo '<label for="status">Select Status</label>';
-// 	echo '<select name="status" id="test-form-status" class="one-half"><option value="active">Active</option>';
-// 	echo '<option value="suspended">Suspended</option></select><input type="submit" value="Change"></form></div>';
-//
-// 	//output progress
-// 	echo '<div class="one-half"><h2> Progress</h2>';
-// 	// print_r($progresses);
-// 	echo '<ul>';
-// 	$count = 0;
-// 	foreach ($progresses as $progress) {
-// 			$count++;
-// 			$progress_user_id = $progress->user_id;
-// 			$progress_coach_id = $progress->coach_id;
-// 			$progress_status = $progress->status;
-// 			echo '<li> User ID:'. $progress_user_id . 'Coach ID: ' . $progress_coach_id . 'Status:' . $progress_status .'</li>';
-//
-// 	}
-// 	echo '</ul></div>';
-//
-//   $wpdb->query( $wpdb->prepare("UPDATE $table_name
-//     SET status = %s
-//    WHERE user_id = %s", $new_status, $user_id)
-//   );
-// }
 
 add_filter( 'wp_nav_menu_items', 'wti_loginout_menu_link', 10, 2 );
 

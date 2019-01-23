@@ -1,26 +1,50 @@
 /* # Footer Widgets
- *----------------------------------------------------------------------------------------------------
+ *----------------------------------------------------------------------------------------------------*/
 
 .footer-widgets
   background-color: $backgroundColor
   clear: both
-  padding-top: 40px
+  padding-top: 66px
   color: $footerTextColor
+  p
+    font-size: 11px
+    font-size: 1.1rem
+  li
+    font-size: 12px
+    font-size: 1.2rem
+    line-height: 19px
+    font-family: $headingFont
+    margin-bottom: 20px
   a
     color: $footerTextColor
+    vertical-align: middle
+    line-height: 20px
   input
     border: 1px solid #333
   a
     &.button, &:hover, &:focus
-      color: $accentColor
-  li
-    border-bottom: 1px dotted #666
-    margin-bottom: 10px
-    padding-bottom: 10px
+      color: $linkColor
   .widget
-    margin-bottom: 40px
+    margin-bottom: 30px
+  .widget-title
+    font-size: 12px
+    font-size: 1.2rem
   p:last-child
     margin-bottom: 0
+  .dashicons
+    margin-right: 21px
+  .jetpack-social-widget-item
+    margin-right: 14px
+  .logo-container
+    max-width: 200px
+  .widget_nav_menu
+    max-width: 150px
+    display: block
+    margin: 0 auto
+    a
+      font-family: $footerMenuFont
+  .footer-widget-area
+    margin-bottom: 40px
 
 .footer-widgets-1, .footer-widgets-2, .footer-widgets-3
   width: 340px
