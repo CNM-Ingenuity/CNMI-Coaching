@@ -21,17 +21,17 @@ add_filter( 'genesis_markup_content', '__return_null' );
 add_action('genesis_entry_content', 'create_organizations_trainings');
 //Create layout for the page
 function create_organizations_trainings(){
-  get_template_part('partials/top-matter');  
+  get_template_part('partials/top-matter');
   echo '<div class="organizations-trainings">';
   echo '<div class="training one-half first">';
-  echo '<div class="training-text"><h3>Schedule a Training</h3></div>';
+  echo '<div class="training-text"><p>Schedule a Training</p></div>';
   echo '</div>';
   echo '<div class="training one-half">';
-  echo '<div class="training-text"><h3>View Scheduled Trainings</h3></div></div>';
+  echo '<div class="training-text"><p>View Scheduled Trainings</p></div></div>';
   echo '<div class="training one-half first">';
-  echo '<div class="training-text first"><h3>Schedule a Training</h3></div></div>';
+  echo '<div class="training-text first"><p>Schedule a Training</p></div></div>';
   echo '<div class="training one-half">';
-  echo '<div class="training-text"><h3>View Scheduled Trainings </h3></div></div>';
+  echo '<div class="training-text"><p>View Scheduled Trainings </p></div></div></div>';
 }
 
 
