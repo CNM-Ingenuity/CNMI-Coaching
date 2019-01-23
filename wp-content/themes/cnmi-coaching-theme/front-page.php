@@ -1,17 +1,8 @@
 <?php
 /**
- * This file adds the Home Page to the Owner Direct Theme.
+ * This file adds the Home Page to the CNMI Theme.
  *
  */
-
-add_action( 'genesis_meta', 'starter_theme_home_genesis_meta' );
-function starter_theme_home_genesis_meta(){
-
-}
-
-//* Remove the default Genesis loop (don't do the posts)
-remove_action( 'genesis_loop', 'genesis_do_loop' );
-
 
 add_action('genesis_after_header', 'get_progress');
 function get_progress(){

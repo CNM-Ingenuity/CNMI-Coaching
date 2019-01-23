@@ -1,0 +1,8 @@
+.idea
+**/.DS_Store
+.ftpconfig
+debug.log
+wp-content/themes/cnmi-coaching-theme/.sass-cache/*
+wp-content/themes/cnmi-coaching-theme/node_modules
+wp-content/themes/cnmi-coaching-theme/style.css
+wp-content/themes/cnmi-coaching-theme/maps/*

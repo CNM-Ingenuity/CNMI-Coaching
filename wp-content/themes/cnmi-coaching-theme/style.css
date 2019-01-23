@@ -1599,6 +1599,7 @@ li.comment {
     box-shadow: 0 5px 18px 0 rgba(0, 0, 0, 0.27); }
     .upcoming-events-section .event-block .event-date {
       background: #0b3254;
+      font-family: Vitesse-Bold, sans-serif;
       color: white;
       width: 50%;
       float: left;
