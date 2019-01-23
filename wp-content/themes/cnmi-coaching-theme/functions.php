@@ -3,7 +3,7 @@
 include_once( get_template_directory() . '/lib/init.php' );
 
 //* Child theme (do not remove)
-define( 'CHILD_THEME_NAME', 'Theme Name' );
+define( 'CHILD_THEME_NAME', 'CNM Coaching' );
 define( 'CHILD_THEME_URL', 'http://www.11online.us/' );
 define( 'CHILD_THEME_VERSION', '2.2.2' );
 
@@ -274,6 +274,32 @@ function set_user_dashboard(){
 
 }
 
+// GUTENBERG Compatibility
+// add_action( 'enqueue_block_editor_assets', function() {
+//     wp_enqueue_style('eleven_online_theme_styles', get_theme_file_uri('/style.css') );
+// } );
+ add_action( 'after_setup_theme', function() {
+    add_theme_support( 'editor-color-palette', [
+        [
+            'name'  => esc_html__( 'Dark Blue', 'CNM Coaching' ),
+            'slug' => 'dark-blue',
+            'color' => '#0b3254',
+        ],
+        [
+            'name'  => esc_html__( 'Orange', 'CNM Coaching' ),
+            'slug' => 'orange',
+            'color' => '#c19022',
+        ],
+        [
+            'name'  => esc_html__( 'Black', 'CNM Coaching' ),
+            'slug' => 'black',
+            'color' => '#2e2e2e',
+        ]
+    ] );
+    add_theme_support( 'disable-custom-colors' );
+    add_theme_support( 'align-wide' );
+});
+
 add_filter( 'wp_nav_menu_items', 'wti_loginout_menu_link', 10, 2 );
 
 function wti_loginout_menu_link( $items, $args ) {
@@ -299,7 +325,7 @@ function training_calendar_grid(){
 		'posts_per_page' => 4
 	));
 	
-	$output = "<div class='upcoming-events-section content'><div class='wrap'>";
+	$output = "<div class='upcoming-events-section'><div class='wrap'>";
 	$output .= "<h1>Training Calendar</h1>";
 	$count = 0;
 	foreach($events as $event) {
