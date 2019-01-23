@@ -29,9 +29,13 @@ function create_organizations_trainings(){
   echo '<div class="training one-half">';
   echo '<div class="training-text"><p>View Scheduled Trainings</p></div></div>';
   echo '<div class="training one-half first">';
-  echo '<div class="training-text first"><p>Schedule a Training</p></div></div>';
+  echo '<div class="training-text first"><p>Register User or Group</p></div></div>';
   echo '<div class="training one-half">';
-  echo '<div class="training-text"><p>View Scheduled Trainings </p></div></div></div>';
+  echo '<div class="training-text"><p>Training Rosters</p></div></div>';
+  echo '<div class="training one-half first">';
+  echo '<div class="training-text first"><p>Attendance</p></div></div>';
+  echo '<div class="training one-half">';
+  echo '<div class="training-text"><p>Evaluations</p></div></div></div>';
 }
 
 
