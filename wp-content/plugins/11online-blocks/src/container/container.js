@@ -50,7 +50,7 @@ export default class Container extends Component {
         const renderContainer = (isInEditor) => {
             return (
                 <div className={ classes } style={ divStyle }>
-                    { isInEditor ? <InnerBlocks /> : <InnerBlocks.Content /> } 
+                    { isInEditor ? <InnerBlocks /> : <div className="wrap"><InnerBlocks.Content /></div> } 
                     { imgID &&
                         <div 
                             className="img-background-background-eleven-online"

@@ -1,6 +1,6 @@
 <?php
 /**
- * This file adds the Home Page to the CNMI Theme.
+ * Template Name: With Hero
  *
  */
 remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
