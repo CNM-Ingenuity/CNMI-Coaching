@@ -47,8 +47,8 @@ function create_organizations_attendance(){
       $date = $attendance ['date'];
       echo '<div class="training">';
       echo '<div class="training-title"><p>'. $event_name .'</p></div>';
-      echo '<div class="training-students"><p>Students:'. $students .'</p></div>';
-      echo '<div class="training-date"><p>Date:'. $date .'</p></div></div>';
+      echo '<div class="training-students"><p>Students: '. $students .'</p></div>';
+      echo '<div class="training-date"><p>Date: '. $date .'</p></div></div>';
 
   }
 }
