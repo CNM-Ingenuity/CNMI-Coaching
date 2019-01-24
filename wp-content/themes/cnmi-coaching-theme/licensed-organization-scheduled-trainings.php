@@ -26,15 +26,32 @@ function create_organizations_scheduled_trainings(){
   // $organizers = tribe_get_organizers();
   // $events = tribe_get_events();
   // var_dump($events);
-  echo '<div class="training">';
-  echo '<div class="training-title"><p>Training Title Goes Here</p></div>';
-  echo '<div class="training-students"><p>Students: 7</p></div>';
-  echo '<div class="training-date"><p>12/24/2019</p></div></div>';
-  echo '<div class="training">';
-  echo '<div class="training-title"><p>Training Title Goes Here</p></div>';
-  echo '<div class="training-students"><p>Students: 7</p></div>';
-  echo '<div class="training-date"><p>12/24/2019</p></div>';
-  echo '</div>';
+  $trainings_array = array(
+    ['name' => 'Event 1',
+      'students' => 4,
+      'date' => '12/20/2019'
+    ],
+    ['name' => 'Event 2',
+      'students' => 14,
+      'date' => '3/15/2019'
+    ],
+    ['name' => 'Event 3',
+      'students' => 17,
+      'date' => '06/20/2019'
+    ]
+  );
+  foreach ($trainings_array as $training)
+  {
+      $event_name = $training['name'];
+      $students = $training['students'];
+      $date = $training ['date'];
+      echo '<div class="training">';
+      echo '<div class="training-title"><p>'. $event_name .'</p></div>';
+      echo '<div class="training-students"><p>Students:'. $students .'</p></div>';
+      echo '<div class="training-date"><p>Date:'. $date .'</p></div></div>';
+
+  }
+
 }
 
 
