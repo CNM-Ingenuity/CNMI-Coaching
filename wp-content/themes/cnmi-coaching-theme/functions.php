@@ -431,8 +431,11 @@ function certification_list(){
 add_shortcode( 'certification_list', 'certification_list' );
 
 
-
+//Woocommerce Functions
+//Change columns to 4 on product archive page
 function woocommerce_column_override(){
 	return 4;
 }
 add_filter('loop_shop_columns', 'woocommerce_column_override');
+//remove price on shop page
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
