@@ -39,7 +39,10 @@ function cmb2_get_user_options( $query_args ) {
     $user_options = array();
     if ( $users ) {
         foreach ( $users as $user ) {
-          $user_options[ $user->ID ] = $user->user_login;
+          $user_id = $user->ID;
+          if(wc_memberships_is_user_active_member( $user_id, 'certified-coach-trainer' )){
+            $user_options[ $user->ID ] = $user->user_login;
+          }
         }
     }
 
