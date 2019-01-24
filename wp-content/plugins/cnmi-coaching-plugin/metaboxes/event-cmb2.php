@@ -1,0 +1,47 @@
+<?php
+
+if(!function_exists('cnmi_register_event_metabox')) {
+  function cnmi_register_event_metabox() {
+    $prefix = '_cnmi_event_metabox_';
+    $cmb = new_cmb2_box(array(
+      'id' => $prefix . 'metabox',
+			'title' => 'event',
+			'object_types' => array('tribe_events'), //Post type
+			'show_names' => true, //show field names on the left
+			'context' => 'normal',
+			'priority' => 'high',
+    ));
+
+    $cmb->add_field(array(
+        'name'    => __( 'Select Users', 'cmb2' ),
+        'desc'    => __( 'field description (optional)', 'cmb2' ),
+        'id'      => $prefix . 'user_multicheckbox',
+        'type'    => 'multicheck',
+        'options' => cmb2_get_user_options( array( 'fields' => array( 'user_login' ) ) ),
+    ));
+
+  }
+}
+add_action('cmb2_admin_init', 'cnmi_register_event_metabox');
+
+
+
+function cmb2_get_user_options( $query_args ) {
+
+    $args = wp_parse_args( $query_args, array(
+
+        'fields' => array( 'user_login' ),
+
+    ) );
+
+    $users = get_users(  );
+
+    $user_options = array();
+    if ( $users ) {
+        foreach ( $users as $user ) {
+          $user_options[ $user->ID ] = $user->user_login;
+        }
+    }
+
+    return $user_options;
+}

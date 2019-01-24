@@ -55,6 +55,7 @@ add_action('init', 'create_certifications_cpt');
  * CMB2
  */
 include_once dirname(__FILE__) . '/metaboxes/certification-cmb2.php';
+include_once dirname(__FILE__) . '/metaboxes/event-cmb2.php';
 
 /*
  * Custom Tables
@@ -64,7 +65,7 @@ function create_custom_tables()
 {
   global $wpdb;
   $wpdb_collate = $wpdb->collate;
-  
+
   $table_name = $wpdb->prefix . "progress";
   $sql_progress = "CREATE TABLE {$table_name} (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -88,7 +89,7 @@ function create_custom_tables()
 
 register_activation_hook(__FILE__, 'create_custom_tables');
 
-/* 
+/*
  * Custom Class to deal with the progress table
  */
 class CNMI_Progress {
@@ -97,15 +98,15 @@ class CNMI_Progress {
     public $coach_id;
 
     public function __construct($id, $user_id, $coach_id) {
-       
+
     }
 
     public static function get_progress_by_id($id) {
         global $wpdb;
         $table_name  = $wpdb->prefix."progress";
-        $results = $wpdb->get_results($wpdb->prepare( 
-            "SELECT * 
-            FROM $table_name 
+        $results = $wpdb->get_results($wpdb->prepare(
+            "SELECT *
+            FROM $table_name
             WHERE id = %s", $id
         ));
         // attach files
@@ -146,9 +147,9 @@ class CNMI_Progress {
         $user_id = $current_user->ID;
         global $wpdb;
         $table_name  = $wpdb->prefix."progress";
-        return $wpdb->get_results($wpdb->prepare( 
-            "SELECT * 
-            FROM $table_name 
+        return $wpdb->get_results($wpdb->prepare(
+            "SELECT *
+            FROM $table_name
             WHERE user_id = %s", $user_id
         ));
     }
@@ -158,15 +159,15 @@ class CNMI_Progress {
         $user_id = $current_user->ID;
         global $wpdb;
         $table_name  = $wpdb->prefix."progress";
-        return $wpdb->get_results($wpdb->prepare( 
-            "SELECT * 
-            FROM $table_name 
+        return $wpdb->get_results($wpdb->prepare(
+            "SELECT *
+            FROM $table_name
             WHERE coach_id = %s", $user_id
         ));
     }
 }
 
-/* 
+/*
  * Custom Class to deal with the progress media table
  */
 class CNMI_Progress_Media {
@@ -182,9 +183,9 @@ class CNMI_Progress_Media {
     public static function get_progress_media_by_id($id) {
         global $wpdb;
         $table_name  = $wpdb->prefix."progress_media";
-        return $wpdb->get_results($wpdb->prepare( 
-            "SELECT * 
-            FROM $table_name 
+        return $wpdb->get_results($wpdb->prepare(
+            "SELECT *
+            FROM $table_name
             WHERE id = %s", $id
         ));
     }
@@ -192,9 +193,9 @@ class CNMI_Progress_Media {
     public static function get_progress_media_by_progress_id($progress_id) {
         global $wpdb;
         $table_name  = $wpdb->prefix."progress_media";
-        return $wpdb->get_results($wpdb->prepare( 
-            "SELECT * 
-            FROM $table_name 
+        return $wpdb->get_results($wpdb->prepare(
+            "SELECT *
+            FROM $table_name
             WHERE progress_id = %s", $progress_id
         ));
     }
@@ -207,11 +208,11 @@ class CNMI_Progress_Media {
         global $wpdb;
         $table_name  = $wpdb->prefix."progress_media";
         return $wpdb->insert($table_name, array(
-                'progress_id' => $progress_id, 
+                'progress_id' => $progress_id,
                 'type' => $type,
                 'url' => $upload['url']
             ),
-            array('%s','%s', '%s') 
+            array('%s','%s', '%s')
         );
     }
 }
