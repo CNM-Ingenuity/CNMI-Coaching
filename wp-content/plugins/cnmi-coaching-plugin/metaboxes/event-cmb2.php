@@ -5,7 +5,7 @@ if(!function_exists('cnmi_register_event_metabox')) {
     $prefix = '_cnmi_event_metabox_';
     $cmb = new_cmb2_box(array(
       'id' => $prefix . 'metabox',
-			'title' => 'event',
+			'title' => 'Trainer',
 			'object_types' => array('tribe_events'), //Post type
 			'show_names' => true, //show field names on the left
 			'context' => 'normal',
