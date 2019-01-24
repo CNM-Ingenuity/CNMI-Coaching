@@ -22,7 +22,7 @@ function genesis_sample_google_fonts() {
 
 // change stylesheet load order
 remove_action( 'genesis_meta', 'genesis_load_stylesheet' );
-add_action( 'wp_enqueue_scripts', 'genesis_enqueue_main_stylesheet', 100 ); 
+add_action( 'wp_enqueue_scripts', 'genesis_enqueue_main_stylesheet', 100 );
 
 //* Add HTML5 markup structure
 add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
@@ -327,14 +327,14 @@ function training_calendar_grid(){
 	// upcoming events section
 	$tz = new DateTimeZone('America/Denver');
 	$start_date = new DateTime();
-	
+
 	// this is the latest events section
 	$events = tribe_get_events( array(
 		'start_date'     => $start_date->format('Y-m-d 00:00:00'),
 		'eventDisplay'   => 'custom',
 		'posts_per_page' => 4
 	));
-	
+
 	$output = "<div class='upcoming-events-section'><div class='wrap'>";
 	$output .= "<h1>Training Calendar</h1>";
 	$count = 0;
@@ -398,7 +398,7 @@ function certification_list(){
 			// hours
 			$output .= "<div class='one-third first'><p><span class='dashicons dashicons-clock'></span>";
 			$output .= get_post_meta( get_the_ID(), '_cnmi_certification_metabox_hours', true );
-			$output .= "&nbsp;Hours</p></div>";	
+			$output .= "&nbsp;Hours</p></div>";
 
 			// type
 			$output .= "<div class='one-third'><p><span class='dashicons dashicons-admin-site'></span>";
@@ -408,10 +408,10 @@ function certification_list(){
 			// type
 			$output .= "<div class='one-third'><p><span class='dashicons dashicons-awards'></span>";
 			$output .= "Master Your Craft";
-			$output .= "</p></div>";	
+			$output .= "</p></div>";
 
 			// link
-			$output .= "<a href='" . get_the_permalink() . "' class='button secondary'>Get Started</a>";		
+			$output .= "<a href='" . get_the_permalink() . "' class='button secondary'>Get Started</a>";
 
 			// close the container
 			$output .= "</div>";
@@ -425,7 +425,14 @@ function certification_list(){
 	wp_reset_postdata();
 
 	$output .= "</div>";
-	
+
 	return $output;
 }
 add_shortcode( 'certification_list', 'certification_list' );
+
+
+
+function woocommerce_column_override(){
+	return 4;
+}
+add_filter('loop_shop_columns', 'woocommerce_column_override');
