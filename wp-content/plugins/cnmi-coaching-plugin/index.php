@@ -216,3 +216,27 @@ class CNMI_Progress_Media {
         );
     }
 }
+
+/*
+ * Custom Class to deal with getting events
+ */
+class CNMI_Events {
+
+    public function __construct() {
+
+    }
+
+    public static function get_events_by_coach_id($coach_id) {
+        $args = array(
+            'post_type' => 'tribe_events',
+            'meta_query' => array(
+                array(
+                    'key' => '_cnmi_event_metabox_user_multicheckbox',
+                    'value' => sprintf(':"%s";', $coach_id),
+                    'compare' => 'LIKE'
+                )
+            )
+        );
+        return get_posts($args);
+    }
+}
