@@ -168,6 +168,7 @@ add_action( 'wp_enqueue_scripts', 'conditionally_load_woc_js_css' );
 add_action('genesis_after_header', 'eleven_online_add_hero_area');
 function eleven_online_add_hero_area()
 {
+	if(!is_product()){
     if (!is_front_page()) {
         if (is_single() || is_page()) {
             if (has_post_thumbnail()) {
@@ -178,6 +179,7 @@ function eleven_online_add_hero_area()
             }
         }
     }
+	}
 }
 //Register users for site on ticket purchase.
 add_action('woocommerce_payment_complete', 'custom_add_to_cart');
@@ -432,10 +434,18 @@ add_shortcode( 'certification_list', 'certification_list' );
 
 
 //Woocommerce Functions
-//Change columns to 4 on product archive page
+//Change columns to 4 on shop page
 function woocommerce_column_override(){
 	return 4;
 }
 add_filter('loop_shop_columns', 'woocommerce_column_override');
 //remove price on shop page
-remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+add_action( 'get_header', 'remove_titles_single_posts' );
+function remove_titles_single_posts() {
+    if ( is_single('product') ) {
+        remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
+    }
+}
+
+add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 10 );
