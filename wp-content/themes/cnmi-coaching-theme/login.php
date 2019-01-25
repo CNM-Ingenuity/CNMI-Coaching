@@ -11,7 +11,7 @@ function login_body_class( $classes ) {
 	
 }
 
-add_action('genesis_after_entry', 'add_login_form_to_page');
+add_action('genesis_entry_content', 'add_login_form_to_page');
 function add_login_form_to_page() {
 	$redirect_to = '/';
 	?>
@@ -29,6 +29,7 @@ function add_login_form_to_page() {
 
 			<input type="hidden" value="<?php echo esc_attr( $redirect_to ); ?>" name="redirect_to">
 			<input type="hidden" value="1" name="testcookie">
+			<a class='recover-password' href='/my-account/lost-password/'>Recover Password</a>
 		</form>
 	<?php
 }
