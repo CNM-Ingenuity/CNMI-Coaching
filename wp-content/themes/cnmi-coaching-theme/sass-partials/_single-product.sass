@@ -1,6 +1,7 @@
 
 .single-product
-  .entry-title
+  .entry-header
+    display: none
 
   .entry-summary
     .entry-title
@@ -14,9 +15,12 @@
           padding: 13px
     .product_meta
       .posted_in
-        font-family: $buttonFont     
+        font-family: $buttonFont
+        a
+          color: $textColor
 
-.woocommerce button.button.alt
+
+.woocommerce button.button.alt, .product_type_simple.add_to_cart_button
   font-family: $buttonFont
   font-size: 11px
   background-color: $wooSingleButton !important
@@ -26,6 +30,11 @@
   &:after
     content: ''
     margin-left: 0
+
+
+
+.woocommerce ul.products li.product .price
+  display: none
 
 
   .woocommerce-result-count, .woocommerce-page .woocommerce-result-count
