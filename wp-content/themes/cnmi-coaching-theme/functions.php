@@ -315,11 +315,11 @@ add_action( 'enqueue_block_editor_assets', function() {
 add_filter( 'wp_nav_menu_items', 'wti_loginout_menu_link', 10, 2 );
 
 function wti_loginout_menu_link( $items, $args ) {
-   if ($args->theme_location == 'primary') {
+   if ($args->menu->slug == 'main-menu') {
       if (is_user_logged_in()) {
-         $items .= '<li class="right"><a href="'. wp_logout_url() .'">'. __("Log Out") .'</a></li>';
+         $items .= '<li class="menu-item"><a href="'. wp_logout_url() .'">'. __("Log Out") .'</a></li>';
       } else {
-         $items .= '<li class="right"><a href="'. wp_login_url(get_permalink()) .'">'. __("Log In") .'</a></li>';
+         $items .= '<li class="menu-item"><a href="/login">'. __("Log In") .'</a></li>';
       }
    }
    return $items;
