@@ -162,18 +162,26 @@ class CNMI_Progress {
         return $results;
     }
 
-    // seems like students won't update, but leaving this in for now as an example
-    public static function update_progress_by_id_for_student($id, $status){
-        // get the current user to prevent people from updating someone else's account
+    public static function take_attendance($event_id, $session_number, $student_ids) {
         $current_user = wp_get_current_user();
         $user_id = $current_user->ID;
-        global $wpdb;
-        $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
-        return $wpdb->query( $wpdb->prepare(
-            "UPDATE $table_name
-            SET status = %s
-            WHERE id = %s AND user_id = %s", sanitize_text_field( $status ), intval( $id ), intval( $user_id )
-        ));
+        $has_access = CNMI_Events::get_events_by_id_and_coach_id($event_id, $user_id);
+        if($has_access) {
+            global $wpdb;
+            $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
+            // prepare our student ids for the where in clause
+            $student_ids = array_map(function($id) {
+                return "'" . esc_sql($id) . "'";
+            }, $student_ids);
+            $student_ids = implode(',', $student_ids);
+            return $wpdb->query( $wpdb->prepare(
+                "UPDATE $table_name
+                SET attendance_" . intval( $session_number ) . " = 1
+                WHERE user_id IN (" . $student_ids . ") AND event_id = %s", intval( $event_id )
+            ));
+        } else {
+            print_no_access();
+        }
     }
 
     public static function get_current_student_progress() {
@@ -186,6 +194,21 @@ class CNMI_Progress {
             FROM $table_name
             WHERE user_id = %s", intval( $user_id )
         ));
+    }
+
+    public static function get_students_from_event_id($event_id) {
+        global $wpdb;
+        $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
+        $results = $wpdb->get_results($wpdb->prepare(
+            "SELECT *
+            FROM $table_name
+            WHERE event_id = %s", intval( $event_id )
+        ));
+        foreach($results as $result) {
+            $user = get_user_by('id', $result->user_id);
+            $result->user_nicename = $user->user_nicename;
+        }
+        return $results;
     }
 }
 
