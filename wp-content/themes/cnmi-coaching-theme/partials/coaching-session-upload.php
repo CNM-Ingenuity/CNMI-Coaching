@@ -14,12 +14,12 @@ if (
 	}
 }
 ?>
-<h1>Upload File Form</h1>
+<h1>Upload Coaching Session</h1>
 <form action="" method="POST" enctype="multipart/form-data">
 	<label for="id">Progress ID</label>
 	<input label="ID" name="id" type="number">
 
-	Select image to upload:
+	Select file to upload:
 	<input type="file" name="file">
 	<input type="submit" value="Upload File" name="submit">
 	<?php wp_nonce_field( 'upload_file', 'upload_file' ); ?>
