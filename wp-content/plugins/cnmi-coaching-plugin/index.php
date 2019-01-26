@@ -60,31 +60,67 @@ include_once dirname(__FILE__) . '/metaboxes/event-cmb2.php';
 /*
  * Custom Tables
  */
+define( 'PROGRESS_TABLE_NAME', 'progress' );
+define( 'COACHING_SESSIONS_TABLE_NAME', 'coaching_sessions' );
+define( 'COACHING_HOURS_TABLE_NAME', 'coaching_hours' );
 
 function create_custom_tables()
 {
   global $wpdb;
   $wpdb_collate = $wpdb->collate;
 
-  $table_name = $wpdb->prefix . "progress";
+  $table_name = $wpdb->prefix . PROGRESS_TABLE_NAME;
   $sql_progress = "CREATE TABLE {$table_name} (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
     user_id mediumint(9) NOT NULL,
-    coach_id mediumint(9) NOT NULL,
+    event_id mediumint(9) NOT NULL,
+    attendance_1 tinyint(1) DEFAULT 0 NOT NULL,
+    attendance_2 tinyint(1) DEFAULT 0 NOT NULL,
+    attendance_3 tinyint(1) DEFAULT 0 NOT NULL,
+    attendance_4 tinyint(1) DEFAULT 0 NOT NULL,
+    attendance_5 tinyint(1) DEFAULT 0 NOT NULL,
+    attendance_6 tinyint(1) DEFAULT 0 NOT NULL,
+    attendance_7 tinyint(1) DEFAULT 0 NOT NULL,
+    attendance_8 tinyint(1) DEFAULT 0 NOT NULL,
+    attendance_9 tinyint(1) DEFAULT 0 NOT NULL,
+    attendance_10 tinyint(1) DEFAULT 0 NOT NULL,
+    evaluation tinyint(1) DEFAULT 0 NOT NULL,
+    fieldwork tinyint(1) DEFAULT 0 NOT NULL,
+    training_complete tinyint(1) DEFAULT 0 NOT NULL,
+    coaching_hours_complete tinyint(1) DEFAULT 0 NOT NULL,
+    coaching_sessions_complete tinyint(1) DEFAULT 0 NOT NULL,
+    assessment_complete tinyint(1) DEFAULT 0 NOT NULL,
+    certification_complete tinyint(1) DEFAULT 0 NOT NULL,
     PRIMARY KEY (id)
   ) COLLATE {$wpdb_collate};";
 
-  $media_table_name = $wpdb->prefix . "progress_media";
-  $sql_media_progress = "CREATE TABLE {$media_table_name} (
+  $coaching_sessions_table_name = $wpdb->prefix . COACHING_SESSIONS_TABLE_NAME;
+  $sql_coaching_sessions = "CREATE TABLE {$coaching_sessions_table_name} (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
     progress_id mediumint(9) NOT NULL,
-    type varchar(255) NOT NULL,
     url varchar(255) NOT NULL,
+    reviewer_id mediumint(9),
+    date date,
+    comments text,
+    session_accepted tinyint(1) DEFAULT 0 NOT NULL,
     PRIMARY KEY (id)
   ) COLLATE {$wpdb_collate};";
+
+  $coaching_hours_table_name = $wpdb->prefix . COACHING_HOURS_TABLE_NAME;
+  $sql_coaching_hours = "CREATE TABLE {$coaching_hours_table_name} (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    progress_id mediumint(9) NOT NULL,
+    client_name varchar(255) NOT NULL,
+    date date NOT NULL,
+    minutes mediumint(9) NOT NULL,
+    comments text NOT NULL,
+    PRIMARY KEY (id)
+  ) COLLATE {$wpdb_collate};";
+  
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   dbDelta( $sql_progress );
-  dbDelta( $sql_media_progress );
+  dbDelta( $sql_coaching_sessions );
+  dbDelta( $sql_coaching_hours );
 }
 
 register_activation_hook(__FILE__, 'create_custom_tables');
@@ -93,17 +129,14 @@ register_activation_hook(__FILE__, 'create_custom_tables');
  * Custom Class to deal with the progress table
  */
 class CNMI_Progress {
-    public $id;
-    public $user_id;
-    public $coach_id;
 
-    public function __construct($id, $user_id, $coach_id) {
+    public function __construct() {
 
     }
 
     public static function get_progress_by_id($id) {
         global $wpdb;
-        $table_name  = $wpdb->prefix."progress";
+        $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
         $results = $wpdb->get_results($wpdb->prepare(
             "SELECT *
             FROM $table_name
@@ -111,7 +144,7 @@ class CNMI_Progress {
         ));
         // attach files
         foreach ($results as $result) {
-            $result->files = CNMI_Progress_Media::get_progress_media_by_progress_id($result->id);
+            $result->files = CNMI_Coaching_Session::get_progress_media_by_progress_id($result->id);
         }
         return $results;
     }
@@ -121,7 +154,7 @@ class CNMI_Progress {
         $current_user = wp_get_current_user();
         $user_id = $current_user->ID;
         global $wpdb;
-        $table_name  = $wpdb->prefix."progress";
+        $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
         return $wpdb->query( $wpdb->prepare(
             "UPDATE $table_name
             SET status = %s
@@ -134,7 +167,7 @@ class CNMI_Progress {
         $current_user = wp_get_current_user();
         $user_id = $current_user->ID;
         global $wpdb;
-        $table_name  = $wpdb->prefix."progress";
+        $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
         return $wpdb->query( $wpdb->prepare(
             "UPDATE $table_name
             SET status = %s
@@ -146,7 +179,7 @@ class CNMI_Progress {
         $current_user = wp_get_current_user();
         $user_id = $current_user->ID;
         global $wpdb;
-        $table_name  = $wpdb->prefix."progress";
+        $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
         return $wpdb->get_results($wpdb->prepare(
             "SELECT *
             FROM $table_name
@@ -158,7 +191,7 @@ class CNMI_Progress {
         $current_user = wp_get_current_user();
         $user_id = $current_user->ID;
         global $wpdb;
-        $table_name  = $wpdb->prefix."progress";
+        $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
         return $wpdb->get_results($wpdb->prepare(
             "SELECT *
             FROM $table_name
@@ -170,19 +203,15 @@ class CNMI_Progress {
 /*
  * Custom Class to deal with the progress media table
  */
-class CNMI_Progress_Media {
-    public $id;
-    public $progress_id;
-    public $type;
-    public $url;
+class CNMI_Coaching_Session {
 
-    public function __construct($id, $progress_id, $type, $url){
+    public function __construct(){
 
     }
 
     public static function get_progress_media_by_id($id) {
         global $wpdb;
-        $table_name  = $wpdb->prefix."progress_media";
+        $table_name  = $wpdb->prefix.COACHING_SESSIONS_TABLE_NAME;
         return $wpdb->get_results($wpdb->prepare(
             "SELECT *
             FROM $table_name
@@ -192,7 +221,7 @@ class CNMI_Progress_Media {
 
     public static function get_progress_media_by_progress_id($progress_id) {
         global $wpdb;
-        $table_name  = $wpdb->prefix."progress_media";
+        $table_name  = $wpdb->prefix.COACHING_SESSIONS_TABLE_NAME;
         return $wpdb->get_results($wpdb->prepare(
             "SELECT *
             FROM $table_name
@@ -206,7 +235,7 @@ class CNMI_Progress_Media {
         $filename = 'progress_' . $progress_id . '_type_' . $type . '_' . time() . '.' . $filetype['ext'];
         $upload = wp_upload_bits($filename, null, $bits);
         global $wpdb;
-        $table_name  = $wpdb->prefix."progress_media";
+        $table_name  = $wpdb->prefix.COACHING_SESSIONS_TABLE_NAME;
         return $wpdb->insert($table_name, array(
                 'progress_id' => $progress_id,
                 'type' => $type,
