@@ -134,34 +134,35 @@ class CNMI_Progress {
 
     }
 
-    public static function get_progress_by_id($id) {
+    public static function get_progress_by_id($id, $include_relational_data = true) {
         global $wpdb;
         $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
-        $results = $wpdb->get_results($wpdb->prepare(
+        $result = $wpdb->get_row($wpdb->prepare(
             "SELECT *
             FROM $table_name
-            WHERE id = %s", $id
+            WHERE id = %s", intval( $id )
         ));
-        // attach files
-        foreach ($results as $result) {
-            $result->files = CNMI_Coaching_Session::get_progress_media_by_progress_id($result->id);
+        if($result && $include_relational_data) {
+            // attach coaching sessions and hours
+            $result->coaching_sessions = CNMI_Coaching_Session::get_coaching_sessions_by_progress_id($result->id);
+            $result->coaching_hours = CNMI_Coaching_Hours::get_coaching_hours_by_progress_id($result->id);
         }
+        return $result;
+    }
+
+    // this is a method used to make sure people are only updating their own progress
+    public static function get_progress_by_id_and_user_id($id, $user_id) {
+        global $wpdb;
+        $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
+        $results = $wpdb->get_row($wpdb->prepare(
+            "SELECT *
+            FROM $table_name
+            WHERE id = %s AND user_id = %s", intval( $id ), intval( $user_id )
+        ));
         return $results;
     }
 
-    public static function update_progress_by_id_for_coach($id, $status) {
-        // get the current user to prevent people from updating someone else's students
-        $current_user = wp_get_current_user();
-        $user_id = $current_user->ID;
-        global $wpdb;
-        $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
-        return $wpdb->query( $wpdb->prepare(
-            "UPDATE $table_name
-            SET status = %s
-            WHERE id = %s AND coach_id = %s", $status, $id, $user_id
-        ));
-    }
-
+    // seems like students won't update, but leaving this in for now as an example
     public static function update_progress_by_id_for_student($id, $status){
         // get the current user to prevent people from updating someone else's account
         $current_user = wp_get_current_user();
@@ -171,7 +172,7 @@ class CNMI_Progress {
         return $wpdb->query( $wpdb->prepare(
             "UPDATE $table_name
             SET status = %s
-            WHERE id = %s AND user_id = %s", $status, $id, $user_id
+            WHERE id = %s AND user_id = %s", sanitize_text_field( $status ), intval( $id ), intval( $user_id )
         ));
     }
 
@@ -183,25 +184,13 @@ class CNMI_Progress {
         return $wpdb->get_results($wpdb->prepare(
             "SELECT *
             FROM $table_name
-            WHERE user_id = %s", $user_id
-        ));
-    }
-
-    public static function get_current_coach_progress() {
-        $current_user = wp_get_current_user();
-        $user_id = $current_user->ID;
-        global $wpdb;
-        $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
-        return $wpdb->get_results($wpdb->prepare(
-            "SELECT *
-            FROM $table_name
-            WHERE coach_id = %s", $user_id
+            WHERE user_id = %s", intval( $user_id )
         ));
     }
 }
 
 /*
- * Custom Class to deal with the progress media table
+ * Custom Class to deal with the coaching sessions table
  */
 class CNMI_Coaching_Session {
 
@@ -209,40 +198,115 @@ class CNMI_Coaching_Session {
 
     }
 
-    public static function get_progress_media_by_id($id) {
+    public static function get_coaching_session_by_id($id) {
+        global $wpdb;
+        $table_name  = $wpdb->prefix.COACHING_SESSIONS_TABLE_NAME;
+        return $wpdb->get_row($wpdb->prepare(
+            "SELECT *
+            FROM $table_name
+            WHERE id = %s", intval( $id )
+        ));
+    }
+
+    public static function get_coaching_sessions_by_progress_id($progress_id) {
         global $wpdb;
         $table_name  = $wpdb->prefix.COACHING_SESSIONS_TABLE_NAME;
         return $wpdb->get_results($wpdb->prepare(
             "SELECT *
             FROM $table_name
-            WHERE id = %s", $id
+            WHERE progress_id = %s", intval( $progress_id )
         ));
     }
 
-    public static function get_progress_media_by_progress_id($progress_id) {
+    public static function save_new_media($progress_id, $file) {
+        $has_access = verify_student_access($progress_id);
+        if($has_access) {
+            $bits = file_get_contents($file["tmp_name"]);
+            $filetype = wp_check_filetype($file["name"]);
+            $filename = 'progress_' . $progress_id . '_type_' . $type . '_' . time() . '.' . $filetype['ext'];
+            $upload = wp_upload_bits($filename, null, $bits);
+            global $wpdb;
+            $table_name  = $wpdb->prefix.COACHING_SESSIONS_TABLE_NAME;
+            return $wpdb->insert($table_name, array(
+                    'progress_id' => intval( $progress_id ),
+                    'url' => $upload['url']
+                ),
+                array('%s','%s', '%s')
+            );
+        } else {
+            print_no_access();
+        }
+    }
+}
+
+/*
+ * Custom Class to deal with the coaching sessions table
+ */
+class CNMI_Coaching_Hours {
+
+    public function __construct(){
+
+    }
+
+    public static function get_coaching_hours_by_id($id) {
         global $wpdb;
-        $table_name  = $wpdb->prefix.COACHING_SESSIONS_TABLE_NAME;
+        $table_name  = $wpdb->prefix.COACHING_HOURS_TABLE_NAME;
+        return $wpdb->get_row($wpdb->prepare(
+            "SELECT *
+            FROM $table_name
+            WHERE id = %s", intval( $id )
+        ));
+    }
+
+    public static function get_coaching_hours_by_progress_id($progress_id) {
+        global $wpdb;
+        $table_name  = $wpdb->prefix.COACHING_HOURS_TABLE_NAME;
         return $wpdb->get_results($wpdb->prepare(
             "SELECT *
             FROM $table_name
-            WHERE progress_id = %s", $progress_id
+            WHERE progress_id = %s", intval( $progress_id )
         ));
     }
 
-    public static function save_new_media($progress_id, $type, $file) {
-        $bits = file_get_contents($file["tmp_name"]);
-        $filetype = wp_check_filetype($file["name"]);
-        $filename = 'progress_' . $progress_id . '_type_' . $type . '_' . time() . '.' . $filetype['ext'];
-        $upload = wp_upload_bits($filename, null, $bits);
-        global $wpdb;
-        $table_name  = $wpdb->prefix.COACHING_SESSIONS_TABLE_NAME;
-        return $wpdb->insert($table_name, array(
-                'progress_id' => $progress_id,
-                'type' => $type,
-                'url' => $upload['url']
-            ),
-            array('%s','%s', '%s')
-        );
+    public static function save_new_coaching_hours($progress_id, $client_name, $date, $minutes, $comments) {
+        $has_access = verify_student_access($progress_id);
+        if($has_access) {
+            global $wpdb;
+            $table_name  = $wpdb->prefix.COACHING_HOURS_TABLE_NAME;
+            return $wpdb->insert($table_name, array(
+                    'progress_id' => intval( $progress_id ),
+                    'client_name' => sanitize_text_field( $client_name ),
+                    'date' => sanitize_text_field( $date ),
+                    'minutes' => intval( $minutes ),
+                    'comments' => sanitize_textarea_field( $comments ),
+                ),
+                array('%s','%s', '%s')
+            );
+        } else {
+            print_no_access();
+        }
+    }
+}
+
+function verify_student_access($progress_id) {
+    $current_user = wp_get_current_user();
+    $user_id = $current_user->ID;
+    return CNMI_Progress::get_progress_by_id_and_user_id($progress_id, $user_id);
+}
+
+function print_no_access() {
+    print "Sorry, you don't have access to update this certification.";
+    exit;
+}
+
+function verify_coach_access($progress_id) {
+    $current_user = wp_get_current_user();
+    $user_id = $current_user->ID;
+    $progress = CNMI_Progress::get_progress_by_id($progress_id, false);
+    if($progress) {
+        return CNMI_Events::get_events_by_id_and_coach_id($progress->event_id, $user_id);
+    } else {
+        return false;
     }
 }
 
@@ -261,11 +325,32 @@ class CNMI_Events {
             'meta_query' => array(
                 array(
                     'key' => '_cnmi_event_metabox_user_multicheckbox',
-                    'value' => sprintf(':"%s";', $coach_id),
+                    'value' => sprintf(':"%s";', intval( $coach_id )),
                     'compare' => 'LIKE'
                 )
             )
         );
         return get_posts($args);
+    }
+
+    // used to see if a coach has access to progress
+    public static function get_events_by_id_and_coach_id($id, $coach_id) {
+        $args = array(
+            'post_type' => 'tribe_events',
+            'include' => [intval( $id )],
+            'meta_query' => array(
+                array(
+                    'key' => '_cnmi_event_metabox_user_multicheckbox',
+                    'value' => sprintf(':"%s";', intval( $coach_id )),
+                    'compare' => 'LIKE'
+                )
+            )
+        );
+        $events = get_posts($args);
+        if(count($events) > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

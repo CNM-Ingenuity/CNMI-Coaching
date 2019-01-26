@@ -9,11 +9,8 @@ if (
 	if(isset($_POST['id']) && $_POST['id'] !='') {
 		$id = $_POST['id'];
 	}
-	if(isset($_POST['status']) && $_POST['status'] !='') {
-		$new_status = $_POST['status'];
-	}
-	if(isset($_POST['id']) && $_POST['id'] !='' && isset($_POST['status']) && $_POST['status'] !='') {
-		CNMI_Progress::update_progress_by_id_for_coach($id, $new_status);
+	if(isset($_POST['id']) && $_POST['id'] !='') {
+		// CNMI_Progress::update_progress_by_id_for_coach($id);
 	}
 }
 ?>
