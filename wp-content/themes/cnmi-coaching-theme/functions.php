@@ -248,7 +248,7 @@ function custom_add_to_cart($order_id) {
 // }
 
 //Change dashboard based on the member's account type
-add_action('genesis_after_header','set_user_dashboard');
+// add_action('genesis_after_header','set_user_dashboard');
 function set_user_dashboard(){
 	$user_id = get_current_user_id();
 	$memberships = wc_memberships_get_user_active_memberships( $user_id );

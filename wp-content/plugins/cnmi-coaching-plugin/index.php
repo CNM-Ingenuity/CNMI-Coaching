@@ -237,6 +237,35 @@ class CNMI_Coaching_Session {
             print_no_access();
         }
     }
+
+    public static function review_session($id, $comments, $session_accepted) {
+        $session = self::get_coaching_session_by_id($id);
+        if($session) {
+            $has_access = verify_coach_access($session->progress_id);
+            if($has_access) {
+                global $wpdb;
+                $table_name  = $wpdb->prefix.COACHING_SESSIONS_TABLE_NAME;
+                $current_user = wp_get_current_user();
+                $user_id = $current_user->ID;
+                $data = array(
+                        'reviewer_id' => $user_id,
+                        'date' => date('Y-m-d'),
+                        'comments' => sanitize_textarea_field( $comments ),
+                        'session_accepted' => boolval( $session_accepted )
+                );
+                $where = array('ID' => intval( $id ));
+                return $wpdb->update(
+                    $table_name, 
+                    $data,
+                    $where
+                );
+            } else {
+                print_no_access();
+            }
+        } else {
+            print_no_access();
+        }
+    }
 }
 
 /*
