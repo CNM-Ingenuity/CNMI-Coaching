@@ -443,9 +443,7 @@ add_filter('loop_shop_columns', 'woocommerce_column_override');
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 add_action( 'get_header', 'remove_titles_single_posts' );
 function remove_titles_single_posts() {
-    if ( is_single('product') ) {
+    if ( is_singular('product') ) {
         remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
     }
 }
-
-add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 10 );

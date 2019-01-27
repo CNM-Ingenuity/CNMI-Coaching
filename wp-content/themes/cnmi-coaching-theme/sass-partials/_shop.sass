@@ -1,9 +1,17 @@
-.woocommerce
-  .entry-title
-    text-align: center    
-    .entry-header h1
+.woocommerce.post-type-archive-product
+  .content
+    text-align: center
+    .woocommerce-products-header__title h1
       font-family: $headingFont
       font-size: 36px
+    .products
+      .product
+        text-align: left
+        .price, .added_to_cart
+          display: none
+        .added_to_cart
+
+
 
   .woocommerce-result-count, .woocommerce-page .woocommerce-result-count
     font-family: $buttonFont
@@ -14,8 +22,8 @@
     .add_to_cart_button
       font-family: $buttonFont
       font-size: 11px
-      background: $linkColor
-      color: $accentColor
+      background-color: $wooSingleButton !important
+      color: $textColor
       padding: 8% 8% 8% 8%
       &:after
         content: ''
