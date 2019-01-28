@@ -18,15 +18,15 @@ if (
 }
 ?>
 <h1>Coaching Session Review</h1>
-<form action="" method="POST" enctype="multipart/form-data">
+<form id="coaching-session-review-form" action="" method="POST" enctype="multipart/form-data">
 	<label for="id">Session ID</label>
-	<input label="ID" name="id" type="number">
+	<input label="ID" name="id" type="number" required>
 
 	<label for="comments">Comments</label>
-	<textarea label="comments" name="comments"></textarea>
+	<textarea label="comments" name="comments" required></textarea>
 
 	<label for="session_accepted">Session Accepted</label>
-	<select name="session_accepted">
+	<select name="session_accepted" required>
 		<option value="1">Yes</option>
 		<option value="0">No</option>
 	</select>
@@ -34,3 +34,6 @@ if (
 	<input type="submit" value="Review Session" name="submit">
 	<?php wp_nonce_field( 'review_session', 'review_session' ); ?>
 </form>
+<script>
+	jQuery("#coaching-session-review-form").validate();
+</script>

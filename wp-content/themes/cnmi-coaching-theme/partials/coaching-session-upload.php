@@ -15,12 +15,15 @@ if (
 }
 ?>
 <h1>Upload Coaching Session</h1>
-<form action="" method="POST" enctype="multipart/form-data">
+<form id="coaching-session-upload-form" action="" method="POST" enctype="multipart/form-data">
 	<label for="id">Progress ID</label>
-	<input label="ID" name="id" type="number">
+	<input label="ID" name="id" type="number" required>
 
 	Select file to upload:
 	<input type="file" name="file">
-	<input type="submit" value="Upload File" name="submit">
+	<input type="submit" value="Upload File" name="submit" required>
 	<?php wp_nonce_field( 'upload_file', 'upload_file' ); ?>
 </form>
+<script>
+	jQuery("#coaching-session-upload-form").validate();
+</script>

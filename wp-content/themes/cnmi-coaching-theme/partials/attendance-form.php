@@ -21,12 +21,12 @@ if (
 $students = CNMI_Progress::get_students_from_event_id(383);
 ?>
 <h1>Take Attendance Form</h1>
-<form action="/" method="POST">
+<form id="attendance-form" action="/" method="POST">
 	<label for="event_id">Event ID</label>
-	<input label="event_id" name="event_id" type="number">
+	<input label="event_id" name="event_id" type="number" required>
 
 	<label for="session_number">Session Number</label>
-	<input label="session_number" name="session_number" type="number">
+	<input label="session_number" name="session_number" type="number" required>
 
 	<?php foreach($students as $student) {
 		?>
@@ -41,3 +41,6 @@ $students = CNMI_Progress::get_students_from_event_id(383);
 	<input type="submit" value="Take Attendance">
 	<?php wp_nonce_field( 'take_attendance', 'take_attendance' ); ?>
 </form>
+<script>
+	jQuery("#attendance-form").validate();
+</script>
