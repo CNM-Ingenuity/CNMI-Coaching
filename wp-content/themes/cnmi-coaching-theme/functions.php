@@ -248,35 +248,6 @@ function custom_add_to_cart($order_id) {
 		}
 // }
 
-//Change dashboard based on the member's account type
-// add_action('genesis_after_header','set_user_dashboard');
-function set_user_dashboard(){
-	$user_id = get_current_user_id();
-	$memberships = wc_memberships_get_user_active_memberships( $user_id );
-	if($memberships){
-
-		$plan_id = $memberships[0]->{"plan_id"};
-		if ($plan_id == 406) {
-			// echo '<h2>You are a Certified Coach!</h2>';
-			get_template_part('certified-coach-dashboard');
-		} elseif ($plan_id == 407) {
-			// echo '<h2>You are a Coach in Training!</h2>';
-			get_template_part('coach-in-training-dashboard');
-		} elseif ($plan_id == 408) {
-			// echo '<h2>You are a Contracting Organization!</h2>';
-			get_template_part('contracting-organization-dashboard');
-		} elseif ($plan_id == 410) {
-			// echo '<h2>You are a Licensed Organization!</h2>';
-			get_template_part('licensed-organization-dashboard');
-		} elseif ($plan_id == 411) {
-			// echo '<h2>You are a Certified Coach Trainer!</h2>';
-			get_template_part('certified-coach-trainer-dashboard');
-
-		}
-	}
-
-}
-
 // GUTENBERG Compatibility
 add_action( 'enqueue_block_editor_assets', function() {
     wp_enqueue_style('eleven_online_theme_styles', get_theme_file_uri('/style.css') );

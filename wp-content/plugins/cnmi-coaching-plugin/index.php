@@ -84,7 +84,6 @@ function create_custom_tables()
     attendance_8 tinyint(1) DEFAULT 0 NOT NULL,
     attendance_9 tinyint(1) DEFAULT 0 NOT NULL,
     attendance_10 tinyint(1) DEFAULT 0 NOT NULL,
-    evaluation tinyint(1) DEFAULT 0 NOT NULL,
     fieldwork tinyint(1) DEFAULT 0 NOT NULL,
     training_complete tinyint(1) DEFAULT 0 NOT NULL,
     coaching_hours_complete tinyint(1) DEFAULT 0 NOT NULL,
