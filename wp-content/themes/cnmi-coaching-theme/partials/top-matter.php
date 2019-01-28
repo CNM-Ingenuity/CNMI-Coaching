@@ -6,11 +6,11 @@ $display_name = $user_info->display_name;
 ?>
   <div class="top-matter wrap">
     <div class="one-half first entry-title">
-      <p>
+      <h3>
         <?php
             echo $title;
         ?>
-      </p>
+      </h3>
     </div>
     <div class="one-half user-name">
       <p>
