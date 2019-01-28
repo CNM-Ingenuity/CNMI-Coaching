@@ -1,6 +1,6 @@
 jQuery(function( $ ){
   // add smooth scrolling on clicked anchors
-  $('a[href*="#"]:not([href="#"])').click(function() {
+  $('a[href*="#"]:not([href="#"]), a[href*="#"]:not([href="#tab-description"]), a[href*="#"]:not([href="#tab-reviews"])').click(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
       var target = $(this.hash);
       target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
