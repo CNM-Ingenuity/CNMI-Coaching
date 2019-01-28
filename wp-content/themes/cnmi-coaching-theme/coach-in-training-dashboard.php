@@ -1,7 +1,6 @@
 <?php
+get_template_part('partials/top-matter');
 ?>
-
-<h2>You are a Coach in Training!</h2>
 
 <div class='dashboard-block-container'>
 	

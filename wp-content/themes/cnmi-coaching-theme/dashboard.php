@@ -2,6 +2,9 @@
 /*
  * Template Name: Dashboard
  */
+
+remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
+
 function show_appropriate_dashboard_to_user() {
 	$user_id = get_current_user_id();
 	$memberships = wc_memberships_get_user_active_memberships( $user_id );
