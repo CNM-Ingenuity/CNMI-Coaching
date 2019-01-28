@@ -1,6 +1,20 @@
 .single-product
   .content
     .product
+      .woocommerce-tabs
+        #tab-title-description, #tab-title-reviews
+          font-family: $shopButtonFont
+          font-size: 16px
+        .woocommerce-Tabs-panel--description
+          display: block !important
+        #tab-description
+          p
+            font-family: $buttonFont
+            font-weight: normal
+            line-height: 2
+
+
+
       .summary
         .product_title
           font-family: $headingFont
@@ -22,6 +36,7 @@
 
 
 
+
 .woocommerce ul.products li.product .price
   display: none
 
@@ -29,6 +44,6 @@
   .woocommerce-result-count, .woocommerce-page .woocommerce-result-count
     font-family: $buttonFont
   .product
-    .woocommerce-loop-product__title
+    button.button.alt
       font-family: $shopButtonFont
       color: $textColor
