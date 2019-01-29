@@ -1,0 +1,871 @@
+object(WC_Order)#4090 (14) {
+  ["status_transition":protected]=>
+  bool(false)
+  ["data":protected]=>
+  array(28) {
+    ["parent_id"]=>
+    int(0)
+    ["status"]=>
+    string(10) "processing"
+    ["currency"]=>
+    string(3) "USD"
+    ["version"]=>
+    string(5) "3.5.1"
+    ["prices_include_tax"]=>
+    bool(false)
+    ["date_created"]=>
+    object(WC_DateTime)#4036 (4) {
+      ["utc_offset":protected]=>
+      int(0)
+      ["date"]=>
+      string(26) "2018-11-16 02:47:21.000000"
+      ["timezone_type"]=>
+      int(1)
+      ["timezone"]=>
+      string(6) "+00:00"
+    }
+    ["date_modified"]=>
+    object(WC_DateTime)#4064 (4) {
+      ["utc_offset":protected]=>
+      int(0)
+      ["date"]=>
+      string(26) "2018-11-16 02:47:23.000000"
+      ["timezone_type"]=>
+      int(1)
+      ["timezone"]=>
+      string(6) "+00:00"
+    }
+    ["discount_total"]=>
+    string(1) "0"
+    ["discount_tax"]=>
+    string(1) "0"
+    ["shipping_total"]=>
+    string(4) "0.00"
+    ["shipping_tax"]=>
+    string(1) "0"
+    ["cart_tax"]=>
+    string(1) "0"
+    ["total"]=>
+    string(4) "0.00"
+    ["total_tax"]=>
+    string(1) "0"
+    ["customer_id"]=>
+    int(2)
+    ["order_key"]=>
+    string(22) "wc_order_5bee2fb912955"
+    ["billing"]=>
+    array(11) {
+      ["first_name"]=>
+      string(7) "Matthew"
+      ["last_name"]=>
+      string(6) "Harris"
+      ["company"]=>
+      string(9) "11 Online"
+      ["address_1"]=>
+      string(20) "200 Broadway Blvd NE"
+      ["address_2"]=>
+      string(0) ""
+      ["city"]=>
+      string(11) "ALBUQUERQUE"
+      ["state"]=>
+      string(2) "NM"
+      ["postcode"]=>
+      string(5) "87102"
+      ["country"]=>
+      string(2) "US"
+      ["email"]=>
+      string(16) "matt@11online.us"
+      ["phone"]=>
+      string(9) "505555555"
+    }
+    ["shipping"]=>
+    array(9) {
+      ["first_name"]=>
+      string(0) ""
+      ["last_name"]=>
+      string(0) ""
+      ["company"]=>
+      string(0) ""
+      ["address_1"]=>
+      string(0) ""
+      ["address_2"]=>
+      string(0) ""
+      ["city"]=>
+      string(0) ""
+      ["state"]=>
+      string(0) ""
+      ["postcode"]=>
+      string(0) ""
+      ["country"]=>
+      string(0) ""
+    }
+    ["payment_method"]=>
+    string(0) ""
+    ["payment_method_title"]=>
+    string(0) ""
+    ["transaction_id"]=>
+    string(0) ""
+    ["customer_ip_address"]=>
+    string(11) "76.113.75.4"
+    ["customer_user_agent"]=>
+    string(121) "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36"
+    ["created_via"]=>
+    string(8) "checkout"
+    ["customer_note"]=>
+    string(0) ""
+    ["date_completed"]=>
+    NULL
+    ["date_paid"]=>
+    object(WC_DateTime)#4685 (4) {
+      ["utc_offset":protected]=>
+      int(0)
+      ["date"]=>
+      string(26) "2018-11-16 02:47:23.000000"
+      ["timezone_type"]=>
+      int(1)
+      ["timezone"]=>
+      string(6) "+00:00"
+    }
+    ["cart_hash"]=>
+    string(32) "55f539912c8561dff7e12846ef5c940d"
+  }
+  ["items":protected]=>
+  array(5) {
+    ["line_items"]=>
+    array(1) {
+      [112]=>
+      object(WC_Order_Item_Product)#4683 (11) {
+        ["extra_data":protected]=>
+        array(9) {
+          ["product_id"]=>
+          int(0)
+          ["variation_id"]=>
+          int(0)
+          ["quantity"]=>
+          int(1)
+          ["tax_class"]=>
+          string(0) ""
+          ["subtotal"]=>
+          int(0)
+          ["subtotal_tax"]=>
+          int(0)
+          ["total"]=>
+          int(0)
+          ["total_tax"]=>
+          int(0)
+          ["taxes"]=>
+          array(2) {
+            ["subtotal"]=>
+            array(0) {
+            }
+            ["total"]=>
+            array(0) {
+            }
+          }
+        }
+        ["data":protected]=>
+        array(11) {
+          ["order_id"]=>
+          int(265)
+          ["name"]=>
+          string(8) "Prefered"
+          ["product_id"]=>
+          int(116)
+          ["variation_id"]=>
+          int(0)
+          ["quantity"]=>
+          int(2)
+          ["tax_class"]=>
+          string(0) ""
+          ["subtotal"]=>
+          string(1) "0"
+          ["subtotal_tax"]=>
+          string(1) "0"
+          ["total"]=>
+          string(1) "0"
+          ["total_tax"]=>
+          string(1) "0"
+          ["taxes"]=>
+          array(2) {
+            ["total"]=>
+            array(1) {
+              [2]=>
+              string(1) "0"
+            }
+            ["subtotal"]=>
+            array(1) {
+              [2]=>
+              string(1) "0"
+            }
+          }
+        }
+        ["cache_group":protected]=>
+        string(11) "order-items"
+        ["meta_type":protected]=>
+        string(10) "order_item"
+        ["object_type":protected]=>
+        string(10) "order_item"
+        ["id":protected]=>
+        int(112)
+        ["changes":protected]=>
+        array(0) {
+        }
+        ["object_read":protected]=>
+        bool(true)
+        ["default_data":protected]=>
+        array(11) {
+          ["order_id"]=>
+          int(0)
+          ["name"]=>
+          string(0) ""
+          ["product_id"]=>
+          int(0)
+          ["variation_id"]=>
+          int(0)
+          ["quantity"]=>
+          int(1)
+          ["tax_class"]=>
+          string(0) ""
+          ["subtotal"]=>
+          int(0)
+          ["subtotal_tax"]=>
+          int(0)
+          ["total"]=>
+          int(0)
+          ["total_tax"]=>
+          int(0)
+          ["taxes"]=>
+          array(2) {
+            ["subtotal"]=>
+            array(0) {
+            }
+            ["total"]=>
+            array(0) {
+            }
+          }
+        }
+        ["data_store":protected]=>
+        object(WC_Data_Store)#4065 (4) {
+          ["instance":"WC_Data_Store":private]=>
+          object(WC_Order_Item_Product_Data_Store)#4695 (3) {
+            ["internal_meta_keys":protected]=>
+            array(9) {
+              [0]=>
+              string(11) "_product_id"
+              [1]=>
+              string(13) "_variation_id"
+              [2]=>
+              string(4) "_qty"
+              [3]=>
+              string(10) "_tax_class"
+              [4]=>
+              string(14) "_line_subtotal"
+              [5]=>
+              string(18) "_line_subtotal_tax"
+              [6]=>
+              string(11) "_line_total"
+              [7]=>
+              string(9) "_line_tax"
+              [8]=>
+              string(14) "_line_tax_data"
+            }
+            ["meta_type":protected]=>
+            string(10) "order_item"
+            ["object_id_field_for_meta":protected]=>
+            string(13) "order_item_id"
+          }
+          ["stores":"WC_Data_Store":private]=>
+          array(24) {
+            ["coupon"]=>
+            string(24) "WC_Coupon_Data_Store_CPT"
+            ["customer"]=>
+            string(22) "WC_Customer_Data_Store"
+            ["customer-download"]=>
+            string(31) "WC_Customer_Download_Data_Store"
+            ["customer-download-log"]=>
+            string(35) "WC_Customer_Download_Log_Data_Store"
+            ["customer-session"]=>
+            string(30) "WC_Customer_Data_Store_Session"
+            ["order"]=>
+            string(23) "WC_Order_Data_Store_CPT"
+            ["order-refund"]=>
+            string(30) "WC_Order_Refund_Data_Store_CPT"
+            ["order-item"]=>
+            string(24) "WC_Order_Item_Data_Store"
+            ["order-item-coupon"]=>
+            string(31) "WC_Order_Item_Coupon_Data_Store"
+            ["order-item-fee"]=>
+            string(28) "WC_Order_Item_Fee_Data_Store"
+            ["order-item-product"]=>
+            string(32) "WC_Order_Item_Product_Data_Store"
+            ["order-item-shipping"]=>
+            string(33) "WC_Order_Item_Shipping_Data_Store"
+            ["order-item-tax"]=>
+            string(28) "WC_Order_Item_Tax_Data_Store"
+            ["payment-token"]=>
+            string(27) "WC_Payment_Token_Data_Store"
+            ["product"]=>
+            string(25) "WC_Product_Data_Store_CPT"
+            ["product-grouped"]=>
+            string(33) "WC_Product_Grouped_Data_Store_CPT"
+            ["product-variable"]=>
+            string(34) "WC_Product_Variable_Data_Store_CPT"
+            ["product-variation"]=>
+            string(35) "WC_Product_Variation_Data_Store_CPT"
+            ["shipping-zone"]=>
+            string(27) "WC_Shipping_Zone_Data_Store"
+            ["webhook"]=>
+            string(21) "WC_Webhook_Data_Store"
+            ["subscription"]=>
+            string(31) "WCS_Subscription_Data_Store_CPT"
+            ["product-variable-subscription"]=>
+            string(35) "WCS_Product_Variable_Data_Store_CPT"
+            ["product-subscription_variation"]=>
+            string(35) "WC_Product_Variation_Data_Store_CPT"
+            ["order-item-line_item_pending_switch"]=>
+            string(32) "WC_Order_Item_Product_Data_Store"
+          }
+          ["current_class_name":"WC_Data_Store":private]=>
+          string(32) "WC_Order_Item_Product_Data_Store"
+          ["object_type":"WC_Data_Store":private]=>
+          string(18) "order-item-product"
+        }
+        ["meta_data":protected]=>
+        array(1) {
+          [0]=>
+          object(WC_Meta_Data)#4692 (2) {
+            ["current_data":protected]=>
+            array(3) {
+              ["id"]=>
+              int(864)
+              ["key"]=>
+              string(32) "_tribe_wooticket_attendee_optout"
+              ["value"]=>
+              string(0) ""
+            }
+            ["data":protected]=>
+            array(3) {
+              ["id"]=>
+              int(864)
+              ["key"]=>
+              string(32) "_tribe_wooticket_attendee_optout"
+              ["value"]=>
+              string(0) ""
+            }
+          }
+        }
+      }
+    }
+    ["tax_lines"]=>
+    array(1) {
+      [113]=>
+      object(WC_Order_Item_Tax)#4652 (11) {
+        ["extra_data":protected]=>
+        array(6) {
+          ["rate_code"]=>
+          string(0) ""
+          ["rate_id"]=>
+          int(0)
+          ["label"]=>
+          string(0) ""
+          ["compound"]=>
+          bool(false)
+          ["tax_total"]=>
+          int(0)
+          ["shipping_tax_total"]=>
+          int(0)
+        }
+        ["data":protected]=>
+        array(8) {
+          ["order_id"]=>
+          int(265)
+          ["name"]=>
+          string(0) ""
+          ["rate_code"]=>
+          string(14) "US-NM-NM TAX-1"
+          ["rate_id"]=>
+          int(2)
+          ["label"]=>
+          string(6) "NM Tax"
+          ["compound"]=>
+          bool(false)
+          ["tax_total"]=>
+          int(0)
+          ["shipping_tax_total"]=>
+          int(0)
+        }
+        ["cache_group":protected]=>
+        string(11) "order-items"
+        ["meta_type":protected]=>
+        string(10) "order_item"
+        ["object_type":protected]=>
+        string(10) "order_item"
+        ["id":protected]=>
+        int(113)
+        ["changes":protected]=>
+        array(0) {
+        }
+        ["object_read":protected]=>
+        bool(true)
+        ["default_data":protected]=>
+        array(8) {
+          ["order_id"]=>
+          int(0)
+          ["name"]=>
+          string(0) ""
+          ["rate_code"]=>
+          string(0) ""
+          ["rate_id"]=>
+          int(0)
+          ["label"]=>
+          string(0) ""
+          ["compound"]=>
+          bool(false)
+          ["tax_total"]=>
+          int(0)
+          ["shipping_tax_total"]=>
+          int(0)
+        }
+        ["data_store":protected]=>
+        object(WC_Data_Store)#4693 (4) {
+          ["instance":"WC_Data_Store":private]=>
+          object(WC_Order_Item_Tax_Data_Store)#5111 (3) {
+            ["internal_meta_keys":protected]=>
+            array(13) {
+              [0]=>
+              string(9) "_order_id"
+              [1]=>
+              string(5) "_name"
+              [2]=>
+              string(10) "_rate_code"
+              [3]=>
+              string(8) "_rate_id"
+              [4]=>
+              string(6) "_label"
+              [5]=>
+              string(9) "_compound"
+              [6]=>
+              string(10) "_tax_total"
+              [7]=>
+              string(19) "_shipping_tax_total"
+              [8]=>
+              string(7) "rate_id"
+              [9]=>
+              string(5) "label"
+              [10]=>
+              string(8) "compound"
+              [11]=>
+              string(10) "tax_amount"
+              [12]=>
+              string(19) "shipping_tax_amount"
+            }
+            ["meta_type":protected]=>
+            string(10) "order_item"
+            ["object_id_field_for_meta":protected]=>
+            string(13) "order_item_id"
+          }
+          ["stores":"WC_Data_Store":private]=>
+          array(24) {
+            ["coupon"]=>
+            string(24) "WC_Coupon_Data_Store_CPT"
+            ["customer"]=>
+            string(22) "WC_Customer_Data_Store"
+            ["customer-download"]=>
+            string(31) "WC_Customer_Download_Data_Store"
+            ["customer-download-log"]=>
+            string(35) "WC_Customer_Download_Log_Data_Store"
+            ["customer-session"]=>
+            string(30) "WC_Customer_Data_Store_Session"
+            ["order"]=>
+            string(23) "WC_Order_Data_Store_CPT"
+            ["order-refund"]=>
+            string(30) "WC_Order_Refund_Data_Store_CPT"
+            ["order-item"]=>
+            string(24) "WC_Order_Item_Data_Store"
+            ["order-item-coupon"]=>
+            string(31) "WC_Order_Item_Coupon_Data_Store"
+            ["order-item-fee"]=>
+            string(28) "WC_Order_Item_Fee_Data_Store"
+            ["order-item-product"]=>
+            string(32) "WC_Order_Item_Product_Data_Store"
+            ["order-item-shipping"]=>
+            string(33) "WC_Order_Item_Shipping_Data_Store"
+            ["order-item-tax"]=>
+            string(28) "WC_Order_Item_Tax_Data_Store"
+            ["payment-token"]=>
+            string(27) "WC_Payment_Token_Data_Store"
+            ["product"]=>
+            string(25) "WC_Product_Data_Store_CPT"
+            ["product-grouped"]=>
+            string(33) "WC_Product_Grouped_Data_Store_CPT"
+            ["product-variable"]=>
+            string(34) "WC_Product_Variable_Data_Store_CPT"
+            ["product-variation"]=>
+            string(35) "WC_Product_Variation_Data_Store_CPT"
+            ["shipping-zone"]=>
+            string(27) "WC_Shipping_Zone_Data_Store"
+            ["webhook"]=>
+            string(21) "WC_Webhook_Data_Store"
+            ["subscription"]=>
+            string(31) "WCS_Subscription_Data_Store_CPT"
+            ["product-variable-subscription"]=>
+            string(35) "WCS_Product_Variable_Data_Store_CPT"
+            ["product-subscription_variation"]=>
+            string(35) "WC_Product_Variation_Data_Store_CPT"
+            ["order-item-line_item_pending_switch"]=>
+            string(32) "WC_Order_Item_Product_Data_Store"
+          }
+          ["current_class_name":"WC_Data_Store":private]=>
+          string(28) "WC_Order_Item_Tax_Data_Store"
+          ["object_type":"WC_Data_Store":private]=>
+          string(14) "order-item-tax"
+        }
+        ["meta_data":protected]=>
+        array(0) {
+        }
+      }
+    }
+    ["shipping_lines"]=>
+    array(0) {
+    }
+    ["fee_lines"]=>
+    array(0) {
+    }
+    ["coupon_lines"]=>
+    array(0) {
+    }
+  }
+  ["items_to_delete":protected]=>
+  array(0) {
+  }
+  ["cache_group":protected]=>
+  string(6) "orders"
+  ["data_store_name":protected]=>
+  string(5) "order"
+  ["object_type":protected]=>
+  string(5) "order"
+  ["id":protected]=>
+  int(265)
+  ["changes":protected]=>
+  array(0) {
+  }
+  ["object_read":protected]=>
+  bool(true)
+  ["extra_data":protected]=>
+  array(0) {
+  }
+  ["default_data":protected]=>
+  array(28) {
+    ["parent_id"]=>
+    int(0)
+    ["status"]=>
+    string(0) ""
+    ["currency"]=>
+    string(0) ""
+    ["version"]=>
+    string(0) ""
+    ["prices_include_tax"]=>
+    bool(false)
+    ["date_created"]=>
+    NULL
+    ["date_modified"]=>
+    NULL
+    ["discount_total"]=>
+    int(0)
+    ["discount_tax"]=>
+    int(0)
+    ["shipping_total"]=>
+    int(0)
+    ["shipping_tax"]=>
+    int(0)
+    ["cart_tax"]=>
+    int(0)
+    ["total"]=>
+    int(0)
+    ["total_tax"]=>
+    int(0)
+    ["customer_id"]=>
+    int(0)
+    ["order_key"]=>
+    string(0) ""
+    ["billing"]=>
+    array(11) {
+      ["first_name"]=>
+      string(0) ""
+      ["last_name"]=>
+      string(0) ""
+      ["company"]=>
+      string(0) ""
+      ["address_1"]=>
+      string(0) ""
+      ["address_2"]=>
+      string(0) ""
+      ["city"]=>
+      string(0) ""
+      ["state"]=>
+      string(0) ""
+      ["postcode"]=>
+      string(0) ""
+      ["country"]=>
+      string(0) ""
+      ["email"]=>
+      string(0) ""
+      ["phone"]=>
+      string(0) ""
+    }
+    ["shipping"]=>
+    array(9) {
+      ["first_name"]=>
+      string(0) ""
+      ["last_name"]=>
+      string(0) ""
+      ["company"]=>
+      string(0) ""
+      ["address_1"]=>
+      string(0) ""
+      ["address_2"]=>
+      string(0) ""
+      ["city"]=>
+      string(0) ""
+      ["state"]=>
+      string(0) ""
+      ["postcode"]=>
+      string(0) ""
+      ["country"]=>
+      string(0) ""
+    }
+    ["payment_method"]=>
+    string(0) ""
+    ["payment_method_title"]=>
+    string(0) ""
+    ["transaction_id"]=>
+    string(0) ""
+    ["customer_ip_address"]=>
+    string(0) ""
+    ["customer_user_agent"]=>
+    string(0) ""
+    ["created_via"]=>
+    string(0) ""
+    ["customer_note"]=>
+    string(0) ""
+    ["date_completed"]=>
+    NULL
+    ["date_paid"]=>
+    NULL
+    ["cart_hash"]=>
+    string(0) ""
+  }
+  ["data_store":protected]=>
+  object(WC_Data_Store)#4605 (4) {
+    ["instance":"WC_Data_Store":private]=>
+    object(WC_Order_Data_Store_CPT)#4543 (3) {
+      ["internal_meta_keys":protected]=>
+      array(50) {
+        [0]=>
+        string(14) "_customer_user"
+        [1]=>
+        string(10) "_order_key"
+        [2]=>
+        string(15) "_order_currency"
+        [3]=>
+        string(19) "_billing_first_name"
+        [4]=>
+        string(18) "_billing_last_name"
+        [5]=>
+        string(16) "_billing_company"
+        [6]=>
+        string(18) "_billing_address_1"
+        [7]=>
+        string(18) "_billing_address_2"
+        [8]=>
+        string(13) "_billing_city"
+        [9]=>
+        string(14) "_billing_state"
+        [10]=>
+        string(17) "_billing_postcode"
+        [11]=>
+        string(16) "_billing_country"
+        [12]=>
+        string(14) "_billing_email"
+        [13]=>
+        string(14) "_billing_phone"
+        [14]=>
+        string(20) "_shipping_first_name"
+        [15]=>
+        string(19) "_shipping_last_name"
+        [16]=>
+        string(17) "_shipping_company"
+        [17]=>
+        string(19) "_shipping_address_1"
+        [18]=>
+        string(19) "_shipping_address_2"
+        [19]=>
+        string(14) "_shipping_city"
+        [20]=>
+        string(15) "_shipping_state"
+        [21]=>
+        string(18) "_shipping_postcode"
+        [22]=>
+        string(17) "_shipping_country"
+        [23]=>
+        string(15) "_completed_date"
+        [24]=>
+        string(10) "_paid_date"
+        [25]=>
+        string(10) "_edit_lock"
+        [26]=>
+        string(10) "_edit_last"
+        [27]=>
+        string(14) "_cart_discount"
+        [28]=>
+        string(18) "_cart_discount_tax"
+        [29]=>
+        string(15) "_order_shipping"
+        [30]=>
+        string(19) "_order_shipping_tax"
+        [31]=>
+        string(10) "_order_tax"
+        [32]=>
+        string(12) "_order_total"
+        [33]=>
+        string(15) "_payment_method"
+        [34]=>
+        string(21) "_payment_method_title"
+        [35]=>
+        string(15) "_transaction_id"
+        [36]=>
+        string(20) "_customer_ip_address"
+        [37]=>
+        string(20) "_customer_user_agent"
+        [38]=>
+        string(12) "_created_via"
+        [39]=>
+        string(14) "_order_version"
+        [40]=>
+        string(19) "_prices_include_tax"
+        [41]=>
+        string(15) "_date_completed"
+        [42]=>
+        string(10) "_date_paid"
+        [43]=>
+        string(15) "_payment_tokens"
+        [44]=>
+        string(22) "_billing_address_index"
+        [45]=>
+        string(23) "_shipping_address_index"
+        [46]=>
+        string(15) "_recorded_sales"
+        [47]=>
+        string(29) "_recorded_coupon_usage_counts"
+        [48]=>
+        string(29) "_download_permissions_granted"
+        [49]=>
+        string(20) "_order_stock_reduced"
+      }
+      ["meta_type":protected]=>
+      string(4) "post"
+      ["object_id_field_for_meta":protected]=>
+      string(0) ""
+    }
+    ["stores":"WC_Data_Store":private]=>
+    array(24) {
+      ["coupon"]=>
+      string(24) "WC_Coupon_Data_Store_CPT"
+      ["customer"]=>
+      string(22) "WC_Customer_Data_Store"
+      ["customer-download"]=>
+      string(31) "WC_Customer_Download_Data_Store"
+      ["customer-download-log"]=>
+      string(35) "WC_Customer_Download_Log_Data_Store"
+      ["customer-session"]=>
+      string(30) "WC_Customer_Data_Store_Session"
+      ["order"]=>
+      string(23) "WC_Order_Data_Store_CPT"
+      ["order-refund"]=>
+      string(30) "WC_Order_Refund_Data_Store_CPT"
+      ["order-item"]=>
+      string(24) "WC_Order_Item_Data_Store"
+      ["order-item-coupon"]=>
+      string(31) "WC_Order_Item_Coupon_Data_Store"
+      ["order-item-fee"]=>
+      string(28) "WC_Order_Item_Fee_Data_Store"
+      ["order-item-product"]=>
+      string(32) "WC_Order_Item_Product_Data_Store"
+      ["order-item-shipping"]=>
+      string(33) "WC_Order_Item_Shipping_Data_Store"
+      ["order-item-tax"]=>
+      string(28) "WC_Order_Item_Tax_Data_Store"
+      ["payment-token"]=>
+      string(27) "WC_Payment_Token_Data_Store"
+      ["product"]=>
+      string(25) "WC_Product_Data_Store_CPT"
+      ["product-grouped"]=>
+      string(33) "WC_Product_Grouped_Data_Store_CPT"
+      ["product-variable"]=>
+      string(34) "WC_Product_Variable_Data_Store_CPT"
+      ["product-variation"]=>
+      string(35) "WC_Product_Variation_Data_Store_CPT"
+      ["shipping-zone"]=>
+      string(27) "WC_Shipping_Zone_Data_Store"
+      ["webhook"]=>
+      string(21) "WC_Webhook_Data_Store"
+      ["subscription"]=>
+      string(31) "WCS_Subscription_Data_Store_CPT"
+      ["product-variable-subscription"]=>
+      string(35) "WCS_Product_Variable_Data_Store_CPT"
+      ["product-subscription_variation"]=>
+      string(35) "WC_Product_Variation_Data_Store_CPT"
+      ["order-item-line_item_pending_switch"]=>
+      string(32) "WC_Order_Item_Product_Data_Store"
+    }
+    ["current_class_name":"WC_Data_Store":private]=>
+    string(23) "WC_Order_Data_Store_CPT"
+    ["object_type":"WC_Data_Store":private]=>
+    string(5) "order"
+  }
+  ["meta_data":protected]=>
+  array(2) {
+    [0]=>
+    object(WC_Meta_Data)#5171 (2) {
+      ["current_data":protected]=>
+      array(3) {
+        ["id"]=>
+        int(4863)
+        ["key"]=>
+        string(18) "_tribe_has_tickets"
+        ["value"]=>
+        string(1) "1"
+      }
+      ["data":protected]=>
+      array(3) {
+        ["id"]=>
+        int(4863)
+        ["key"]=>
+        string(18) "_tribe_has_tickets"
+        ["value"]=>
+        string(1) "1"
+      }
+    }
+    [1]=>
+    object(WC_Meta_Data)#4604 (2) {
+      ["current_data":protected]=>
+      array(3) {
+        ["id"]=>
+        int(4864)
+        ["key"]=>
+        string(16) "_tribe_mail_sent"
+        ["value"]=>
+        string(1) "1"
+      }
+      ["data":protected]=>
+      array(3) {
+        ["id"]=>
+        int(4864)
+        ["key"]=>
+        string(16) "_tribe_mail_sent"
+        ["value"]=>
+        string(1) "1"
+      }
+    }
+  }
+}
