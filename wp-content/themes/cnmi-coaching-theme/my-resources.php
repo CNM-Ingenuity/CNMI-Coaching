@@ -1,14 +1,14 @@
 <?php
 /*
- * Template Name: My Certifications
+ * Template Name: My Resources
  */
 remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 
-function show_my_certifications() {
+function show_my_resources() {
 	get_template_part('partials/elements/top-matter');	
-	$linkAddress = '/my-certification?certification=';
+	$linkAddress = '/my-resource?resource=';
 	include(locate_template('partials/elements/certification-list.php'));	
 }
-add_action('genesis_entry_content', 'show_my_certifications');
+add_action('genesis_entry_content', 'show_my_resources');
 
 genesis();
