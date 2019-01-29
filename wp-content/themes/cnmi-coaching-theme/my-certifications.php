@@ -17,7 +17,7 @@ function show_my_certifications() {
 		$eventTrainer = CNMI_Events::get_event_trainer($eventID);
 		?>
 
-			<a href='/my-certifiction?certification=<?php echo $eventID; ?>'>
+			<a href='/my-certification?certification=<?php echo $certification->id; ?>'>
 				<div class="training">
 					<h3 class="training-title"><?php echo $eventType; ?></h3>
 					<p class="training-students">Instructor: <?php echo $eventTrainer; ?></p>
