@@ -370,6 +370,43 @@ class CNMI_Events {
 
     }
 
+    public static function get_event_type($id) {
+        $categories = wp_get_object_terms($id, 'tribe_events_cat');
+        if(isset($categories[0])) {
+            return $categories[0]->name;
+        } else {
+            return "Unknown Certification";
+        }
+    }
+
+    public static function get_event_trainer($id) {
+        $users = get_post_meta(
+            $id, 
+            '_cnmi_event_metabox_user_multicheckbox', 
+            true
+        );
+        if($users) {
+            $user = get_user_by('id', $users[0]);
+            return $user->user_nicename;
+        } else {
+            return false;
+        }
+    }
+
+    public static function get_event_start_date($id) {
+        $date = get_post_meta(
+            $id, 
+            '_EventStartDate', 
+            true
+        );
+        if($date) {
+            $tz = new DateTimeZone('America/Denver');
+            return new DateTime($date, $tz);
+        } else {
+            return false;
+        }
+    }
+
     public static function get_events_by_coach_id($coach_id) {
         $args = array(
             'post_type' => 'tribe_events',
