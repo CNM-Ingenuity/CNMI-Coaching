@@ -419,3 +419,89 @@ function remove_titles_single_posts() {
         remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
     }
 }
+
+/**
+ * Change number of related products output
+ */
+function woo_related_products_limit() {
+  global $product;
+
+	$args['posts_per_page'] = 6;
+	return $args;
+}
+add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args' );
+  function jk_related_products_args( $args ) {
+	$args['posts_per_page'] = 4; // 4 related products
+	$args['columns'] = 4; // arranged in 2 columns
+	return $args;
+}
+
+add_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+
+//integrate Woocommerce and Genesis
+/**********************************
+*
+* Integrate WooCommerce with Genesis.
+*
+* Unhook WooCommerce wrappers and
+* Replace with Genesis wrappers.
+*
+* Reference Genesis file:
+* genesis/lib/framework.php
+*
+* @author AlphaBlossom / Tony Eppright
+* @link http://www.alphablossom.com
+*
+**********************************/
+
+// Add WooCommerce support for Genesis layouts (sidebar, full-width, etc) - Thank you Kelly Murray/David Wang
+add_post_type_support( 'product', array( 'genesis-layouts', 'genesis-seo' ) );
+
+// Unhook WooCommerce Sidebar - use Genesis Sidebars instead
+remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
+// Unhook WooCommerce wrappers
+remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
+remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+
+// Hook new functions with Genesis wrappers
+add_action( 'woocommerce_before_main_content', 'youruniqueprefix_my_theme_wrapper_start', 10 );
+add_action( 'woocommerce_after_main_content', 'youruniqueprefix_my_theme_wrapper_end', 10 );
+
+// Add opening wrapper before WooCommerce loop
+function youruniqueprefix_my_theme_wrapper_start() {
+
+    do_action( 'genesis_before_content_sidebar_wrap' );
+    genesis_markup( array(
+        'html5' => '<div %s>',
+        'xhtml' => '<div id="content-sidebar-wrap">',
+        'context' => 'content-sidebar-wrap',
+    ) );
+
+    do_action( 'genesis_before_content' );
+    genesis_markup( array(
+        'html5' => '<main %s>',
+        'xhtml' => '<div id="content" class="hfeed">',
+        'context' => 'content',
+    ) );
+    do_action( 'genesis_before_loop' );
+
+}
+
+/* Add closing wrapper after WooCommerce loop */
+function youruniqueprefix_my_theme_wrapper_end() {
+
+    do_action( 'genesis_after_loop' );
+    genesis_markup( array(
+        'html5' => '</main>', //* end .content
+        'xhtml' => '</div>', //* end #content
+    ) );
+    do_action( 'genesis_after_content' );
+
+    echo '</div>'; //* end .content-sidebar-wrap or #content-sidebar-wrap
+    do_action( 'genesis_after_content_sidebar_wrap' );
+
+}
+
+// Remove WooCommerce Theme Support admin message
+add_theme_support( 'woocommerce' );
