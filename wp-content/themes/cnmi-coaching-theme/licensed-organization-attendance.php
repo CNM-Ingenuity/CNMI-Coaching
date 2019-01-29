@@ -19,7 +19,7 @@ $attendance_array = array(
     'date' => '06/20/2019'
   ]
 );
-get_template_part('partials/top-matter');
+get_template_part('partials/elements/top-matter');
 echo '<div class="attendance">';
 // $organizers = tribe_get_organizers();
 // $events = tribe_get_events();
