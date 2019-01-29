@@ -17,10 +17,36 @@
   margin: 0 16px 24px 0
 
 /* ## Genesis
- *---------------------------------------------
+ *---------------------------------------------*/
 
-.breadcrumb
-  margin-bottom: 20px
+.breadcrumbs
+  position: relative
+  font-size: 12px
+  font-size: 1.2rem
+  .back-link
+    position: absolute
+    left: -80px
+    font-family: $buttonFont
+    line-height: 20px
+    cursor: pointer
+    &:hover
+      color: $linkColor
+  .breadcrumb
+    margin-bottom: 20px
+    font-family: $footerMenuFont
+    color: #979797
+    &:after
+      content: '>'
+      margin: 0 5px 0 6px
+      color: $textColor
+    &:last-of-type
+      color: $textColor
+      &:after
+        display: none
+    &:hover
+      color: $linkColor
+
+
 
 .archive-description, .author-box
   font-size: 16px

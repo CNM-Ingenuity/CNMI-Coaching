@@ -519,3 +519,27 @@ function youruniqueprefix_remove_wc_breadcrumbs() {
 
 // Remove WooCommerce Theme Support admin message
 add_theme_support( 'woocommerce' );
+
+/**
+ * Redirect user after successful login.
+ *
+ * @param string $redirect_to URL to redirect to.
+ * @param string $request URL the user is coming from.
+ * @param object $user Logged user's data.
+ * @return string
+ */
+
+function redirect_to_dashboard( $redirect_to, $request, $user ) {
+    //is there a user to check?
+    if (isset($user->roles) && is_array($user->roles)) {
+        //check for subscribers
+        if (in_array('subscriber', $user->roles)) {
+            // redirect them to another URL, in this case, the homepage 
+            $redirect_to =  home_url('/dashboard');
+        }
+    }
+
+    return $redirect_to;
+}
+
+add_filter( 'login_redirect', 'redirect_to_dashboard', 10, 3 );
