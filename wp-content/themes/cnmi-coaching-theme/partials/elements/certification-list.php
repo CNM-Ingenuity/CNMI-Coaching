@@ -1,4 +1,5 @@
 <?php
+
 $certifications = CNMI_Progress::get_current_student_progress();
 foreach ($certifications as $certification) {
 	$eventID = $certification->event_id;
@@ -11,10 +12,10 @@ foreach ($certifications as $certification) {
 	?>
 
 		<a href='<?php echo $linkAddress . $certification->id; ?>'>
-			<div class="training">
-				<h3 class="training-title"><?php echo $eventType; ?></h3>
-				<p class="training-students">Instructor: <?php echo $eventTrainer; ?></p>
-				<p class="training-date"><p>Date: <?php echo $eventStartDate; ?></p>
+			<div class="item">
+				<h3 class="title"><?php echo $eventType; ?></h3>
+				<p class="students">Instructor: <?php echo $eventTrainer; ?></p>
+				<p class="date"><p>Date: <?php echo $eventStartDate; ?></p>
 			</div>
 		</a>
 	<?php

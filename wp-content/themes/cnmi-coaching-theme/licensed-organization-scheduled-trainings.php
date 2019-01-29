@@ -22,7 +22,6 @@ add_action('genesis_entry_content', 'create_organizations_scheduled_trainings');
 //Create layout for the page
 function create_organizations_scheduled_trainings(){
   get_template_part('partials/elements/top-matter');
-  echo '<div class="organizations-scheduled-trainings">';
   // $organizers = tribe_get_organizers();
   // $events = tribe_get_events();
   // var_dump($events);
@@ -45,10 +44,10 @@ function create_organizations_scheduled_trainings(){
       $event_name = $training['name'];
       $students = $training['students'];
       $date = $training ['date'];
-      echo '<div class="training">';
-      echo '<div class="training-title"><p>'. $event_name .'</p></div>';
-      echo '<div class="training-students"><p>Students: '. $students .'</p></div>';
-      echo '<div class="training-date"><p>Date: '. $date .'</p></div></div>';
+      echo '<div class="item">';
+      echo '<h3 class="title">'. $event_name .'</h3>';
+      echo '<p class="students">Students: '. $students .'</p>';
+      echo '<p class="date">Date: '. $date .'</p></div>';
 
   }
 

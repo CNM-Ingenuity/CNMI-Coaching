@@ -2,7 +2,7 @@
 
 /*
  * This is a template for Organizations Training view
- * 
+ *
  */
 
 $attendance_array = array(
@@ -20,7 +20,6 @@ $attendance_array = array(
   ]
 );
 get_template_part('partials/elements/top-matter');
-echo '<div class="attendance">';
 // $organizers = tribe_get_organizers();
 // $events = tribe_get_events();
 // var_dump($events);
@@ -29,9 +28,9 @@ foreach ($attendance_array as $attendance)
     $event_name = $attendance['name'];
     $students = $attendance['students'];
     $date = $attendance ['date'];
-    echo '<div class="training">';
-    echo '<div class="training-title"><p>'. $event_name .'</p></div>';
-    echo '<div class="training-students"><p>Students: '. $students .'</p></div>';
-    echo '<div class="training-date"><p>Date: '. $date .'</p></div></div>';
+    echo '<div class="item">';
+    echo '<h3 class="title">'. $event_name .'</div>';
+    echo '<p class="students">Students: '. $students .'</div>';
+    echo '<p class="date"><p>Date: '. $date .'</p></div></div>';
 
 }
