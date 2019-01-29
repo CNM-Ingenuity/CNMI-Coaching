@@ -9,22 +9,21 @@
         text-align: left
         .price, .added_to_cart
           display: none
-        .added_to_cart
+        .product_type_simple.add_to_cart_button
+          font-family: $buttonFont
+          font-size: 11px
+          background-color: $wooSingleButton !important
+          color: $textColor
+          padding: 4% 4% 4% 4%
+          margin-left: 2%
+          &:after
+            content: ''
+            margin-left: 0
 
 
-
-  .woocommerce-result-count, .woocommerce-page .woocommerce-result-count
-    font-family: $buttonFont
+.woocommerce-result-count, .woocommerce-page .woocommerce-result-count
+  font-family: $buttonFont
   .product
     .woocommerce-loop-product__title
       font-family: $shopButtonFont
       color: $textColor
-    .add_to_cart_button
-      font-family: $buttonFont
-      font-size: 11px
-      background-color: $wooSingleButton !important
-      color: $textColor
-      padding: 8% 8% 8% 8%
-      &:after
-        content: ''
-        margin-left: 0

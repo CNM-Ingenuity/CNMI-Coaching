@@ -10,9 +10,6 @@
             font-family: $buttonFont
             font-weight: normal
             line-height: 2
-
-
-
       .summary
         .product_title
           font-family: $headingFont
@@ -28,6 +25,23 @@
             font-family: $buttonFont
             a
               color: $textColor
+      .related
+        .products
+          .type-product
+            .add_to_cart_button
+              font-size: 11px
+              padding: 6%
+
+.woocommerce button.button.alt, .product_type_simple.add_to_cart_button
+  font-family: $buttonFont
+  font-size: 11px
+  background-color: $wooSingleButton !important
+  color: $textColor
+  padding: 4% 
+  margin-left: 2%
+  &:after
+    content: ''
+    margin-left: 0
 
 
 
