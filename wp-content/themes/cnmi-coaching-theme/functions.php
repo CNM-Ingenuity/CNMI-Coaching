@@ -187,66 +187,70 @@ add_action('woocommerce_payment_complete', 'custom_add_to_cart');
 function custom_add_to_cart($order_id) {
 		//Need to add conditional to only run on ticket purchases
 		$order = wc_get_order($order_id);
-		// var_dump($order);
-		$order_array = json_decode($order);
-		print_r($order_array);
+		$event_id = false;
+		// Iterating through each "line" items in the order
+		foreach ($order->get_items() as $item_id => $item_data) {
 
-		$order_meta = $order_array->meta_data[0];
+			$product = $item_data->get_product();
+			$product_id = $product->get_id();
+			$event = get_post_meta(
+        $product_id,
+      	'_tribe_wooticket_for_event',
+        true
+      );
+			if($event) {
+				$event_id = $event;
+			}
+		}
+		if($event_id)	{
+			foreach($order->meta_data as $meta) {
+				if($meta->key == '_tribe_tickets_meta') {
+					foreach($meta->value as $ticketArray) {
+						foreach($ticketArray as $ticket) {
+							$first_name = $ticket['first-name'];
+							$last_name = $ticket['last-name'];
+							$user_email = $ticket['email'];
+							$user_title = $ticket['title'];
+							$user_data = array(
+								'user_pass' => '',
+								'user_login' => $user_email,
+								'user_email' => $user_email,
+								'first_name' => $first_name,
+								'last_name' => $last_name,
+								'role' => 'subscriber'
+							);
 
-		$meta_array = $order_meta->value;
-
-		foreach ($meta_array as $var => $value) {
-			print_r($var);
-			$product = wc_get_product($var);
-			print_r($product);
-		 	foreach ($value as $key => $ticket_meta_array) {
-				$first_name = $ticket_meta_array->{'first-name'};
-				$last_name = $ticket_meta_array->{'last-name'};
-				$user_email = $ticket_meta_array->email;
-				$user_title = $ticket_meta_array->title;
-				print_r($user_title);
-				$user_data = array(
-					'user_pass' => '',
-					'user_login' => $user_email,
-					'user_email' => $user_email,
-					'first_name' => $first_name,
-					'last_name' => $last_name,
-					'role' => 'subscriber'
-				);
-				if(! email_exists($user_email)){
-					echo 'I would have registered'. $user_email .'but we are testing';
-					$user_id = wp_insert_user($user_data);
-					// print_r($user_id);
-				} else {
-					echo 'This user already exists!';
+							if(! email_exists($user_email)){
+								$user_id = wp_insert_user($user_data);
+								// Send notification email. We will probably want to customize the message
+								$notification = wp_new_user_notification($user_id, null , 'user');
+								global $wpdb;
+		            $table_name  = $wpdb->prefix.'progress';
+		            $wpdb->insert($table_name, array(
+                  'user_id' => $user_id,
+                  'event_id' => $event_id
+	                ),
+	                array('%d','%d')
+		            );
+							} else {
+								$user = get_user_by( 'email', $user_email);
+								$user_id = $user->ID;
+								global $wpdb;
+		            $table_name  = $wpdb->prefix.'progress';
+		            $wpdb->insert($table_name, array(
+	                'user_id' => $user_id,
+	                'event_id' => $event_id
+	                ),
+	                array('%d','%d')
+		            );
+							}
+						}
+					}
 				}
 			}
 		}
-		//need to go through meta array and
+ }
 
-		// for($i= 0; $i < count($meta_array); $i++) {
-		// $first_name = $meta_array[$i]->{'first-name'};
-		// $last_name = $meta_array[$i]->{'last-name'};
-		// //need to check if user exists and if user does exist, pass the user id into the insert user function
-		// $user_email = $meta_array[$i]->email;
-		// $user_data = array(
-		// 	'user_pass' => '',
-		// 	'user_login' => $user_email,
-		// 	'user_email' => $user_email,
-		// 	'first_name' => $first_name,
-		// 	'last_name' => $last_name,
-		// 	'role' => 'subscriber'
-		// );
-		// $user_id = wp_insert_user($user_data);
-		// // Send notification email. We will probably want to customize the message
-		// $notification = wp_new_user_notification($user_id, '' , 'user');
-		// Need to add custom meta to user saying which event they registered for.
-		// Do we want to try to send this data to salesforce using the API or Zapier?
-
-
-		// 	// code...
-		}
-// }
 
 // GUTENBERG Compatibility
 add_action( 'enqueue_block_editor_assets', function() {
@@ -510,6 +514,8 @@ function youruniqueprefix_remove_wc_breadcrumbs() {
     remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 
 }
+
+
 
 // Remove WooCommerce Theme Support admin message
 add_theme_support( 'woocommerce' );
