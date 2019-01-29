@@ -426,7 +426,7 @@ function remove_titles_single_posts() {
 function woo_related_products_limit() {
   global $product;
 
-	$args['posts_per_page'] = 6;
+	$args['posts_per_page'] = 4;
 	return $args;
 }
 add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args' );
@@ -500,6 +500,14 @@ function youruniqueprefix_my_theme_wrapper_end() {
 
     echo '</div>'; //* end .content-sidebar-wrap or #content-sidebar-wrap
     do_action( 'genesis_after_content_sidebar_wrap' );
+
+}
+
+// Remove WooCommerce breadcrumbs, using Genesis crumbs instead.
+add_action( 'get_header', 'youruniqueprefix_remove_wc_breadcrumbs' );
+function youruniqueprefix_remove_wc_breadcrumbs() {
+
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 
 }
 
