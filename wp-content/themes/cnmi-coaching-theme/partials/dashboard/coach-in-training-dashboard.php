@@ -1,5 +1,5 @@
 <?php
-get_template_part('partials/top-matter');
+get_template_part('partials/elements/top-matter');
 ?>
 
 <div class='dashboard-block-container'>

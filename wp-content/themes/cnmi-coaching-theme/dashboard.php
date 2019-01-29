@@ -13,19 +13,19 @@ function show_appropriate_dashboard_to_user() {
 		$plan_id = $memberships[0]->{"plan_id"};
 		if ($plan_id == 406) {
 			// echo '<h2>You are a Certified Coach!</h2>';
-			get_template_part('certified-coach-dashboard');
+			get_template_part('partials/dashboard/certified-coach-dashboard');
 		} elseif ($plan_id == 407) {
 			// echo '<h2>You are a Coach in Training!</h2>';
-			get_template_part('coach-in-training-dashboard');
+			get_template_part('partials/dashboard/coach-in-training-dashboard');
 		} elseif ($plan_id == 408) {
 			// echo '<h2>You are a Contracting Organization!</h2>';
-			get_template_part('contracting-organization-dashboard');
+			get_template_part('partials/dashboard/contracting-organization-dashboard');
 		} elseif ($plan_id == 410) {
 			// echo '<h2>You are a Licensed Organization!</h2>';
-			get_template_part('licensed-organization-dashboard');
+			get_template_part('partials/dashboard/licensed-organization-dashboard');
 		} elseif ($plan_id == 411) {
 			// echo '<h2>You are a Certified Coach Trainer!</h2>';
-			get_template_part('certified-coach-trainer-dashboard');
+			get_template_part('partials/dashboard/certified-coach-trainer-dashboard');
 
 		}
 	}	

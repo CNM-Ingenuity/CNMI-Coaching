@@ -21,7 +21,7 @@ add_filter( 'genesis_markup_content', '__return_null' );
 add_action('genesis_entry_content', 'create_organizations_scheduled_trainings');
 //Create layout for the page
 function create_organizations_scheduled_trainings(){
-  get_template_part('partials/top-matter');
+  get_template_part('partials/elements/top-matter');
   echo '<div class="organizations-scheduled-trainings">';
   // $organizers = tribe_get_organizers();
   // $events = tribe_get_events();
