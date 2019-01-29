@@ -15,7 +15,7 @@ function show_my_training() {
 			$eventType => "#",
 		];
 		include(locate_template('partials/elements/breadcrumbs.php'));	
-		get_template_part('partials/elements/top-matter');	
+		include(locate_template('partials/elements/top-matter.php'));
 		$eventStartDate = CNMI_Events::get_event_start_date($eventID);
 		if($eventStartDate) {
 			$eventStartDate = $eventStartDate->format('m/d/Y');
