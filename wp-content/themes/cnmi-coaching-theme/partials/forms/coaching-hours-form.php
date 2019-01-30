@@ -17,14 +17,26 @@ if (
 		&&
 		isset($_POST['minutes']) && $_POST['minutes'] !=''
 	) {
-			CNMI_Coaching_Hours::save_new_coaching_hours($_POST['id'], $_POST['client_name'], $_POST['date'], $_POST['minutes'], $_POST['comments']);
+			$result = CNMI_Coaching_Hours::save_new_coaching_hours($_POST['id'], $_POST['client_name'], $_POST['date'], $_POST['minutes'], $_POST['comments']);
+			if($result) {
+				?>
+					<p class='success'>Your coaching hours have been saved.</p>
+				<?php
+			} else {
+				?>
+					<p class='error'>Something went wrong, please try again.</p>
+				<?php
+			}
+	} else if (isset($_POST['id']) && $_POST['id'] !='') {
+		?>
+			<p class='error'>Some information is missing, please make sure your form is complete.</p>
+		<?php
 	}
 }
 ?>
-<h1>Submit Coaching Hours</h1>
 <form id="coaching-hours-form" action="" method="POST" enctype="multipart/form-data">
-	<label for="id">Progress ID</label>
-	<input label="ID" name="id" type="number" required>
+	
+	<input name="id" type="hidden" required value="<?php echo $_GET['certification']; ?>">
 
 	<label for="client_name">Client Name</label>
 	<input label="client_name" name="client_name" required>
