@@ -1,6 +1,6 @@
 <?php
 /*
- * Template Name: Track Coaching Hours
+ * Template Name: Upload Coaching Session
  */
 remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 
@@ -27,7 +27,7 @@ function show_my_certification() {
 		include(locate_template('partials/elements/breadcrumbs.php'));	
 		include(locate_template('partials/elements/top-matter.php'));
 		
-		get_template_part('partials/forms/coaching-hours-form');
+		get_template_part('partials/forms/coaching-session-upload');
 	} else {
 		?>
 			<p>Sorry, page not found.</p>
