@@ -8,25 +8,37 @@ if (
 } else {
 	if(isset($_POST['id']) && $_POST['id'] !='') {
 		if(isset($_POST['media_upload']) && $_POST['media_upload'] !='') {
-			$result = false;
-			if($_POST['media_upload']) {
+			if($_POST['media_upload'] && isset($_FILES['file']['name']) && $_FILES['file']['name'] != '') {
 				$result = CNMI_Coaching_Session::save_new_media($_POST['id'], $_FILES['file'], true);
+				if($result) {
+					?>
+						<p class='success-message'>Your coaching session has been saved.</p>
+					<?php
+				} else {
+					?>
+						<p class='error-message'>Something went wrong, please try again.</p>
+					<?php
+				}
 			} else if(isset($_POST['link']) && $_POST['link'] !='') {
 				$result = CNMI_Coaching_Session::save_new_media($_POST['id'], $_POST['link'], false);
-			}
-			if($result) {
-				?>
-					<p class='success'>Your coaching session has been saved.</p>
-				<?php
+				if($result) {
+					?>
+						<p class='success-message'>Your coaching session has been saved.</p>
+					<?php
+				} else {
+					?>
+						<p class='error-message'>Something went wrong, please try again.</p>
+					<?php
+				}
 			} else {
 				?>
-					<p class='error'>Something went wrong, please try again.</p>
+					<p class='error-message'>Some information is missing, please make sure your form is complete.</p>
 				<?php
 			}
 		}
 	} else if (isset($_POST['id']) && $_POST['id'] !='') {
 		?>
-			<p class='error'>Some information is missing, please make sure your form is complete.</p>
+			<p class='error-message'>Some information is missing, please make sure your form is complete.</p>
 		<?php
 	}
 }
