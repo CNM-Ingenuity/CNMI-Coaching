@@ -58,6 +58,27 @@ if(!function_exists('cnmi_register_certification_metabox')) {
       'type' => 'text_url',
     ));
     $cmb->add_field( array(
+      'name' => __('Training Worksheet', 'cmb2'),
+      'desc' => __('Upload training worksheet resources here', 'cmb2'),
+      'id' => $prefix . 'worksheet',
+      'type' => 'file',
+      'repeatable' => true
+    ));
+    $cmb->add_field( array(
+      'name' => __('Training Video', 'cmb2'),
+      'desc' => __('Upload training video resources here', 'cmb2'),
+      'id' => $prefix . 'video',
+      'type' => 'file',
+      'repeatable' => true
+    ));
+    $cmb->add_field( array(
+      'name' => __('Training Cards', 'cmb2'),
+      'desc' => __('Upload training card resources here', 'cmb2'),
+      'id' => $prefix . 'cards',
+      'type' => 'file',
+      'repeatable' => true
+    ));
+    $cmb->add_field( array(
       'name' => __('Training', 'cmb2'),
       'desc' => __('Link to Training', 'cmb2'),
       'id' => $prefix . 'training',
