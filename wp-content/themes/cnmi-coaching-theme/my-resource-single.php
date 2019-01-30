@@ -31,11 +31,17 @@ function show_my_training() {
 			</div>
 		<?php
 		foreach ($eventResourcesArray as $event) {
-			var_dump($event);
-
-
+			$resourceName= $event['name'];
+			$resourceFile = $event['file'];
+			?>
+			<a href="<?php echo $resourceFile; ?>" target="_blank">
+				<div class="resource item">
+					<h3 class="title"> <?php echo $resourceName;?></h3>
+					<img src="/wp-content/uploads/2019/01/download-arrow.png">
+				</div>
+			</a> <?php
 		}
-
+		include(locate_template('partials/elements/view-shop-button.php'));
 	} else {
 		?>
 			<p>Sorry, page not found.</p>
