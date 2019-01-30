@@ -22,7 +22,7 @@ function show_my_training() {
 			$eventStartDate = $eventStartDate->format('m/d/Y');
 		}
 		$eventTrainer = CNMI_Events::get_event_trainer($eventID);
-		$requirementsArray =  CNMI_Events::get_event_requirements($eventID);
+		$requirementsArray =  CNMI_Certifications::get_event_requirements($eventID);
 		$evaluationLink = CNMI_Events::get_event_evaluation_link($eventID);
 		$postContent = CNMI_Events::get_event_content($eventID);
 
