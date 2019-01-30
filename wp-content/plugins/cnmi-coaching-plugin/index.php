@@ -209,6 +209,19 @@ class CNMI_Progress {
         }
         return $results;
     }
+
+    // public static function get_training_resources($id) {
+    //   $resourcesArray = get_post_meta(
+    //       $id,
+    //       '_cnmi_certification_metabox_training_resource_group',
+    //       true
+    //   );
+    //   if($resourcesArray) {
+    //       return $resourcesArray;
+    //   } else {
+    //       return false;
+    //   }
+    // }
 }
 
 /*
@@ -379,6 +392,23 @@ class CNMI_Events {
         }
     }
 
+
+    public static function get_certification_by_event($id){
+      $categories = wp_get_object_terms($id, 'tribe_events_cat');
+        if(isset($categories[0])) {
+          switch ($categories[0]->term_id) {
+            case 42:
+              return get_post_meta(441, '_cnmi_certification_metabox_training_resource_group', true);
+
+            default:
+              return [];
+              break;
+          }
+        } else {
+            return [];
+        }
+    }
+
     public static function get_event_trainer($id) {
         $users = get_post_meta(
             $id,
@@ -454,7 +484,6 @@ class CNMI_Events {
           return false;
       }
 
-
     }
 
     public static function get_event_evaluation_link($id) {
@@ -468,8 +497,6 @@ class CNMI_Events {
       } else {
           return false;
       }
-
-
     }
 
     public static function get_event_content($id) {
@@ -480,8 +507,4 @@ class CNMI_Events {
         return false;
       }
     }
-
-
-
-
 }
