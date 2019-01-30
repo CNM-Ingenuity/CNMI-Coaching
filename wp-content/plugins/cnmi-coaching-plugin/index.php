@@ -115,7 +115,7 @@ function create_custom_tables()
     comments text NOT NULL,
     PRIMARY KEY (id)
   ) COLLATE {$wpdb_collate};";
-  
+
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   dbDelta( $sql_progress );
   dbDelta( $sql_coaching_sessions );
@@ -277,7 +277,7 @@ class CNMI_Coaching_Session {
                 );
                 $where = array('ID' => intval( $id ));
                 return $wpdb->update(
-                    $table_name, 
+                    $table_name,
                     $data,
                     $where
                 );
@@ -381,8 +381,8 @@ class CNMI_Events {
 
     public static function get_event_trainer($id) {
         $users = get_post_meta(
-            $id, 
-            '_cnmi_event_metabox_user_multicheckbox', 
+            $id,
+            '_cnmi_event_metabox_user_multicheckbox',
             true
         );
         if($users) {
@@ -395,8 +395,8 @@ class CNMI_Events {
 
     public static function get_event_start_date($id) {
         $date = get_post_meta(
-            $id, 
-            '_EventStartDate', 
+            $id,
+            '_EventStartDate',
             true
         );
         if($date) {
@@ -441,4 +441,47 @@ class CNMI_Events {
             return false;
         }
     }
+
+    public static function get_event_requirements($id) {
+      $requirementsArray = get_post_meta(
+          $id,
+          '_cnmi_event_metabox_requirements',
+          true
+      );
+      if($requirementsArray) {
+          return $requirementsArray;
+      } else {
+          return false;
+      }
+
+
+    }
+
+    public static function get_event_evaluation_link($id) {
+      $evaluationLink = get_post_meta(
+          $id,
+          '_cnmi_event_metabox_evaluation_url',
+          true
+      );
+      if($evaluationLink) {
+          return $evaluationLink;
+      } else {
+          return false;
+      }
+
+
+    }
+
+    public static function get_event_content($id) {
+      $eventContent = get_post($id);
+      if($eventContent) {
+        return $eventContent->post_content;
+      } else {
+        return false;
+      }
+    }
+
+
+
+
 }

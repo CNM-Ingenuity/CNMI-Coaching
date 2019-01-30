@@ -19,7 +19,19 @@ if(!function_exists('cnmi_register_event_metabox')) {
         'type'    => 'multicheck',
         'options' => cmb2_get_user_options( array( 'fields' => array( 'user_login' ) ) ),
     ));
-
+    $cmb->add_field(array(
+        'name'    => __( 'Requirements', 'cmb2' ),
+        'desc'    => __( 'Certification Requirements', 'cmb2' ),
+        'id'      => $prefix . 'requirements',
+        'type'    => 'text',
+        'repeatable' => 'true'
+    ));
+    $cmb->add_field(array(
+        'name'    => __( 'Evaluation', 'cmb2' ),
+        'desc'    => __( 'Link for evaluation', 'cmb2' ),
+        'id'      => $prefix . 'evaluation_url',
+        'type'    => 'text_url'
+    ));
   }
 }
 add_action('cmb2_admin_init', 'cnmi_register_event_metabox');
