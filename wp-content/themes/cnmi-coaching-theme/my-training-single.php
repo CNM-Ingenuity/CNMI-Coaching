@@ -44,7 +44,7 @@ function show_my_training() {
 						}
 					?>
 				</ul>
-				<a class="button" href="<?php echo $evaluationLink;?>">Take Training Evaluation<span class="dashicons dashicons-media-text"></span></a>
+				<a class="button" href="<?php echo $evaluationLink;?>"><p>Take Training Evaluation</p><span class="dashicons dashicons-media-text"></span></a>
 			</div>
 		<?php
 	} else {
