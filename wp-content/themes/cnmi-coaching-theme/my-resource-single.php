@@ -24,23 +24,26 @@ function show_my_training() {
 		$eventTrainer = CNMI_Events::get_event_trainer($eventID);
 
 		?>
-			<div class="item">
-				<h3 class="title"><?php echo $eventType; ?></h3>
-				<p class="students">Instructor: <?php echo $eventTrainer; ?></p>
-				<p class="date">Date: <?php echo $eventStartDate; ?></p>
-			</div>
+		<div class="item">
+			<h3 class="title"><?php echo $eventType; ?></h3>
+			<p class="students">Instructor: <?php echo $eventTrainer; ?></p>
+			<p class="date">Date: <?php echo $eventStartDate; ?></p>
+		</div>
+		<div class='resource-buttons'>
+			<?php
+			foreach ($eventResourcesArray as $event) {
+				$resourceName= $event['name'];
+				$resourceFile = $event['file'];
+				?>
+					<a class="button item-button" href="<?php echo $resourceFile; ?>" target="_blank">
+						<p><?php echo $resourceName;?></p>
+						<img src="/wp-content/uploads/2019/01/download-arrow.png">
+					</a>
+				<?php
+			}
+		?>
+		</div>
 		<?php
-		foreach ($eventResourcesArray as $event) {
-			$resourceName= $event['name'];
-			$resourceFile = $event['file'];
-			?>
-			<a href="<?php echo $resourceFile; ?>" target="_blank">
-				<div class="resource item">
-					<h3 class="title"> <?php echo $resourceName;?></h3>
-					<img src="/wp-content/uploads/2019/01/download-arrow.png">
-				</div>
-			</a> <?php
-		}
 		include(locate_template('partials/elements/view-shop-button.php'));
 	} else {
 		?>

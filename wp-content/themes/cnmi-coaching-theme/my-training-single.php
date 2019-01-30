@@ -34,7 +34,7 @@ function show_my_training() {
 			</div>
 			<div class="description">
 					<?php
-						echo $postContent;
+						echo wpautop($postContent);
 				 	?>
 				<p>Requirements:</p>
 				<ul>
@@ -44,7 +44,7 @@ function show_my_training() {
 						}
 					?>
 				</ul>
-				<a class="button" href="<?php echo $evaluationLink;?>"><p>Take Training Evaluation</p><span class="dashicons dashicons-media-text"></span></a>
+				<a class="button item-button" href="<?php echo $evaluationLink;?>"><p>Take Training Evaluation</p><span class="dashicons dashicons-media-text"></span></a>
 			</div>
 		<?php
 	} else {

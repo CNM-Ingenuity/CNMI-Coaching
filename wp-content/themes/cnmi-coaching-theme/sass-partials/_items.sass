@@ -4,6 +4,7 @@
   text-align: left
   padding: 1.5%
   line-height: 30px
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.27)
   h3.title
     color: $accentColor
     font-family: $headingFont
@@ -21,9 +22,28 @@
   h3.title, p.students, p.date
     margin-left: 10px
 
-div.resource.item
-  max-width: 35%
-  .title
+.item-button
+  background: $darkBlue
+  padding: 19px 25px
+  text-transform: none
+  font-family: $footerMenuFont
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.27)
+  &:hover
+    background: $linkColor
+  &:after
+    content: ''
+  p
+    margin: 0
     display: inline-block
-  img
-    margin-left: 30% 
+  span, img
+    margin-left: 15px
+    font-size: 27px
+    float: right
+
+.resource-buttons
+  max-width: 500px
+  margin: 0 auto
+  .item-button
+    width: 100%
+    margin-bottom: 30px
+
