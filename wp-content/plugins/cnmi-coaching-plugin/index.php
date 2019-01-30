@@ -240,21 +240,31 @@ class CNMI_Coaching_Session {
         ));
     }
 
-    public static function save_new_media($progress_id, $file) {
+    public static function save_new_media($progress_id, $file, $media_upload) {
         $has_access = verify_student_access($progress_id);
         if($has_access) {
-            $bits = file_get_contents($file["tmp_name"]);
-            $filetype = wp_check_filetype($file["name"]);
-            $filename = 'progress_' . $progress_id . '_type_' . $type . '_' . time() . '.' . $filetype['ext'];
-            $upload = wp_upload_bits($filename, null, $bits);
             global $wpdb;
             $table_name  = $wpdb->prefix.COACHING_SESSIONS_TABLE_NAME;
-            return $wpdb->insert($table_name, array(
-                    'progress_id' => intval( $progress_id ),
-                    'url' => $upload['url']
-                ),
-                array('%s','%s', '%s')
-            );
+            // see if the user has uploaded a file or provided a link
+            if($media_upload) {
+                $bits = file_get_contents($file["tmp_name"]);
+                $filetype = wp_check_filetype($file["name"]);
+                $filename = 'progress_' . $progress_id . '_type_' . $type . '_' . time() . '.' . $filetype['ext'];
+                $upload = wp_upload_bits($filename, null, $bits);
+                return $wpdb->insert($table_name, array(
+                        'progress_id' => intval( $progress_id ),
+                        'url' => $upload['url']
+                    ),
+                    array('%d','%s')
+                );
+            } else {
+                return $wpdb->insert($table_name, array(
+                        'progress_id' => intval( $progress_id ),
+                        'url' => sanitize_text_field( $file )
+                    ),
+                    array('%d','%s')
+                );
+            }
         } else {
             print_no_access();
         }
