@@ -43,7 +43,6 @@ if (
 	}
 }
 ?>
-<h1>Upload Coaching Session</h1>
 <form id="coaching-session-upload-form" action="" method="POST" enctype="multipart/form-data">
 	
 	<input name="id" type="hidden" required value="<?php echo $_GET['certification']; ?>">

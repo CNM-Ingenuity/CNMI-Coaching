@@ -209,19 +209,6 @@ class CNMI_Progress {
         }
         return $results;
     }
-
-    // public static function get_training_resources($id) {
-    //   $resourcesArray = get_post_meta(
-    //       $id,
-    //       '_cnmi_certification_metabox_training_resource_group',
-    //       true
-    //   );
-    //   if($resourcesArray) {
-    //       return $resourcesArray;
-    //   } else {
-    //       return false;
-    //   }
-    // }
 }
 
 /*
@@ -532,6 +519,52 @@ class CNMI_Certifications {
         true
     );
     return [$hours, $trainingType];
+  }
+
+  public static function get_certification_content_by_event_id($id) {
+    $categoryID = self::get_certification_id_by_event_id($id);
+    $certificationID = self::get_certification_id_by_category_id($categoryID);
+    
+    // get our post
+    $content = "";
+    $post = get_post($certificationID);
+    if($post) {
+        $content = $post->post_content;
+    }
+
+    // get our requirements
+    $hours = get_post_meta(
+        $certificationID,
+        '_cnmi_certification_metabox_hours',
+        true
+    );
+    $trainingType = get_post_meta(
+        $certificationID,
+        '_cnmi_certification_metabox_training_type',
+        true
+    );
+    $requirements = [$hours, $trainingType];
+
+    // get our transcript link
+    $transcript= get_post_meta(
+        $certificationID,
+        '_cnmi_certification_metabox_transcript',
+        true
+    );
+
+    // end user agreement
+    $end_user_agreement = get_post_meta(
+        $certificationID,
+        '_cnmi_certification_metabox_coach_end_user_agreement',
+        true
+    );
+
+    return [
+        "content" => $content,
+        "requirements" => $requirements,
+        "transcript" => $transcript,
+        "end_user_agreement" => $end_user_agreement,
+    ];
   }
 
 }
