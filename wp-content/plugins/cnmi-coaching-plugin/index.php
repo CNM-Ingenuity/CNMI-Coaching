@@ -63,6 +63,8 @@ include_once dirname(__FILE__) . '/metaboxes/event-cmb2.php';
 define( 'PROGRESS_TABLE_NAME', 'progress' );
 define( 'COACHING_SESSIONS_TABLE_NAME', 'coaching_sessions' );
 define( 'COACHING_HOURS_TABLE_NAME', 'coaching_hours' );
+define( 'COACHING_LETTERS_TABLE_NAME', 'coaching_letters' );
+define( 'COACHING_AGREEMENT_TABLE_NAME', 'coaching_agreement' );
 
 function create_custom_tables()
 {
@@ -116,10 +118,28 @@ function create_custom_tables()
     PRIMARY KEY (id)
   ) COLLATE {$wpdb_collate};";
 
+  $coaching_letters_table_name = $wpdb->prefix . COACHING_LETTERS_TABLE_NAME;
+  $sql_coaching_letters = "CREATE TABLE {$coaching_letters_table_name} (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    progress_id mediumint(9) NOT NULL,
+    url varchar(255) NOT NULL,
+    PRIMARY KEY (id)
+  ) COLLATE {$wpdb_collate};";
+
+  $coaching_agreement_table_name = $wpdb->prefix . COACHING_AGREEMENT_TABLE_NAME;
+  $sql_coaching_agreement = "CREATE TABLE {$coaching_agreement_table_name} (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    progress_id mediumint(9) NOT NULL,
+    url varchar(255) NOT NULL,
+    PRIMARY KEY (id)
+  ) COLLATE {$wpdb_collate};";
+
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   dbDelta( $sql_progress );
   dbDelta( $sql_coaching_sessions );
   dbDelta( $sql_coaching_hours );
+  dbDelta( $sql_coaching_letters );
+  dbDelta( $sql_coaching_agreement );
 }
 
 register_activation_hook(__FILE__, 'create_custom_tables');
