@@ -665,27 +665,11 @@ class CNMI_Certifications {
         '_cnmi_certification_metabox_training_type',
         true
     );
-    $requirements = [$hours, $trainingType];
-
-    // get our transcript link
-    $transcript= get_post_meta(
-        $certificationID,
-        '_cnmi_certification_metabox_transcript',
-        true
-    );
-
-    // end user agreement
-    $end_user_agreement = get_post_meta(
-        $certificationID,
-        '_cnmi_certification_metabox_coach_end_user_agreement',
-        true
-    );
+    $requirements = [$hours, $trainingType];    
 
     return [
         "content" => $content,
-        "requirements" => $requirements,
-        "transcript" => $transcript,
-        "end_user_agreement" => $end_user_agreement,
+        "requirements" => $requirements
     ];
   }
 

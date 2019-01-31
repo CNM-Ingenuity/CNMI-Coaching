@@ -32,7 +32,7 @@ function show_my_certification() {
 			</ul>
 			<div class="certification-buttons">
 				<div class="one-half first">
-					<a class="button item-button" href="<?php echo $content['transcript'];?>">
+					<a class="button item-button" href="<?php echo '';?>">
 						<p>View Transcript</p>
 						<img src="/wp-content/uploads/2019/01/download-arrow.png">
 					</a>
@@ -46,7 +46,11 @@ function show_my_certification() {
 						<p>Track Coaching Hours</p>
 						<span class="dashicons dashicons-clock"></span>
 					</a>
-					<a class="button item-button" href="<?php echo $content['end_user_agreement'];?>">
+					<a class="button item-button" href="/submit-letters-of-reference/?certification=<?php echo $progressID;?>">
+						<p>Submit Letters of Reference</p>
+						<img src="/wp-content/uploads/2019/01/download-arrow.png">
+					</a>
+					<a class="button item-button" href="/coach-end-user-agreement/?certification=<?php echo $progressID;?>">
 						<p>Coach End User Agreement</p>
 						<img src="/wp-content/uploads/2019/01/download-arrow.png">
 					</a>
