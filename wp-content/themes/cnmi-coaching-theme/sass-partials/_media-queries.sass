@@ -141,7 +141,7 @@
     a:hover
       background: none
 /* # Print Styles
- *----------------------------------------------------------------------------------------------------
+ *----------------------------------------------------------------------------------------------------*/
 
 @media print
   *
@@ -162,6 +162,10 @@
       content: " (" attr(href) ")"
   abbr[title]:after
     content: " (" attr(title) ")"
+  .button
+    display: none
+  .footer-widgets
+    display: none
   a
     &[href^="javascript:"]:after, &[href^="#"]:after
       content: ""
@@ -207,7 +211,7 @@
   img
     page-break-after: avoid
     page-break-inside: avoid
-  blockquote, pre, table
+  blockquote, pre
     page-break-inside: avoid
   dl, ol, ul
     page-break-before: avoid
