@@ -102,7 +102,16 @@ function create_custom_tables()
     url varchar(255) NOT NULL,
     reviewer_id mediumint(9),
     date date,
-    comments text,
+    establish_trust text,
+    effective_assessments text,
+    respect_decisions text,
+    listen_focus text,
+    asks_powerful text,
+    asks_motivate text,
+    helps_discover text,
+    helps_focus text,
+    co_creates_action text,
+    prepares_managing_progress text,
     session_accepted tinyint(1) DEFAULT 0 NOT NULL,
     PRIMARY KEY (id)
   ) COLLATE {$wpdb_collate};";
@@ -646,7 +655,7 @@ class CNMI_Certifications {
   public static function get_certification_content_by_event_id($id) {
     $categoryID = self::get_certification_id_by_event_id($id);
     $certificationID = self::get_certification_id_by_category_id($categoryID);
-    
+
     // get our post
     $content = "";
     $post = get_post($certificationID);
