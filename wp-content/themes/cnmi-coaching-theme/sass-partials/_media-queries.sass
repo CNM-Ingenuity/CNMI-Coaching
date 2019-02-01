@@ -35,7 +35,7 @@
     width: 100%
   .site-header .wrap
     padding: 0px 5%
-  .header-image .site-title > a
+  .site-title > a
     background-position: center top !important
   .genesis-nav-menu li
     float: none
@@ -72,6 +72,8 @@
     background-color: $thirdBackgroundColor
     font-size: 16px
     font-size: 1.6rem
+  .site-title > a
+    background-position: left top !important
   .site-inner, .wrap
     padding-left: 5%
     padding-right: 5%
@@ -86,10 +88,14 @@
     padding: 40px
   .responsive-menu-icon
     display: block
+    float: right
+  .site-title
+    float: left
   .responsive-menu
     display: none
     .menu-item
       display: block
+      text-align: right
       .menu-item:hover
         position: static
     li.current-menu-item > a, li.current-page-ancestor > a, li:hover > a

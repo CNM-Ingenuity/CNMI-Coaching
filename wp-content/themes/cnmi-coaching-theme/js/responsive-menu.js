@@ -1,6 +1,6 @@
 jQuery(function( $ ){
   $(".genesis-nav-menu").addClass("responsive-menu");
-  $("nav").before('<div class="responsive-menu-icon"></div>');
+  $(".site-title").after('<div class="responsive-menu-icon"></div>');
 
 	$(".responsive-menu-icon").click(function(){
 		$(".responsive-menu").slideToggle();
