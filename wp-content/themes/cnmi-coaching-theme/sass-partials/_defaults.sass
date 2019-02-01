@@ -231,11 +231,11 @@ button
   text-transform: uppercase
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.2)
   width: auto
-  // &:after
-  //   content: "\f344"
-  //   margin-left: 23px
-  //   font-family: "Dashicons"
-  //   vertical-align: bottom
+  &:after
+    content: "\f344"
+    margin-left: 23px
+    font-family: "Dashicons"
+    vertical-align: bottom
 
 input
   &[type="button"], &[type="reset"], &[type="submit"]
@@ -265,11 +265,7 @@ input
   text-transform: uppercase
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.2)
   width: auto
-  // &:after
-  //   content: "\f344"
-  //   margin-left: 23px
-  //   font-family: "Dashicons"
-  //   vertical-align: bottom
+
 .button.secondary
   background-color: transparent
   color: $textColor
@@ -281,7 +277,11 @@ input
 
 .button.secondary, .button.primary
   box-shadow: none
-  
+  &:after
+    content: "\f344"
+    margin-left: 23px
+    font-family: "Dashicons"
+    vertical-align: bottom
 
 .view-shop
   text-align: center
