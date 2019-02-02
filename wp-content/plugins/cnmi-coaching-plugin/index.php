@@ -311,7 +311,30 @@ class CNMI_Coaching_Session {
         }
     }
 
-    public static function review_session($id, $comments, $session_accepted) {
+    public static function review_session(
+        $id, 
+        $establish_trust_vc,
+        $establish_trust_text,
+        $effective_assessments_vc,
+        $effective_assessments_text,
+        $respect_decisions_vc,
+        $respect_decisions_text,
+        $listen_focus_vc,
+        $listen_focus_text,
+        $asks_powerful_vc,
+        $asks_powerful_text,
+        $asks_motivate_vc,
+        $asks_motivate_text,
+        $helps_discover_vc,
+        $helps_discover_text,
+        $helps_focus_vc,
+        $helps_focus_text,
+        $co_creates_action_vc,
+        $co_creates_action_text,
+        $prepares_managing_progress_vc,
+        $prepares_managing_progress_text,
+        $session_accepted
+    ) {
         $session = self::get_coaching_session_by_id($id);
         if($session) {
             $has_access = verify_coach_access($session->progress_id);
@@ -323,7 +346,26 @@ class CNMI_Coaching_Session {
                 $data = array(
                         'reviewer_id' => $user_id,
                         'date' => date('Y-m-d'),
-                        'comments' => sanitize_textarea_field( $comments ),
+                        'establish_trust_vc' => sanitize_text_field( $establish_trust_vc ),
+                        'establish_trust_text' => sanitize_textarea_field( $establish_trust_text ),
+                        'effective_assessments_vc' => sanitize_text_field( $effective_assessments_vc ),
+                        'effective_assessments_text' => sanitize_textarea_field( $effective_assessments_text ),
+                        'respect_decisions_vc' => sanitize_text_field( $respect_decisions_vc ),
+                        'respect_decisions_text' => sanitize_textarea_field( $respect_decisions_text ),
+                        'listen_focus_vc' => sanitize_text_field( $listen_focus_vc ),
+                        'listen_focus_text' => sanitize_textarea_field( $listen_focus_text ),
+                        'asks_powerful_vc' => sanitize_text_field( $asks_powerful_vc ),
+                        'asks_powerful_text' => sanitize_textarea_field( $asks_powerful_text ),
+                        'asks_motivate_vc' => sanitize_text_field( $asks_motivate_vc ),
+                        'asks_motivate_text' => sanitize_textarea_field( $asks_motivate_text ),
+                        'helps_discover_vc' => sanitize_text_field( $helps_discover_vc ),
+                        'helps_discover_text' => sanitize_textarea_field( $helps_discover_text ),
+                        'helps_focus_vc' => sanitize_text_field( $helps_focus_vc ),
+                        'helps_focus_text' => sanitize_textarea_field( $helps_focus_text ),
+                        'co_creates_action_vc' => sanitize_text_field( $co_creates_action_vc ),
+                        'co_creates_action_text' => sanitize_textarea_field( $co_creates_action_text ),
+                        'prepares_managing_progress_vc' => sanitize_text_field( $prepares_managing_progress_vc ),
+                        'prepares_managing_progress_text' => sanitize_textarea_field( $prepares_managing_progress_text ),
                         'session_accepted' => boolval( $session_accepted )
                 );
                 $where = array('ID' => intval( $id ));
@@ -497,7 +539,7 @@ function verify_student_access($progress_id) {
 }
 
 function print_no_access() {
-    print "Sorry, you don't have access to update this certification.";
+    print "Sorry, you don't have access to update this information.";
     exit;
 }
 
