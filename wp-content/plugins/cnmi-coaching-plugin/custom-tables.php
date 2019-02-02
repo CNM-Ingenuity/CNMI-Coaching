@@ -1,8 +1,9 @@
 <?php
-
 /*
  * Custom Tables
  */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 define( 'PROGRESS_TABLE_NAME', 'progress' );
 define( 'COACHING_SESSIONS_TABLE_NAME', 'coaching_sessions' );
 define( 'COACHING_HOURS_TABLE_NAME', 'coaching_hours' );

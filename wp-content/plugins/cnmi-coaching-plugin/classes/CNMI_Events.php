@@ -2,6 +2,8 @@
 /*
  * Custom Class to deal with getting events
  */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 class CNMI_Events {
 
     public function __construct() {

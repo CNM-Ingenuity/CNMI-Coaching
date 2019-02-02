@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 function verify_student_access($progress_id) {
     $current_user = wp_get_current_user();
     $user_id = $current_user->ID;

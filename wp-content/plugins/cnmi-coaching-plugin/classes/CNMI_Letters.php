@@ -2,6 +2,8 @@
 /*
  * Custom Class to deal with the coaching letters table
  */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 class CNMI_Letters {
 
     public function __construct(){

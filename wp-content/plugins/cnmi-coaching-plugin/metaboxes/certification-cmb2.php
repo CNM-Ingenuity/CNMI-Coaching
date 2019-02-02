@@ -2,6 +2,7 @@
 /**
  * Hook in and add a metabox that only appears on 'Certifications'
  */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 if(!function_exists('cnmi_register_certification_metabox')) {
   function cnmi_register_certification_metabox() {

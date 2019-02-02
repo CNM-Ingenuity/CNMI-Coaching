@@ -2,6 +2,8 @@
 /*
  * Custom Class to deal with the progress table
  */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 class CNMI_Progress {
 
     public function __construct() {

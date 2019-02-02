@@ -2,6 +2,8 @@
 /*
  * Custom Class to deal with the coaching sessions table
  */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 class CNMI_Coaching_Hours {
 
     public function __construct(){

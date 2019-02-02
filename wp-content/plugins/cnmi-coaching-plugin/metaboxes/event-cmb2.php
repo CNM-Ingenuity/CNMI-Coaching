@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 if(!function_exists('cnmi_register_event_metabox')) {
   function cnmi_register_event_metabox() {

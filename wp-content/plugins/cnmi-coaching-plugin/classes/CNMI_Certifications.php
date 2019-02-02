@@ -2,6 +2,8 @@
 /*
  * Custom Class to deal with getting certifications
  */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 class CNMI_Certifications {
   public static function get_certification_id_by_event_id($id) {
     $categories = wp_get_object_terms($id, 'tribe_events_cat');

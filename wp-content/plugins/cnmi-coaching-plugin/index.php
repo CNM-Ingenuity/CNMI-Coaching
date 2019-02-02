@@ -12,10 +12,10 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * TABLE OF CONTENTS
  * 1. Custom Post Types
  * 2. CMB2
- * 3. Custom Tables
- * 4. Progress Class for easy interaction
+ * 3. Imports
  *
  */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  /*
  * CUSTOM POST TYPES
  */
