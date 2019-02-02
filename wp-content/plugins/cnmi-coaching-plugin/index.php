@@ -121,7 +121,7 @@ function create_custom_tables()
     co_creates_action_vc varchar(10),
     co_creates_action_text text,
     prepares_managing_progress_vc varchar(10),
-    prepares_managing_progress_texts text,
+    prepares_managing_progress_text text,
     session_accepted tinyint(1) DEFAULT 0 NOT NULL,
     PRIMARY KEY (id)
   ) COLLATE {$wpdb_collate};";
