@@ -16,8 +16,12 @@ class CNMI_Certifications {
 
   public static function get_certification_id_by_category_id($id) {
     switch($id){
-      case 42:
-        return 441;
+      case 44:
+        // financial coach training
+        return 581;
+      case 43:
+        // academic coach training
+        return 583;
       default:
         return false;
     }
