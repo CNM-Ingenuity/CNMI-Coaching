@@ -9,6 +9,7 @@ define( 'COACHING_SESSIONS_TABLE_NAME', 'coaching_sessions' );
 define( 'COACHING_HOURS_TABLE_NAME', 'coaching_hours' );
 define( 'COACHING_LETTERS_TABLE_NAME', 'coaching_letters' );
 define( 'COACHING_AGREEMENT_TABLE_NAME', 'coaching_agreement' );
+define( 'LICENSED_ORGANIZATIONS_TABLE_NAME', 'licensed_organizations');
 
 function create_custom_tables()
 {
@@ -97,12 +98,22 @@ function create_custom_tables()
     PRIMARY KEY (id)
   ) COLLATE {$wpdb_collate};";
 
+  $licensed_organizations_table_name = $wpdb->prefix . LICENSED_ORGANIZATIONS_TABLE_NAME;
+  $sql_licensed_organizations = "CREATE TABLE [$licensed_organizations_table_name] (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    coach_id mediumint(9) NOT NULL,
+    ) COLLATE {$wpdb_collate};";
+
+
+
+
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   dbDelta( $sql_progress );
   dbDelta( $sql_coaching_sessions );
   dbDelta( $sql_coaching_hours );
   dbDelta( $sql_coaching_letters );
   dbDelta( $sql_coaching_agreement );
+  dbDelta( $sql_licensed_organizations ); 
 }
 
 register_activation_hook(__FILE__, 'create_custom_tables');
