@@ -14,6 +14,15 @@ class CNMI_Certifications {
       }
   }
 
+  public static function get_category_by_event_id($id) {
+    $categories = wp_get_object_terms($id, 'tribe_events_cat');
+      if(isset($categories[0])) {
+        return $categories[0];
+      } else {
+        return false;
+      }
+  }
+
   public static function get_certification_id_by_category_id($id) {
     switch($id){
       case 44:
@@ -31,6 +40,17 @@ class CNMI_Certifications {
     $categoryID = self::get_certification_id_by_event_id($id);
     $certificationID = self::get_certification_id_by_category_id($categoryID);
     return get_post_meta($certificationID, '_cnmi_certification_metabox_training_resource_group', true);
+  }
+
+  public static function get_unique_certifications_by_coach_id($coach_id) {
+    $events = CNMI_Events::get_events_by_coach_id($coach_id);
+    $uniqueCertifications = [];
+    foreach ($events as $event) {
+      $category = self::get_category_by_event_id($event->ID);
+      $certificationId = self::get_certification_id_by_category_id($category->term_id);
+      $uniqueCertifications[$certificationId] = $category->name;
+    }
+    return $uniqueCertifications;
   }
 
   public static function get_event_requirements($id) {
