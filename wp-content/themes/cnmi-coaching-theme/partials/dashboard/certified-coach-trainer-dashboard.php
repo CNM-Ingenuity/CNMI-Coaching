@@ -6,13 +6,13 @@ get_template_part('partials/elements/top-matter');
 
 	<a href='/my-certifications'>
 		<div class='one-half first my-certifications'>
-			<h3>My Organizations Trainings</h3>
+			<h3>My Trainings</h3>
 		</div>
 	</a>
 
 	<a href='/my-trainings'>
 		<div class='one-half my-trainings'>
-			<h3>My organizations License</h3>
+			<h3>My Certifications</h3>
 		</div>
 	</a>
 
@@ -22,10 +22,5 @@ get_template_part('partials/elements/top-matter');
 		</div>
 	</a>
 
-	<a href='/my-trainings'>
-		<div class='one-half my-trainings'>
-			<h3>My organizations License</h3>
-		</div>
-	</a>
 
 </div>
