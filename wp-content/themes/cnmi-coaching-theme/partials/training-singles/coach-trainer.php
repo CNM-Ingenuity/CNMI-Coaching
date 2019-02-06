@@ -24,6 +24,7 @@ $students = CNMI_Progress::get_students_from_event_id($eventID);
 	<tr>
 		<th>Name</th>
 		<th>Email</th>
+		<th>Actions</th>
 	</tr>
 <?php
 foreach ($students as $student) {
@@ -31,6 +32,7 @@ foreach ($students as $student) {
 		<tr>
 			<td><?php echo $student->user_nicename; ?></td>
 			<td><?php echo $student->user_email; ?></td>
+			<td><a href="/student?student=<?php echo $student->user_id; ?>&event=<?php echo $eventID; ?>">View</a></td>
 		</tr>
 	<?php
 }
