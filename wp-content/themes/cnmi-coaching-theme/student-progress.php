@@ -72,20 +72,10 @@ function show_progress() {
 		?>
 			<h5>Sessions Attended: <?php echo $sessions_attended; ?></h5>
 		<?php
-
-		$completeness_fields = [
-			"Fieldwork" => "fieldwork",
-			"Training Complete" => "training_complete",
-			"Assessment Complete" => "assessment_complete",
-			"Certification Complete" => "certification_complete"
-		];
-
-		foreach ($completeness_fields as $description => $value) {
-			$complete = $progress->{$value} === '1';
-			$completeText = $complete ? "Complete" : "Incomplete " . build_complete_form($value, $eventID);
-			echo "<p>" . $description . ": " . $completeText . "</p>";		
-
-		}
+		build_complete_section("Training Complete", "training_complete", $progress, $eventID);
+		build_complete_section("Fieldwork", "fieldwork", $progress, $eventID);
+		build_complete_section("Assessment Complete", "assessment_complete", $progress, $eventID);
+		
 
 		$total_training_time = 0;
 		?>
@@ -115,12 +105,35 @@ function show_progress() {
 			<h5>Total Training Time: <?php echo floor($total_training_time/60); ?> hours and <?php echo $total_training_time % 60; ?> minutes</h5>
 
 		<?php
+		build_complete_section('Coaching Hours', "coaching_hours_complete", $progress, $eventID);
 
+		?>
+			<h5>Coaching Sessions</h5>
+			<table>
+				<tr>
+					<th>Status</th>
+					<th>Review</th>
+				</tr>
+		<?php
+		foreach ($progress->coaching_sessions as $coaching_session) {
+				// TODO: build the link to the review page
+				?>
+					<tr>
+						<td><?php echo $coaching_session->reviewer_id ? "Reviewed" : "Needs Review"; ?></td>
+						<td><?php echo $coaching_session->id; ?></td>
+					</tr>
+				<?php
+		}
+		?>
+			</table>
+
+		<?php
+		build_complete_section('Coaching Sessions', "coaching_sessions_complete", $progress, $eventID);
 		 
-		// "coaching_hours_complete",
-		// "coaching_sessions_complete",
 		// "coaching_agreement".
 		// "coaching_letters"
+
+		build_complete_section("Certification Complete", "certification_complete", $progress, $eventID);
 	} else {
 		?>
 			<p>Sorry, page not found.</p>
@@ -144,6 +157,12 @@ function build_complete_form($key, $eventID) {
 	<?php
 	$result = ob_get_clean();
 	return $result;
+}
+
+function build_complete_section($description, $value, $progress, $eventID) {
+	$complete = $progress->{$value} === '1';
+	$completeText = $complete ? "Complete" : "Incomplete " . build_complete_form($value, $eventID);
+	echo "<p>" . $description . ": " . $completeText . "</p>";
 }
 
 genesis();
