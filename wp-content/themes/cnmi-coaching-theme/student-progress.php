@@ -111,16 +111,20 @@ function show_progress() {
 			<h5>Coaching Sessions</h5>
 			<table>
 				<tr>
+					<th></th>
 					<th>Status</th>
-					<th>Review</th>
+					<th>Actions</th>
 				</tr>
 		<?php
+		$count = 0;
 		foreach ($progress->coaching_sessions as $coaching_session) {
+			$count++;
 				// TODO: build the link to the review page
 				?>
 					<tr>
+						<td>Session <?php echo $count; ?></td>
 						<td><?php echo $coaching_session->reviewer_id ? "Reviewed" : "Needs Review"; ?></td>
-						<td><?php echo $coaching_session->id; ?></td>
+						<td><a class="button" href="coaching-session-review?session_id=<?php echo $coaching_session->id; ?>">Review</a></td>
 					</tr>
 				<?php
 		}
