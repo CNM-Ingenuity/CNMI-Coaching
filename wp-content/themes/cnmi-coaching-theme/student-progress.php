@@ -85,10 +85,42 @@ function show_progress() {
 			$completeText = $complete ? "Complete" : "Incomplete " . build_complete_form($value, $eventID);
 			echo "<p>" . $description . ": " . $completeText . "</p>";		
 
-		}		
+		}
+
+		$total_training_time = 0;
+		?>
+			<h5>Coaching Hours</h5>
+			<table>
+				<tr>
+					<th>Client Name</th>
+					<th>Date</th>
+					<th>Minutes</th>
+					<th>Comments</th>
+				</tr>
+		<?php
+		foreach ($progress->coaching_hours as $coaching_hour) {
+				$total_training_time += $coaching_hour->minutes;
+				$date = new DateTime($coaching_hour->date);
+				?>
+					<tr>
+						<td><?php echo $coaching_hour->client_name; ?></td>
+						<td><?php echo $date->format('m/d/Y'); ?></td>
+						<td><?php echo $coaching_hour->minutes; ?></td>
+						<td><?php echo $coaching_hour->comments; ?></td>
+					</tr>
+				<?php
+		}
+		?>
+			</table>
+			<h5>Total Training Time: <?php echo floor($total_training_time/60); ?> hours and <?php echo $total_training_time % 60; ?> minutes</h5>
+
+		<?php
+
 		 
 		// "coaching_hours_complete",
 		// "coaching_sessions_complete",
+		// "coaching_agreement".
+		// "coaching_letters"
 	} else {
 		?>
 			<p>Sorry, page not found.</p>

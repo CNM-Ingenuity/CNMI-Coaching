@@ -22,8 +22,8 @@ class CNMI_Progress {
             // attach coaching sessions and hours
             $result->coaching_sessions = CNMI_Coaching_Session::get_coaching_sessions_by_progress_id($result->id);
             $result->coaching_hours = CNMI_Coaching_Hours::get_coaching_hours_by_progress_id($result->id);
-            $result->coaching_hours = CNMI_Letters::get_coaching_letters_by_progress_id($result->id);
-            $result->coaching_hours = CNMI_Agreement::get_coaching_agreement_by_progress_id($result->id);
+            $result->coaching_letters = CNMI_Letters::get_coaching_letters_by_progress_id($result->id);
+            $result->coaching_agreement = CNMI_Agreement::get_coaching_agreement_by_progress_id($result->id);
         }
         return $result;
     }
