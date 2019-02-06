@@ -62,6 +62,24 @@ class CNMI_Progress {
         }
     }
 
+    public static function mark_complete($progress_id, $event_id, $key) {
+        $current_user = wp_get_current_user();
+        $user_id = $current_user->ID;
+        $has_access = CNMI_Events::get_events_by_id_and_coach_id($event_id, $user_id);
+        if($has_access) {
+            global $wpdb;
+            $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
+            // prepare our student ids for the where in clause
+            return $wpdb->query( $wpdb->prepare(
+                "UPDATE $table_name
+                SET " . sanitize_text_field( $key ) . " = 1
+                WHERE id = %s", intval( $progress_id )
+            ));
+        } else {
+            print_no_access();
+        }
+    }
+
     public static function get_current_student_progress() {
         $current_user = wp_get_current_user();
         $user_id = $current_user->ID;
