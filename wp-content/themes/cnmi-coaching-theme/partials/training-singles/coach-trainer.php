@@ -18,6 +18,7 @@ $students = CNMI_Progress::get_students_from_event_id($eventID);
 	<h3 class="title"><?php echo $eventType; ?></h3>
 	<p class="students">Date: <?php echo $eventStartDate; ?></p>
 	<p class="date">Students: <?php echo count($students); ?></p>
+	<a class="button" href="/attendance?eventID=<?php echo $eventID; ?>">Take Attendance<span class="dashicons dashicons-yes"></span></a>
 </div>
 <table>
 	<tr>
