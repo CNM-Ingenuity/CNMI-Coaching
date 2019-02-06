@@ -14,7 +14,7 @@ function show_transcript() {
 			Print
 			<span class="dashicons dashicons-download" ></span>
 		</p>
-		<h3>Coach In Training: <?php echo $current_user->user_nicename; ?></h3>
+		<h3>Coach In Training: <?php echo $current_user->first_name . ' ' . $current_user->last_name ?></h3>
 		<table>
 			<tbody>
 	<?php

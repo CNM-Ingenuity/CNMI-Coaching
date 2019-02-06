@@ -32,7 +32,7 @@ foreach ($students as $student) {
 		<tr>
 			<td><?php echo $student->user_nicename; ?></td>
 			<td><?php echo $student->user_email; ?></td>
-			<td><a href="/student?student=<?php echo $student->user_id; ?>&event=<?php echo $eventID; ?>">View</a></td>
+			<td><a class="button" href="/student-progress?progress=<?php echo $student->id; ?>">View</a></td>
 		</tr>
 	<?php
 }

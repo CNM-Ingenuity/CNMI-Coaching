@@ -27,7 +27,7 @@ class CNMI_Events {
         );
         if($users) {
             $user = get_user_by('id', $users[0]);
-            return $user->user_nicename;
+            return $user->first_name . ' ' . $user->last_name;
         } else {
             return false;
         }

@@ -84,7 +84,7 @@ class CNMI_Progress {
         ));
         foreach($results as $result) {
             $user = get_user_by('id', $result->user_id);
-            $result->user_nicename = $user->user_nicename;
+            $result->user_nicename = $user->first_name . ' ' . $user->last_name;
             $result->user_email = $user->user_email;
         }
         return $results;
