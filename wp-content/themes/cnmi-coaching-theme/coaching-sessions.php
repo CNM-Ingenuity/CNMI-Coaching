@@ -1,6 +1,6 @@
 <?php
 /*
- * Template Name: Coaching Sessions
+ * Template Name: Coaching Session Feedback
  */
 remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 
@@ -34,7 +34,14 @@ function show_my_sessions() {
 					<tr>
 						<td>Session <?php echo $count; ?></td>
 						<td><?php echo $coaching_session->reviewer_id ? "Reviewed" : "Needs Review"; ?></td>
-						<td><a class="button" href="coaching-session-details?session_id=<?php echo $coaching_session->id; ?>">View Feedback</a></td>
+						<td>
+							<?php 
+								if($coaching_session->reviewer_id) {
+									?>
+										<a class="button" href="coaching-session-details?session_id=<?php echo $coaching_session->id; ?>">View Feedback</a></td>
+									<?php
+								}
+							?>
 					</tr>
 				<?php
 		}
