@@ -63,7 +63,7 @@ if (
 		<input label="link" name="link" type="url" required url placeholder="https://example.com/file.mp3">
 	</div>
 
-	<input type="submit" value="Upload File" name="submit" required>
+	<input type="submit" value="Submit" name="submit" required>
 	<?php wp_nonce_field( 'upload_file', 'upload_file' ); ?>
 </form>
 <script>
