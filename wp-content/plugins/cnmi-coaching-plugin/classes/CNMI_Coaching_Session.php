@@ -20,6 +20,22 @@ class CNMI_Coaching_Session {
         ));
     }
 
+    public static function get_coaching_session_by_id_student_access($id) {
+        global $wpdb;
+        $table_name  = $wpdb->prefix.COACHING_SESSIONS_TABLE_NAME;
+        $result = $wpdb->get_row($wpdb->prepare(
+            "SELECT *
+            FROM $table_name
+            WHERE id = %s", intval( $id )
+        ));
+        $has_access = verify_student_access($result->progress_id);
+        if($has_access) {
+            return $result;
+        } else {
+            print_no_access();
+        }
+    }
+
     public static function get_coaching_sessions_by_progress_id($progress_id) {
         global $wpdb;
         $table_name  = $wpdb->prefix.COACHING_SESSIONS_TABLE_NAME;

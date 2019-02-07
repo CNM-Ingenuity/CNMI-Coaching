@@ -87,6 +87,10 @@ $content = CNMI_Certifications::get_certification_content_by_event_id($eventID);
 				<p>Submit Coaching Session</p>
 				<img src="/wp-content/uploads/2019/01/download-arrow.png">
 			</a>
+			<a class="button item-button" href="/coaching-sessions/?certification=<?php echo $progressID;?>">
+				<p>Review Coaching Session</p>
+				<img src="/wp-content/uploads/2019/01/download-arrow.png">
+			</a>
 		</div>
 		<div class="one-half">
 			<a class="button item-button" href="/track-coaching-hours/?certification=<?php echo $progressID;?>">
