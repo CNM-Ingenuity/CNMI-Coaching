@@ -69,6 +69,17 @@ class CNMI_Certifications {
     return [$hours, $trainingType];
   }
 
+  public static function get_certification_resources($id) {
+    $certificationResourcesArray = get_post_meta(
+      $id,
+      '_cnmi_certification_metabox_training_resource_group',
+      true
+    );
+
+    return $certificationResourcesArray;
+
+  }
+
   public static function get_certification_content_by_event_id($id) {
     $categoryID = self::get_certification_id_by_event_id($id);
     $certificationID = self::get_certification_id_by_category_id($categoryID);
