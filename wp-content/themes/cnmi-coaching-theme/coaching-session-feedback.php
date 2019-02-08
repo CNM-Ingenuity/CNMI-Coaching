@@ -25,6 +25,7 @@ function show_my_sessions() {
 		?>
 			<h6>Reviewer: <?php echo $user->first_name . ' ' . $user->last_name; ?></h6>
 			<h6>Date Reviewed: <?php echo $date->format('m/d/Y'); ?></h6>
+			<h6>Open <a target="_blank" href="<?php echo $session->url; ?>">File</a></h6>
 			<br/>
 		<?php
 		$fieldsGroups = [
