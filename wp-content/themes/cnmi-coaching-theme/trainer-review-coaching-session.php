@@ -16,13 +16,20 @@ function form_body_class( $classes ) {
 function show_session_review_form() {
 	$sessionID = $_GET['session'];
 	if($sessionID) {
+		$session = CNMI_Coaching_Session::get_coaching_session_by_id($_GET['session']);
+		$progress = CNMI_Progress::get_progress_by_id($session->progress_id);
+		$eventTypeForBreadcrumbs = CNMI_Events::get_event_type($progress->event_id);
+		$student = get_user_by('id', $progress->user_id);
+		$studentName = $student->first_name . ' ' . $student->last_name;
 		$breadcrumbs = [
+			"My Trainings" => "/my-trainings",
+			$eventTypeForBreadcrumbs => "/my-training?training=" . $progress->event_id,
+			$studentName => '/student-progress/?progress=' . $progress->id,
 			get_the_title() => '#'
 		];
 		include(locate_template('partials/elements/breadcrumbs.php'));	
 		include(locate_template('partials/elements/top-matter.php'));
-		
-		get_template_part('partials/forms/coaching-session-review');
+		include(locate_template('partials/forms/coaching-session-review.php'));
 	} else {
 		?>
 			<p>Sorry, page not found.</p>
