@@ -3,7 +3,7 @@
 $certifications = CNMI_Certifications::get_unique_certifications_by_coach_id($user_id);
 foreach ($certifications as $certificationId => $name) {
   $resourcesArray = CNMI_Certifications::get_certification_resources($certificationId);
-	$numberResources = count($resourcesArray);
+	$numberResources = is_array($resourcesArray) ? count($resourcesArray) : 0;
 	?>
 		<a href='<?php echo $linkAddress . $certificationId; ?>'>
 			<div class="item item-padding">

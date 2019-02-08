@@ -1,5 +1,8 @@
 <?php
 $resourcesArray = CNMI_Certifications::get_certification_resources($progressID);
+if(!is_array($resourcesArray)) {
+	$resourcesArray = [];
+}
 $numberResources = count($resourcesArray);
 $certificationName = get_the_title($progressID);
 $breadcrumbs = [
