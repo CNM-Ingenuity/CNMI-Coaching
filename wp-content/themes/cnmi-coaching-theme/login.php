@@ -13,7 +13,6 @@ function login_body_class( $classes ) {
 
 add_action('genesis_entry_content', 'add_login_form_to_page');
 function add_login_form_to_page() {
-	$redirect_to = '/';
 	?>
 		<form name="loginform" id="loginform" action="<?php echo site_url( '/wp-login.php' ) . '?wpe-login=true'; ?>" method="post">
 			<p>
@@ -26,8 +25,6 @@ function add_login_form_to_page() {
 			<p>
 				<input id="wp-submit" type="submit" value="Login" name="wp-submit">
 			</p>
-
-			<input type="hidden" value="<?php echo esc_attr( $redirect_to ); ?>" name="redirect_to">
 			<input type="hidden" value="1" name="testcookie">
 			<a class='recover-password' href='/my-account/lost-password/'>Recover Password</a>
 		</form>
