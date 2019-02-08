@@ -5,6 +5,19 @@
   padding: 1.5%
   line-height: 30px
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.27)
+  position: relative
+  .bottom-right-button
+    position: absolute
+    border-radius: 0
+    bottom: 0
+    right: 0
+    box-shadow: none
+    margin-top: 10px
+    &:hover
+      background-color: $textColor
+    .dashicons
+      vertical-align: middle
+      margin-left: 10px
   h3.title
     color: $accentColor
     font-family: $headingFont
@@ -56,3 +69,10 @@
   .item-button
     width: 100%
     margin-bottom: 30px
+
+@media only screen and (max-width: 800px)
+  .item
+    .bottom-right-button
+      position: relative
+      width: 100%
+
