@@ -15,7 +15,7 @@ if($memberships){
 		} else if ($template === 'my-certifications.php') {
 			include(locate_template('partials/elements/certification-lists/unique-certifications-coach-trainer.php'));
 		} else if ($template === 'my-resources.php') {
-			include(locate_template('partials/elements/certification-lists/unique-certifications-coach-trainer.php'));
+			include(locate_template('partials/elements/certification-lists/unique-certifications-with-resources-coach-trainer.php'));
 		}
 	}
 }
