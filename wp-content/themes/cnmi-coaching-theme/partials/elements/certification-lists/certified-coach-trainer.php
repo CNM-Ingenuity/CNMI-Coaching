@@ -11,7 +11,7 @@ foreach ($events as $event) {
 		<a href='<?php echo $linkAddress . $eventID; ?>'>
 			<div class="item">
 				<h3 class="title"><?php echo $eventType; ?></h3>
-				<p class="date"><p>Date: <?php echo $eventStartDate; ?></p>
+				<p class="date">Date: <?php echo $eventStartDate; ?></p>
 			</div>
 		</a>
 	<?php

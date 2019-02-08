@@ -57,10 +57,12 @@ $fieldsGroups = [
 		"prepares_managing_progress" => "Prepares for managing progress & accountability. Co- Defines methods of follow- up & communication."
 	]
 ];
+$session = CNMI_Coaching_Session::get_coaching_session_by_id($_GET['session']);
 
 ?>
 <form id="coaching-session-review-form" action="" method="POST" enctype="multipart/form-data">
 	<input name="id" type="hidden" required value="<?php echo $_GET['session']; ?>">
+	<h4>Download File <a target="_blank" href="<?php echo $session->url; ?>">Here</a></h4>
 
 	<?php 
 		foreach($fieldsGroups as $title => $fields) {
