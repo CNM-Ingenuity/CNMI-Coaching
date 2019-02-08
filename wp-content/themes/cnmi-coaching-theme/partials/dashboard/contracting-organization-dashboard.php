@@ -1,4 +1,25 @@
 <?php
+get_template_part('partials/elements/top-matter');
 ?>
 
-<h2>You are a Contracting Organization!</h2>
+<div class='dashboard-block-container'>
+
+	<a href='/my-certifications'>
+		<div class='one-half first my-certifications'>
+			<h3>My Organizations Training</h3>
+		</div>
+	</a>
+
+	<a href='/my-trainings'>
+		<div class='one-half my-trainings'>
+			<h3>My Organizations License</h3>
+		</div>
+	</a>
+
+	<a href='/my-resources'>
+		<div class='one-half first my-resources'>
+			<h3>Resources</h3>
+		</div>
+	</a>
+
+</div>
