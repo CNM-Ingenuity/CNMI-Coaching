@@ -1,6 +1,6 @@
 <?php
 $user_id = get_current_user_id();
-$memberships = wc_memberships_get_user_active_memberships( $user_id );
+$memberships = wc_memberships_get_user_active_memberships( $user_id );	
 if($memberships){
 	$plan_id = $memberships[0]->{"plan_id"};
 	if ($plan_id == 407) {
@@ -17,5 +17,8 @@ if($memberships){
 		} else if ($template === 'my-resources.php') {
 			include(locate_template('partials/elements/certification-lists/unique-certifications-with-resources-coach-trainer.php'));
 		}
+	} elseif ($plan_id == 408) {
+		// contracting org
+		include(locate_template('partials/elements/certification-lists/contracting-org.php'));
 	}
 }

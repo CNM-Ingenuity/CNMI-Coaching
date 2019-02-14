@@ -4,7 +4,7 @@ get_template_part('partials/elements/top-matter');
 
 <div class='dashboard-block-container'>
 
-	<a href='/my-certifications'>
+	<a href='/my-trainings'>
 		<div class='one-half first my-certifications'>
 			<h3>My Organizations Training</h3>
 		</div>

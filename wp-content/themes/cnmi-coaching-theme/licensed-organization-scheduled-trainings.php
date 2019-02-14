@@ -2,7 +2,7 @@
 
 /*
  * This is a template for Organizations Training view
- * Template Name: My Scheduled Trainings
+ * Template Name: Licensing Orgs Scheduled Trainings
 
  */
 

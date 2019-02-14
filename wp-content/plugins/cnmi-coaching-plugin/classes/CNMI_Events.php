@@ -67,8 +67,7 @@ class CNMI_Events {
             'meta_query' => array(
                 array(
                     'key' => '_cnmi_event_metabox_licensing_org_multicheckbox',
-                    'value' => sprintf(':"%s";', intval( $licensing_org_id )),
-                    'compare' => 'LIKE'
+                    'value' => intval( $licensing_org_id )
                 )
             )
         );
@@ -81,8 +80,7 @@ class CNMI_Events {
             'meta_query' => array(
                 array(
                     'key' => '_cnmi_event_metabox_contracting_org_multicheckbox',
-                    'value' => sprintf(':"%s";', intval( $contracting_org_id )),
-                    'compare' => 'LIKE'
+                    'value' => intval( $contracting_org_id )
                 )
             )
         );
