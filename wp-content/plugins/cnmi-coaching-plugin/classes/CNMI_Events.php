@@ -61,6 +61,34 @@ class CNMI_Events {
         return get_posts($args);
     }
 
+    public static function get_events_by_licensing_org_id($licensing_org_id) {
+        $args = array(
+            'post_type' => 'tribe_events',
+            'meta_query' => array(
+                array(
+                    'key' => '_cnmi_event_metabox_licensing_org_multicheckbox',
+                    'value' => sprintf(':"%s";', intval( $licensing_org_id )),
+                    'compare' => 'LIKE'
+                )
+            )
+        );
+        return get_posts($args);
+    }
+
+    public static function get_events_by_contracting_org_id($contracting_org_id) {
+        $args = array(
+            'post_type' => 'tribe_events',
+            'meta_query' => array(
+                array(
+                    'key' => '_cnmi_event_metabox_contracting_org_multicheckbox',
+                    'value' => sprintf(':"%s";', intval( $contracting_org_id )),
+                    'compare' => 'LIKE'
+                )
+            )
+        );
+        return get_posts($args);
+    }
+
     // used to see if a coach has access to progress
     public static function get_events_by_id_and_coach_id($id, $coach_id) {
         $args = array(
