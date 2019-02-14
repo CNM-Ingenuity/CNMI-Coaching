@@ -10,14 +10,8 @@ get_template_part('partials/elements/top-matter');
 		</div>
 	</a>
 
-	<a href='/my-trainings'>
-		<div class='one-half my-trainings'>
-			<h3>My Organizations License</h3>
-		</div>
-	</a>
-
 	<a href='/my-resources'>
-		<div class='one-half first my-resources'>
+		<div class='one-half my-resources'>
 			<h3>Resources</h3>
 		</div>
 	</a>
