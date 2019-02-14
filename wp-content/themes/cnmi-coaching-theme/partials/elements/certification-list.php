@@ -19,6 +19,11 @@ if($memberships){
 		}
 	} elseif ($plan_id == 408) {
 		// contracting org
-		include(locate_template('partials/elements/certification-lists/contracting-org.php'));
+		$template = get_page_template_slug();
+		if($template === 'my-resources.php') {
+			include(locate_template('partials/elements/certification-lists/unique-certifications-with-resources-contracting-org.php'));
+		} else {
+			include(locate_template('partials/elements/certification-lists/contracting-org.php'));
+		}
 	}
 }

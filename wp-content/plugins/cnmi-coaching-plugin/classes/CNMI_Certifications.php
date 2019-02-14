@@ -53,6 +53,17 @@ class CNMI_Certifications {
     return $uniqueCertifications;
   }
 
+  public static function get_unique_certifications_by_contracting_org_id($contracting_org_id) {
+    $events = CNMI_Events::get_events_by_contracting_org_id($contracting_org_id);
+    $uniqueCertifications = [];
+    foreach ($events as $event) {
+      $category = self::get_category_by_event_id($event->ID);
+      $certificationId = self::get_certification_id_by_category_id($category->term_id);
+      $uniqueCertifications[$certificationId] = $category->name;
+    }
+    return $uniqueCertifications;
+  }
+
   public static function get_event_requirements($id) {
     $categoryID = self::get_certification_id_by_event_id($id);
     $certificationID = self::get_certification_id_by_category_id($categoryID);

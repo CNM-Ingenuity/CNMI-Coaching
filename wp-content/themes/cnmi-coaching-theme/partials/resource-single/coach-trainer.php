@@ -5,11 +5,13 @@ if(!is_array($resourcesArray)) {
 }
 $numberResources = count($resourcesArray);
 $certificationName = get_the_title($progressID);
+$eventType = $certificationName . " Resources";
 $breadcrumbs = [
-	"Resources" => "/my-resources"
+	"My Resources" => "/my-resources",
+	$eventType => "#"
 ];
 include(locate_template('partials/elements/breadcrumbs.php'));
-get_template_part('partials/elements/top-matter');
+include(locate_template('partials/elements/top-matter.php'));
 
 ?>
 <div class="item">
