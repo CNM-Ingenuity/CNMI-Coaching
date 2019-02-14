@@ -39,7 +39,12 @@ class CNMI_Certifications {
   public static function get_certification_by_event($id){
     $categoryID = self::get_certification_id_by_event_id($id);
     $certificationID = self::get_certification_id_by_category_id($categoryID);
-    return get_post_meta($certificationID, '_cnmi_certification_metabox_training_resource_group', true);
+    $result = get_post_meta($certificationID, '_cnmi_certification_metabox_training_resource_group', true);
+    if($result) {
+      return $result;
+    } else {
+      return array();
+    }
   }
 
   public static function get_unique_certifications_by_coach_id($coach_id) {
