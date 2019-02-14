@@ -2,6 +2,7 @@
 $eventID = $progressID;
 $eventType = CNMI_Events::get_event_type($eventID);
 $breadcrumbs = [
+	"My Organization's Trainings" => "/my-trainings",
 	"Scheduled Trainings" => "/scheduled-trainings",
 	$eventType => "#"
 ];
