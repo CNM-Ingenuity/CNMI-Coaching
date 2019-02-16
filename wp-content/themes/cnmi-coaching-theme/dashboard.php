@@ -11,9 +11,8 @@ function show_appropriate_dashboard_to_user() {
 	if($memberships){
 
 		$plan_id = $memberships[0]->{"plan_id"};
-		if ($plan_id == 406) {
-			get_template_part('partials/dashboard/certified-coach-dashboard');
-		} elseif ($plan_id == 407) {
+		if ($plan_id == 406 || $plan_id == 407) {
+			// certified coach in training and certified coach
 			get_template_part('partials/dashboard/coach-in-training-dashboard');
 		} elseif ($plan_id == 408) {
 			get_template_part('partials/dashboard/contracting-organization-dashboard');

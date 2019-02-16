@@ -38,4 +38,3 @@ $postContent = CNMI_Events::get_event_content($eventID);
 		</ul>
 		<a class="button item-button" href="<?php echo $evaluationLink;?>"><p>Take Training Evaluation</p><span class="dashicons dashicons-media-text"></span></a>
 	</div>
-<?php

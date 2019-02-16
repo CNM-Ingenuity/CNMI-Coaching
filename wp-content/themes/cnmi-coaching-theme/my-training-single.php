@@ -11,8 +11,8 @@ function show_my_training() {
 		$memberships = wc_memberships_get_user_active_memberships( $user_id );
 		if($memberships){
 			$plan_id = $memberships[0]->{"plan_id"};
-			if ($plan_id == 407) {
-				// certified coach in training
+			if ($plan_id == 406 || $plan_id == 407) {
+				// certified coach in training and certified coach
 				include(locate_template('partials/training-singles/coach-in-training.php'));
 			} elseif ($plan_id == 411) {
 				// certified coach trainer
