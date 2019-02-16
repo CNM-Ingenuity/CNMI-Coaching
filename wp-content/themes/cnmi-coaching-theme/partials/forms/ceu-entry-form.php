@@ -36,6 +36,19 @@ if (
 		) {
 
 			// insert here
+			$result = CNMI_CEU_Entry::save_new_ceu_entry_outside_cnm(
+				$_POST['ceus_requested'], $_POST['certification'], $_POST['program_training_title'], 
+				$_POST['org_sponsor'],  $t_POST['rainer_name'], $_POST['start_date'], $_POST['end_date'], 
+				$_POST['program_description'], $_POST['program_website'], $_POST['learning_objectives'], $_POST['agenda_url'] );
+			if($result) {
+				?>
+					<p class='success-message'>Your CEU request has been saved.</p>
+				<?php
+			} else {
+				?>
+					<p class='error-message'>Something went wrong, please try again.</p>
+				<?php
+			}
 				
 		} else if (isset($_POST['id']) && $_POST['id'] !='') {
 			?>
@@ -56,6 +69,18 @@ if (
 			isset($_POST['verification_code']) && $_POST['verification_code'] !=''
 		) {
 			// insert here
+			$result = CNMI_CEU_Entry::save_new_ceu_entry_in_cnm(
+				$_POST['program_training_title'], $_POST['trainer_name'], 
+				$_POST['date_completed'], $_POST['verification_code']);
+			if($result) {
+				?>
+					<p class='success-message'>Your CEU request has been saved.</p>
+				<?php
+			} else {
+				?>
+					<p class='error-message'>Something went wrong, please try again.</p>
+				<?php
+			}
 		}
 	}
 	
