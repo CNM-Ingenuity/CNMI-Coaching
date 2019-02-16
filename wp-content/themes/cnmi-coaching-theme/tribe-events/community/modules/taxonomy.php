@@ -87,7 +87,6 @@ if ( ! empty( $taxonomy_label ) ) {
 				data-source="search_terms"
 				data-source-args="<?php echo esc_attr( json_encode( $ajax_args ) ); ?>"
 				name="tax_input[<?php echo esc_attr( $taxonomy ); ?>]"
-				multiple
 				data-dropdown-css-width="false"
 				data-allow-html
 				data-searching-placeholder="<?php echo esc_attr_x( 'Searching…', 'taxonomy selector ajax search placeholder', 'tribe-events-community' ); ?>"

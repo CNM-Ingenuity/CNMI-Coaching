@@ -61,7 +61,7 @@ if ( $users ) {
 
 	<div class="tribe-section-content">
 		<div class="tribe-section-content-field">
-			<select name="coaches[]" multiple>
+			<select id="coaches" name="coaches[]" class="tribe-dropdown tribe-dropdown-created" multiple="multiple">
 				<?php
 					foreach($user_options as $id => $name) {
 						?>
@@ -73,3 +73,11 @@ if ( $users ) {
 		</div>
 	</div>
 </div>
+<script>
+	jQuery(document).ready(function() {
+	    jQuery('#coaches').select2({
+	    	width: '100%',
+	    	placeholder: 'Select Coaches'
+	    });
+	});
+</script>
