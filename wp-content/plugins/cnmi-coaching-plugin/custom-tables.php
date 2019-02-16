@@ -10,6 +10,7 @@ define( 'COACHING_HOURS_TABLE_NAME', 'coaching_hours' );
 define( 'COACHING_LETTERS_TABLE_NAME', 'coaching_letters' );
 define( 'COACHING_AGREEMENT_TABLE_NAME', 'coaching_agreement' );
 define( 'LICENSED_ORGANIZATIONS_TABLE_NAME', 'licensed_organizations');
+define( 'CEU_ENTRIES_TABLE_NAME', 'ceu_entries');
 
 function create_custom_tables()
 {
@@ -104,6 +105,26 @@ function create_custom_tables()
     coach_id mediumint(9) NOT NULL,
     ) COLLATE {$wpdb_collate};";
 
+  $ceu_entries_table_name = $wpdb->prefix . CEU_ENTRIES_TABLE_NAME;
+  $sql_ceu_entries = "CREATE TABLE {$ceu_entries_table_name} (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    is_outside_cnm tinyint(1) NOT NULL,
+    ceus_requested mediumint(9),
+    certification varchar(255),
+    program_training_title text,
+    org_sponsor varchar(255),
+    trainer_name varchar(255),
+    start_date date,
+    end_date date,
+    program_description text,
+    program_website varchar(255),
+    learning_objectives text,
+    agenda_url varchar(255),
+    date_completed date,
+    verification_code varchar(255),
+    PRIMARY KEY (id)
+  ) COLLATE {$wpdb_collate};";
+
 
 
 
@@ -114,6 +135,7 @@ function create_custom_tables()
   dbDelta( $sql_coaching_letters );
   dbDelta( $sql_coaching_agreement );
   dbDelta( $sql_licensed_organizations ); 
+  dbDelta( $sql_ceu_entries );
 }
 
 register_activation_hook(__FILE__, 'create_custom_tables');
