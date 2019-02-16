@@ -543,3 +543,31 @@ function redirect_to_dashboard( $redirect_to, $request, $user ) {
 }
 
 add_filter( 'login_redirect', 'redirect_to_dashboard', 10, 3 );
+
+/* Communicty Event Customizations */
+add_filter( 'tribe_events_community_required_fields', 'elevenonline_add_required_fields_to_community_events', 10, 1 );
+
+function elevenonline_add_required_fields_to_community_events( $fields ) {
+
+    if ( ! is_array( $fields ) ) {
+        return $fields;
+    }
+
+    $fields[] = 'tax_input[tribe_events_cat]';
+
+    return $fields;
+}
+
+add_filter( 'tribe_community_events_form_errors', 'elevenonline_custom_community_events_error_messages' );
+
+function elevenonline_custom_community_events_error_messages( $errors ) {
+    
+	if( is_array($errors) ) {
+		$message = $errors[0]['message'];
+		// replace our bad error message
+		$message = str_replace("Tax Input[tribe Events Cat] is required", "The Training Type is required.", $message);
+		$errors[0]['message'] = $message;
+	}
+
+    return $errors;
+}
