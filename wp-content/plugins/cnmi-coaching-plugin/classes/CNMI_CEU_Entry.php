@@ -12,7 +12,7 @@ class CNMI_CEU_Entry {
 
     public static function get_ceu_entry_by_id($id) {
         global $wpdb;
-        $table_name  = $wpdb->prefix.CEU_ENTRY_TABLE_NAME;
+        $table_name  = $wpdb->prefix.CEU_ENTRIES_TABLE_NAME;
         return $wpdb->get_row($wpdb->prepare(
             "SELECT *
             FROM $table_name
@@ -29,7 +29,7 @@ class CNMI_CEU_Entry {
         $has_access = verify_student_access($progress_id);
         if($has_access) {
             global $wpdb;
-            $table_name  = $wpdb->prefix.CEU_ENTRY_TABLE_NAME;
+            $table_name  = $wpdb->prefix.CEU_ENTRIES_TABLE_NAME;
             $bits = file_get_contents($agenda_url["tmp_name"]);
             $filetype = wp_check_filetype($agenda_url["name"]);
             $filename = 'agenda_' . time() . '.' . $filetype['ext'];
@@ -62,7 +62,7 @@ class CNMI_CEU_Entry {
         $has_access = verify_student_access($progress_id);
         if($has_access) {
             global $wpdb;
-            $table_name  = $wpdb->prefix.CEU_ENTRY_TABLE_NAME;
+            $table_name  = $wpdb->prefix.CEU_ENTRIES_TABLE_NAME;
             return $wpdb->insert($table_name, array(
                     'program_training_title' => sanitize_text_field( $program_training_title ),
                     'trainer_name' => sanitize_text_field( $trainer_name ),
