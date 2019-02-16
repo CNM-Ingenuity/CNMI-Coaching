@@ -42,6 +42,8 @@ if ( ! isset( $tribe_event_id ) ) {
 
 	<?php tribe_get_template_part( 'community/modules/taxonomy', null, array( 'taxonomy' => 'post_tag' ) ); ?>
 
+	<?php tribe_get_template_part( 'community/modules/choose-coaches', null, array( 'taxonomy' => Tribe__Events__Main::TAXONOMY ) ); ?>
+
 	<?php
 	/**
 	 * Action hook before loading linked post types template parts.

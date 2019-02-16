@@ -553,7 +553,7 @@ function elevenonline_add_required_fields_to_community_events( $fields ) {
         return $fields;
     }
 
-    $fields[] = 'tax_input[tribe_events_cat]';
+    $fields[] = 'tax_input.tribe_events_cat';
 
     return $fields;
 }
@@ -565,9 +565,31 @@ function elevenonline_custom_community_events_error_messages( $errors ) {
 	if( is_array($errors) ) {
 		$message = $errors[0]['message'];
 		// replace our bad error message
-		$message = str_replace("Tax Input[tribe Events Cat] is required", "The Training Type is required.", $message);
+		$message = str_replace("Event Category is required", "The Training Type is required.", $message);
 		$errors[0]['message'] = $message;
 	}
 
     return $errors;
 }
+
+function elevenonline_save_extra_community_event_data( $post_id, $post, $update ) {
+
+    $post_type = get_post_type($post_id);
+
+    // If this isn't a 'tribe_events' post, don't update it.
+    if ( "tribe_events" != $post_type ) return;
+
+    
+    // Set the coaches
+    if ( isset( $_POST['coaches'] ) ) {
+    	$coaches = [];
+    	foreach ($_POST['coaches'] as $coach) {
+    		$coaches[] = $coach;
+    	}
+        update_post_meta( $post_id, '_cnmi_event_metabox_user_multicheckbox', $coaches);
+
+        // set the licensing org
+        update_post_meta( $post_id, '_cnmi_event_metabox_licensing_org_multicheckbox', get_current_user_id());
+    }
+}
+add_action( 'save_post', 'elevenonline_save_extra_community_event_data', 10, 3 );

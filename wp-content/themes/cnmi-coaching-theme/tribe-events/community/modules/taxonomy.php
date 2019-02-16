@@ -13,7 +13,6 @@ defined( 'WPINC' ) or die;
  * @version 4.5.7
  *
  */
-
 $selected_terms = array();
 $taxonomy_obj   = get_taxonomy( $taxonomy );
 $ajax_args = array(
