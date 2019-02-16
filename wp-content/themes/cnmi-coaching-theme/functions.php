@@ -194,10 +194,10 @@ function custom_add_to_cart($order_id) {
 			$product = $item_data->get_product();
 			$product_id = $product->get_id();
 			$event = get_post_meta(
-        $product_id,
-      	'_tribe_wooticket_for_event',
-        true
-      );
+				$product_id,
+				'_tribe_wooticket_for_event',
+				true
+			);
 			if($event) {
 				$event_id = $event;
 			}
@@ -224,25 +224,36 @@ function custom_add_to_cart($order_id) {
 								$user_id = wp_insert_user($user_data);
 								// Send notification email. We will probably want to customize the message
 								$notification = wp_new_user_notification($user_id, null , 'user');
+								// attach the coach in trainer membership
+								$membershipArgs = array(
+								// Enter the ID (post ID) of the plan to grant at registration
+									'plan_id' => 407,
+									'user_id' => $user_id,
+								);
+								wc_memberships_create_user_membership( $membershipArgs );
 								global $wpdb;
-		            $table_name  = $wpdb->prefix.'progress';
-		            $wpdb->insert($table_name, array(
-                  'user_id' => $user_id,
-                  'event_id' => $event_id
-	                ),
-	                array('%d','%d')
-		            );
+								$table_name  = $wpdb->prefix.'progress';
+								$wpdb->insert(
+									$table_name, 
+									array(
+										'user_id' => $user_id,
+										'event_id' => $event_id
+									),
+									array('%d','%d')
+								);
 							} else {
 								$user = get_user_by( 'email', $user_email);
 								$user_id = $user->ID;
 								global $wpdb;
-		            $table_name  = $wpdb->prefix.'progress';
-		            $wpdb->insert($table_name, array(
-	                'user_id' => $user_id,
-	                'event_id' => $event_id
-	                ),
-	                array('%d','%d')
-		            );
+								$table_name  = $wpdb->prefix.'progress';
+								$wpdb->insert(
+									$table_name, 
+									array(
+										'user_id' => $user_id,
+										'event_id' => $event_id
+									),
+									array('%d','%d')
+								);
 							}
 						}
 					}
