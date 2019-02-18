@@ -20,7 +20,10 @@
 			</a>
 		</div>
 		<div class="one-half">
-			
+			<a class="button item-button" href="/track-ceus/?certification=<?php echo $_GET['certification']; ?>">
+				<p>Track CEUs</p>
+				<img src="/wp-content/uploads/2019/01/download-arrow.png">
+			</a>
 		</div>
 	</div>
 </div>

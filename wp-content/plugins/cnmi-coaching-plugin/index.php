@@ -68,6 +68,7 @@ include_once dirname(__FILE__) . '/classes/CNMI_Agreement.php';
 include_once dirname(__FILE__) . '/classes/CNMI_Coaching_Hours.php';
 include_once dirname(__FILE__) . '/classes/CNMI_Events.php';
 include_once dirname(__FILE__) . '/classes/CNMI_Certifications.php';
+include_once dirname(__FILE__) . '/classes/CNMI_CEU_Entry.php';
 
 /*
  * Custom Tables
@@ -171,6 +172,7 @@ function create_custom_tables()
   $ceu_entries_table_name = $wpdb->prefix . CEU_ENTRIES_TABLE_NAME;
   $sql_ceu_entries = "CREATE TABLE {$ceu_entries_table_name} (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
+    progress_id mediumint(9) NOT NULL,
     is_outside_cnm tinyint(1) NOT NULL,
     ceus_requested mediumint(9),
     certification varchar(255),
@@ -187,9 +189,6 @@ function create_custom_tables()
     verification_code varchar(255),
     PRIMARY KEY (id)
   ) COLLATE {$wpdb_collate};";
-
-
-
 
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
   dbDelta( $sql_progress );
