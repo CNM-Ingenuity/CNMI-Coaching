@@ -14,7 +14,7 @@ defined( 'WPINC' ) or die;
  *
  */
 
-$users = get_users( array('meta_key' => 'licensing_org', 'meta_value' => get_current_user_id()) );
+$users = CNMI_Licensing_Org::get_coaches();
 
 $user_options = array();
 

@@ -69,6 +69,7 @@ include_once dirname(__FILE__) . '/classes/CNMI_Coaching_Hours.php';
 include_once dirname(__FILE__) . '/classes/CNMI_Events.php';
 include_once dirname(__FILE__) . '/classes/CNMI_Certifications.php';
 include_once dirname(__FILE__) . '/classes/CNMI_CEU_Entry.php';
+include_once dirname(__FILE__) . '/classes/CNMI_Licensing_Org.php';
 
 /*
  * Custom Tables
