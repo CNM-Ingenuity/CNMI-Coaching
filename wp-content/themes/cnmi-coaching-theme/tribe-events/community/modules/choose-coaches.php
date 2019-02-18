@@ -28,30 +28,6 @@ if ( $users ) {
     }
 }
 
-// $selected_users = array();
-
-// // Setup selected users
-// $value = ! empty( $_POST['_cnmi_event_metabox_user_multicheckbox' ] ) ? explode( ',', esc_attr( trim( $_POST['_cnmi_event_metabox_user_multicheckbox' ] ) ) ) : array();
-
-// // if no tags from $_POST then look for saved tags
-// if ( empty( $value )  && isset($tribe_event_id)) {
-// 	$users = get_post_meta(
-//         $tribe_event_id,
-//         '_cnmi_event_metabox_user_multicheckbox',
-//         true
-//     );
-//     if($users) {
-//     	foreach ($users as $userId) {
-//     		$user = get_user_by('id', $userId);	
-//     		$selected_users[$user->ID] = $user->first_name . ' ' . $user->last_name;
-//     	}	
-// 	}
-// }
-
-// if ( is_array( $value ) ) {
-// 	$value = implode( ',', $value );
-// }
-
 ?>
 <div class="tribe-section tribe-section-taxonomy">
 	<div class="tribe-section-header">
