@@ -604,3 +604,58 @@ function elevenonline_save_extra_community_event_data( $post_id, $post, $update 
     }
 }
 add_action( 'save_post', 'elevenonline_save_extra_community_event_data', 10, 3 );
+
+/* adding extra profile fields */
+add_action( 'show_user_profile', 'elevenonline_extra_coaching_fields' );
+add_action( 'edit_user_profile', 'elevenonline_extra_coaching_fields' );
+
+function elevenonline_extra_coaching_fields( $currentUser ) { 
+	$users = get_users(  );
+
+	$user_options = array();
+
+	$selected_org = get_user_meta($currentUser->ID, 'licensing_org', true);
+
+	$user_options = array();
+	if ( $users ) {
+		foreach ( $users as $user ) {
+			$user_id = $user->ID;
+			if(wc_memberships_is_user_active_member( $user_id, 'licensed-org' )){
+				$user_options[ $user->ID ] = $user->first_name . ' ' . $user->last_name;
+			}
+		}
+	}
+	?>
+    <h3>Licensing Organization Extra Data</h3>
+
+    <table class="form-table">
+	    <tr>
+	    	<th>
+	    		<label for="licensing_org">Licencing Org (for coaches attached to a licensing organization)</label>
+	    	</th>
+	        <td>
+	            <select id="licensing_org" name="licensing_org">
+	            	<option>Select One</option>
+					<?php
+						foreach($user_options as $id => $name) {
+							?>
+								<option value="<?php echo $id; ?>" <?php echo $selected_org == $id ? "selected" : null?>><?php echo $name; ?></option>
+							<?php
+						}
+					?>
+				</select>
+	        </td>
+	    </tr>
+    </table>
+	<?php 
+}
+
+add_action( 'personal_options_update', 'elevenonline_save_licensing_extra_info' );
+add_action( 'edit_user_profile_update', 'elevenonline_save_licensing_extra_info' );
+
+function elevenonline_save_licensing_extra_info( $user_id ) {
+    if ( !current_user_can( 'edit_user', $user_id ) ) { 
+        return false; 
+    }
+    update_user_meta( $user_id, 'licensing_org', $_POST['licensing_org'] );
+}
