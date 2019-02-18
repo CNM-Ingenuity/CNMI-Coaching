@@ -14,7 +14,7 @@ function login_body_class( $classes ) {
 add_action('genesis_entry_content', 'add_login_form_to_page');
 function add_login_form_to_page() {
 	?>
-		<form name="loginform" id="loginform" action="<?php echo site_url( '/wp-login.php' ) . '?wpe-login=true'; ?>" method="post">
+		<form name="loginform" id="loginform" action="<?php echo wp_login_url() . "?wpe-login=true"; ?>" method="post">
 			<p>
 				<input id="user_login" type="text" size="20" value="" name="log" placeholder="Email">
 			</p>
