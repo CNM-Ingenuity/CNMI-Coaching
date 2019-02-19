@@ -12,7 +12,7 @@ function show_my_resources() {
 	get_template_part('partials/elements/top-matter');
 	$coaches = CNMI_Licensing_Org::get_coaches();
 	?>
-		<table>
+	<table>
 		<tr>
 			<th>Trainer Name</th>
 			<th>Email</th>
