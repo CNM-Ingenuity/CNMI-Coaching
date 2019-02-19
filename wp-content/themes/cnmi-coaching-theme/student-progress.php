@@ -83,15 +83,22 @@ function show_progress() {
 			}
 
 			?>
-				<h5>Sessions Attended: <?php echo $sessions_attended; ?></h5>
+				<table>
+					<tr>
+						<td>Sessions Attended</td>
+						<td><?php echo $sessions_attended; ?></td>
+					</tr>
+						<?php
+						build_complete_section("Training Complete", "training_complete", $progress, $eventID);
+						build_complete_section("Fieldwork", "fieldwork", $progress, $eventID);
+						if( current_user_can('administrator')) {
+							build_complete_section("Assessment Complete", "assessment_complete", $progress, $eventID);
+						} else {
+							build_complete_section("Assessment Complete", "assessment_complete", $progress, $eventID, true);
+						}
+						?>
+				</table>
 			<?php
-			build_complete_section("Training Complete", "training_complete", $progress, $eventID);
-			build_complete_section("Fieldwork", "fieldwork", $progress, $eventID);
-			if( current_user_can('administrator')) {
-				build_complete_section("Assessment Complete", "assessment_complete", $progress, $eventID);
-			} else {
-				build_complete_section("Assessment Complete", "assessment_complete", $progress, $eventID, true);
-			}
 			
 
 			$total_training_time = 0;
@@ -118,20 +125,21 @@ function show_progress() {
 					<?php
 			}
 			?>
-				</table>
-				<h5>Total Training Time: <?php echo floor($total_training_time/60); ?> hours and <?php echo $total_training_time % 60; ?> minutes</h5>
+			</table>
+			<h5>Total Training Time: <?php echo floor($total_training_time/60); ?> hours and <?php echo $total_training_time % 60; ?> minutes</h5>
 
+			<table>
 			<?php
 			build_complete_section('Coaching Hours', "coaching_hours_complete", $progress, $eventID);
-
 			?>
-				<h5>Coaching Sessions</h5>
-				<table>
-					<tr>
-						<th></th>
-						<th>Status</th>
-						<th>Actions</th>
-					</tr>
+			</table>
+			<h5>Coaching Sessions</h5>
+			<table>
+				<tr>
+					<th></th>
+					<th>Status</th>
+					<th>Actions</th>
+				</tr>
 			<?php
 			$count = 0;
 			foreach ($progress->coaching_sessions as $coaching_session) {
@@ -145,15 +153,56 @@ function show_progress() {
 					<?php
 			}
 			?>
-				</table>
-
+			</table>
+			<table>
 			<?php
 			build_complete_section('Coaching Sessions', "coaching_sessions_complete", $progress, $eventID);
-			 
-			// "coaching_agreement".
-			// "coaching_letters"
-
+			?>
+			</table>
+			<h5>Coaching Letters</h5>
+			<table>
+				<tr>
+					<th></th>
+					<th>Actions</th>
+				</tr>
+			<?php 
+			$count = 0;
+			foreach ($progress->coaching_letters as $coaching_letter) {
+				$count++;
+					?>
+						<tr>
+							<td>Letter <?php echo $count; ?></td>
+							<td><a class="button" target="_blank" href="<?php echo $coaching_letter->url; ?>">Review</a></td>
+						</tr>
+					<?php
+			}
+			?>
+			</table>
+			<h5>Coaching Agreements</h5>
+			<table>
+				<tr>
+					<th></th>
+					<th>Actions</th>
+				</tr>
+			<?php 
+			$count = 0;
+			foreach ($progress->coaching_agreement as $coaching_agreement) {
+				$count++;
+					?>
+						<tr>
+							<td>Agreement <?php echo $count; ?></td>
+							<td><a class="button" target="_blank" href="<?php echo $coaching_agreement->url; ?>">Review</a></td>
+						</tr>
+					<?php
+			}
+			?>
+			</table>
+			<table>
+			<?php
 			build_complete_section("Certification Complete", "certification_complete", $progress, $eventID);
+			?>
+			</table>
+			<?php
 
 			if($progress->certification_complete === '1') {
 				$ceus = CNMI_CEU_Entry::get_ceu_entry_by_progress_id($progressID);
@@ -279,11 +328,11 @@ function build_complete_form($key, $eventID) {
 function build_complete_section($description, $value, $progress, $eventID, $hideForm = false) {
 	$complete = $progress->{$value} === '1';
 	if($hideForm) {
-		$completeText = $complete ? "Complete" : "Incomplete ";
+		$completeText = $complete ? "Complete" : "Incomplete";
 	} else {
-		$completeText = $complete ? "Complete" : "Incomplete " . build_complete_form($value, $eventID);
+		$completeText = $complete ? "Complete" : build_complete_form($value, $eventID);
 	}
-	echo "<p>" . $description . ": " . $completeText . "</p>";
+	echo "<tr><td>" . $description . "</td><td>" . $completeText . "</td></tr>";
 }
 
 genesis();
