@@ -303,6 +303,9 @@ add_filter( 'wp_nav_menu_items', 'wti_loginout_menu_link', 10, 2 );
 
 function wti_loginout_menu_link( $items, $args ) {
    if ($args->menu->slug == 'main-menu') {
+   	  if( current_user_can('administrator') ) {
+      	$items .= '<li class="menu-item"><a href="/search-for-users/">Coach Search</a></li>';
+      }
       if (is_user_logged_in()) {
          $items .= '<li class="menu-item"><a href="'. wp_logout_url() .'">'. __("Log Out") .'</a></li>';
       } else {
