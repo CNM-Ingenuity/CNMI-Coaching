@@ -55,11 +55,16 @@ function show_my_sessions() {
 			foreach($fields as $field => $label) {
 				?>
 					<h5><?php echo $label; ?></h5>
-					<h6>Rating:</h6>
-					<p><?php echo ucfirst($session->{$field . "_vc"}); ?></p>
-					<h6>Comments:</h6>
-					<p><?php echo $session->{$field . "_text"}; ?></p>
-					<hr/>
+					<table class="first-td-bold">
+						<tr>
+							<td>Rating</td>
+							<td><?php echo ucfirst($session->{$field . "_vc"}); ?></td>
+						</tr>
+						<tr>
+							<td>Comments</td>
+							<td><?php echo $session->{$field . "_text"}; ?></td>
+						</tr>
+					</table>
 
 				<?php
 			} 	

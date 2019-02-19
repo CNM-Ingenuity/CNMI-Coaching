@@ -83,7 +83,7 @@ function show_progress() {
 			}
 
 			?>
-				<table>
+				<table class="first-td-bold">
 					<tr>
 						<td>Sessions Attended</td>
 						<td><?php echo $sessions_attended; ?></td>
@@ -128,7 +128,7 @@ function show_progress() {
 			</table>
 			<h5>Total Training Time: <?php echo floor($total_training_time/60); ?> hours and <?php echo $total_training_time % 60; ?> minutes</h5>
 
-			<table>
+			<table class="first-td-bold">
 			<?php
 			build_complete_section('Coaching Hours', "coaching_hours_complete", $progress, $eventID);
 			?>
@@ -154,7 +154,7 @@ function show_progress() {
 			}
 			?>
 			</table>
-			<table>
+			<table class="first-td-bold">
 			<?php
 			build_complete_section('Coaching Sessions', "coaching_sessions_complete", $progress, $eventID);
 			?>
@@ -197,7 +197,7 @@ function show_progress() {
 			}
 			?>
 			</table>
-			<table>
+			<table class="first-td-bold">
 			<?php
 			build_complete_section("Certification Complete", "certification_complete", $progress, $eventID);
 			?>
@@ -312,12 +312,12 @@ function build_complete_form($key, $eventID) {
 	$progressID = $_GET['progress'];
 	ob_start();
 	?>
-		<form method="POST">
+		<form method="POST" style='float: left'>
 			<input type="hidden" name="id" value="<?php echo $progressID; ?>">
 			<input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
 			<input type="hidden" name="key" value="<?php echo $key; ?>">
 		
-			<input type="submit" value="Mark Complete">
+			<input type="submit" class="complete-button" value="Mark Complete">
 			<?php wp_nonce_field( 'mark_complete', 'mark_complete' ); ?>
 		</form>
 	<?php
@@ -328,9 +328,9 @@ function build_complete_form($key, $eventID) {
 function build_complete_section($description, $value, $progress, $eventID, $hideForm = false) {
 	$complete = $progress->{$value} === '1';
 	if($hideForm) {
-		$completeText = $complete ? "Complete" : "Incomplete";
+		$completeText = $complete ? "<p class='success-message for-table'>Complete</p>" : "<p class='error-message for-table'>Incomplete</p>";
 	} else {
-		$completeText = $complete ? "Complete" : build_complete_form($value, $eventID);
+		$completeText = $complete ? "<p class='success-message for-table'>Complete</p>" : "<p class='error-message for-table'>Incomplete</p>" . build_complete_form($value, $eventID);
 	}
 	echo "<tr><td>" . $description . "</td><td>" . $completeText . "</td></tr>";
 }

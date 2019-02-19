@@ -286,6 +286,11 @@ input
     font-family: "Dashicons"
     vertical-align: bottom
 
+.complete-button
+  margin: 0 0 0 15px !important
+  &:hover
+    background-color: $green !important
+
 .view-shop
   text-align: center
   display: block
@@ -371,6 +376,16 @@ table
   line-height: 2
   margin-bottom: 80px
   width: 100%
+  &.first-td-bold
+    td:first-of-type
+      font-family: $headingFont
+      padding-right: 15px
+
+.for-table
+  display: inline-block
+  margin-bottom: 0
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.2)
+  float: left
 
 tbody
   border-bottom: 1px solid #ddd
