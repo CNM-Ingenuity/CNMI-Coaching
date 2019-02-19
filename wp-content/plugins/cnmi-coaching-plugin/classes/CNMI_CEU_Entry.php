@@ -20,6 +20,16 @@ class CNMI_CEU_Entry {
         ));
     }
 
+    public static function get_ceu_entry_by_progress_id($id) {
+        global $wpdb;
+        $table_name  = $wpdb->prefix.CEU_ENTRIES_TABLE_NAME;
+        return $wpdb->get_results($wpdb->prepare(
+            "SELECT *
+            FROM $table_name
+            WHERE progress_id = %s", intval( $id )
+        ));
+    }
+
     public static function save_new_ceu_entry_outside_cnm(
         $progress_id, 
         $ceus_requested, 

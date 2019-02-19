@@ -92,6 +92,16 @@ class CNMI_Progress {
         ));
     }
 
+    public static function get_current_student_progress_as_admin($user_id) {
+        global $wpdb;
+        $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
+        return $wpdb->get_results($wpdb->prepare(
+            "SELECT *
+            FROM $table_name
+            WHERE user_id = %s", intval( $user_id )
+        ));
+    }
+
     public static function get_students_from_event_id($event_id) {
         global $wpdb;
         $table_name  = $wpdb->prefix.PROGRESS_TABLE_NAME;
