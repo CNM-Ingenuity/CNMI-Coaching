@@ -15,7 +15,7 @@ function show_my_trainings() {
 	$user_id = get_current_user_id();
 	$memberships = wc_memberships_get_user_active_memberships( $user_id );
 	$plan_id = $memberships[0]->{"plan_id"};
-	if ($plan_id == 408) {
+	if ($plan_id == 408 || $plan_id == 410) {
 		include(locate_template('partials/elements/certification-list.php'));
 	}
 

@@ -27,6 +27,8 @@ function show_my_trainings() {
 	}
 	if ($plan_id == 408) {
 		include(locate_template('partials/elements/contracting-org-trainings.php'));
+	} else if ($plan_id == 410) {
+		include(locate_template('partials/elements/licensing-org-trainings.php'));
 	} else {
 		include(locate_template('partials/elements/certification-list.php'));
 	}

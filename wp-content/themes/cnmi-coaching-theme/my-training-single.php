@@ -17,8 +17,8 @@ function show_my_training() {
 			} elseif ($plan_id == 411) {
 				// certified coach trainer
 				include(locate_template('partials/training-singles/coach-trainer.php'));
-			} elseif ($plan_id == 408) {
-				// contracing org
+			} elseif ($plan_id == 408 || $plan_id == 410) {
+				// contracing org or licensing org
 				include(locate_template('partials/training-singles/contracting-org.php'));
 			}
 		}

@@ -16,6 +16,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
 
+// add in top matter
+function add_in_top_matter_to_event_add() {
+	// for the top matter title
+	$eventType = "Schedule a Training";
+	$breadcrumbs = [
+		"My Organization's Trainings" => "/my-trainings",
+		$eventType => '#'
+	];
+	include(locate_template('partials/elements/breadcrumbs.php'));
+	include(locate_template('partials/elements/top-matter.php'));
+}
+add_action('genesis_entry_content', 'add_in_top_matter_to_event_add', 1);
+
 if(wc_memberships_is_user_active_member( get_current_user_id(), 'licensed-org' )){
 
 	if ( ! isset( $tribe_event_id ) ) {
@@ -24,7 +37,7 @@ if(wc_memberships_is_user_active_member( get_current_user_id(), 'licensed-org' )
 
 	?>
 
-	<?php tribe_get_template_part( 'community/modules/header-links' ); ?>
+	<?php //tribe_get_template_part( 'community/modules/header-links' ); ?>
 
 	<?php do_action( 'tribe_events_community_form_before_template', $tribe_event_id ); ?>
 

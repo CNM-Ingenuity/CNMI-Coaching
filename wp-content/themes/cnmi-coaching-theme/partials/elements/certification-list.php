@@ -25,5 +25,13 @@ if($memberships){
 		} else {
 			include(locate_template('partials/elements/certification-lists/contracting-org.php'));
 		}
+	} elseif ($plan_id == 410) {
+		// licensing org
+		$template = get_page_template_slug();
+		if($template === 'my-resources.php') {
+			include(locate_template('partials/elements/certification-lists/unique-certifications-with-resources-licensing-org.php'));
+		} else {
+			include(locate_template('partials/elements/certification-lists/licensing-org.php'));
+		}
 	}
 }

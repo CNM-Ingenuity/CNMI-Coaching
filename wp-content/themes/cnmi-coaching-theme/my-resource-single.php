@@ -14,7 +14,7 @@ function show_my_resource() {
 			if ($plan_id == 406 || $plan_id == 407) {
 				// certified coach in training and certified coach
 				include(locate_template('partials/resource-single/coach-in-training.php'));
-			} elseif ($plan_id == 411 || $plan_id == 408) {
+			} elseif ($plan_id == 411 || $plan_id == 408 || $plan_id == 410) {
 				// certified coach trainer
 				include(locate_template('partials/resource-single/coach-trainer.php'));
 			}
