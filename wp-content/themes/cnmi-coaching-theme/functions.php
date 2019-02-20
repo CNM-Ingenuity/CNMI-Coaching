@@ -312,7 +312,7 @@ function wti_loginout_menu_link( $items, $args ) {
       	 if(!$isAdmin) {
       	 	$items .= '<li class="menu-item"><a href="/dashboard">'. __("Dashboard") .'</a></li>';
       	 }
-         $items .= '<li class="menu-item"><a href="'. wp_logout_url() .'">'. __("Log Out") .'</a></li>';
+         $items .= '<li class="menu-item"><a href="'. wp_logout_url('/') .'">'. __("Log Out") .'</a></li>';
       } else {
          $items .= '<li class="menu-item"><a href="/login">'. __("Log In") .'</a></li>';
       }
