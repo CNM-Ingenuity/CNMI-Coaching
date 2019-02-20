@@ -409,7 +409,7 @@ function certification_list(){
 			$output .= "</p></div>";
 
 			// link
-			$output .= "<a href='" . get_the_permalink() . "' class='button secondary'>Get Started</a>";
+			$output .= "<div class='first'><a href='/events/category/" . sanitize_title(get_the_title()) . "/' class='button secondary'>Get Started</a></div>";
 
 			// close the container
 			$output .= "</div>";
