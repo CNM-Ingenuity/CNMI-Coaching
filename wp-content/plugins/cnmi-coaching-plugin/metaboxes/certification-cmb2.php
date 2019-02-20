@@ -35,6 +35,12 @@ if(!function_exists('cnmi_register_certification_metabox')) {
       'type' => 'text_url',
     ));
     $cmb->add_field( array(
+      'name' => __('Certification Download', 'cmb2'),
+      'desc' => __('File that Certified Coaches can download', 'cmb2'),
+      'id' => $prefix . 'certification_download',
+      'type' => 'file',
+    ));
+    $cmb->add_field( array(
       'id'          => $prefix . 'training_resource_group',
       'type'        => 'group',
       'repeatable'  => true,

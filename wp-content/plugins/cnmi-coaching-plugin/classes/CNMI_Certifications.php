@@ -138,10 +138,17 @@ class CNMI_Certifications {
         true
     );
 
+    $certification_download = get_post_meta(
+        $certificationID,
+        '_cnmi_certification_metabox_certification_download',
+        true
+    );
+
     return [
         "content" => $content,
         "requirements" => $requirements,
-        "assessment" => $assessment
+        "assessment" => $assessment,
+        "certification_download" => $certification_download
     ];
   }
 
