@@ -5,10 +5,10 @@
 
 
 //* Add custom body class to the head
-add_filter( 'body_class', 'form_body_class' );
-function form_body_class( $classes ) {
+add_filter( 'body_class', 'login_body_class' );
+function login_body_class( $classes ) {
 	
-	$classes[] = 'progress-form-page';
+	$classes[] = 'form-page';
 	return $classes;
 	
 }
