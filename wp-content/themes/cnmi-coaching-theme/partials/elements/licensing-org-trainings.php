@@ -14,9 +14,9 @@
 		</div>
 	</a>
 
-	<a href='/register-user'>
+	<a href='/register-trainer'>
 		<div class='one-half first contract-trainings'>
-			<h3>Register User or Group</h3>
+			<h3>Register Trainer</h3>
 		</div>
 	</a>
 </div>
