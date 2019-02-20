@@ -5,10 +5,10 @@ if(!is_array($resourcesArray)) {
 }
 $numberResources = count($resourcesArray);
 $certificationName = get_the_title($progressID);
-$eventType = $certificationName . " Resources";
+$eventType = $certificationName;
 $breadcrumbs = [
 	"My Resources" => "/my-resources",
-	$eventType => "#"
+	$eventType . " Resources" => "#"
 ];
 include(locate_template('partials/elements/breadcrumbs.php'));
 include(locate_template('partials/elements/top-matter.php'));
