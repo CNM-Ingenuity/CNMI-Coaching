@@ -23,7 +23,7 @@ if(!function_exists('cnmi_register_certification_metabox')) {
     ));
     $cmb->add_field( array(
       'name' => __('Training Type', 'cmb2'),
-      'desc' => __('Number of hours', 'cmb2'),
+      'desc' => __('Online, in person, something else.', 'cmb2'),
       'id' => $prefix . 'training_type',
       'type' => 'text',
     ));
