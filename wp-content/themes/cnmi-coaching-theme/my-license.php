@@ -21,7 +21,7 @@ function show_my_resources() {
 	foreach ($coaches as $coach) {
 		?>
 			<tr>
-				<td><?php echo $coach->user_nicename; ?></td>
+				<td><?php echo $coach->first_name . ' ' . $coach->last_name; ?></td>
 				<td><?php echo $coach->user_email; ?></td>
 			</tr>
 		<?php
