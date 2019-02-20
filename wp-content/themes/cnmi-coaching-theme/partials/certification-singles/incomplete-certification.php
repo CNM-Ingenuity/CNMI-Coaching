@@ -7,8 +7,14 @@
 	<p>Requirements:</p>
 	<ul>
 		<?php
+			$count = 0;
 			foreach($content['requirements'] as $requirements){
-				echo '<li>' . $requirements . '</li>';
+				if($count === 0) {
+					echo '<li>' . $requirements . ' Hours</li>';
+				} else {
+					echo '<li>' . $requirements . '</li>';
+				}
+				$count++;
 			}
 		?>
 	</ul>
