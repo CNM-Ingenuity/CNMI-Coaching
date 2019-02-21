@@ -634,6 +634,8 @@ function elevenonline_extra_coaching_fields( $currentUser ) {
 			}
 		}
 	}
+	$renewal_date = get_user_meta( $currentUser->ID, 'licensing_renewal_date', true );
+	$licensing_document = get_user_meta( $currentUser->ID, 'licensing_document', true );
 	?>
     <h3>Licensing Organization Extra Data</h3>
 
@@ -644,7 +646,7 @@ function elevenonline_extra_coaching_fields( $currentUser ) {
 	    	</th>
 	        <td>
 	            <select id="licensing_org" name="licensing_org">
-	            	<option>Select One</option>
+	            	<option value="">Select One</option>
 					<?php
 						foreach($user_options as $id => $name) {
 							?>
@@ -655,7 +657,34 @@ function elevenonline_extra_coaching_fields( $currentUser ) {
 				</select>
 	        </td>
 	    </tr>
+	    <tr>
+	    	<th>
+	    		<label for="licensing_renewal_date">Renewal Date (for Licensing Orgs)</label>
+	    	</th>
+	        <td>
+	            <input type="date" id="licensing_renewal_date" name="licensing_renewal_date" value="<?php echo $renewal_date; ?>"/>
+	        </td>
+	    </tr>
+	    <tr>
+            <th>
+            	<label for="licensing_document">Licensing Document</label>
+            </th>
+            <td><input type="file" name="licensing_document" id="licensing_document" value="">
+            <?php
+                if($licensing_document) {
+                	?>
+						<p><a href="<?php echo $licensing_document; ?>" target="_blank">View Current Document</a></p>
+                	<?php
+                }
+            ?>
+            </td>
+        </tr>
     </table>
+    <script type="text/javascript">
+		(function( $ ) {
+			$( '#your-profile' ).attr("enctype", "multipart/form-data");
+		})(jQuery);
+	</script>
 	<?php 
 }
 
@@ -666,5 +695,18 @@ function elevenonline_save_licensing_extra_info( $user_id ) {
     if ( !current_user_can( 'edit_user', $user_id ) ) { 
         return false; 
     }
-    update_user_meta( $user_id, 'licensing_org', $_POST['licensing_org'] );
+    if( isset($_FILES['licensing_document']['name']) && $_FILES['licensing_document']['name'] != '' ) {
+    	$file = $_FILES['licensing_document'];
+    	$bits = file_get_contents($file["tmp_name"]);
+        $filetype = wp_check_filetype($file["name"]);
+        $filename = $file["name"] . '_' . time() . '.' . $filetype['ext'];
+        $upload = wp_upload_bits($filename, null, $bits);
+        update_user_meta( $user_id, 'licensing_document', $upload['url'] );
+    }
+    if($_POST['licensing_org'] && $_POST['licensing_org'] != '') {
+    	update_user_meta( $user_id, 'licensing_org', $_POST['licensing_org'] );
+    }
+    if($_POST['licensing_renewal_date'] && $_POST['licensing_renewal_date'] != '') {
+    	update_user_meta( $user_id, 'licensing_renewal_date', $_POST['licensing_renewal_date'] );
+    }
 }
