@@ -55,7 +55,7 @@ class CNMI_Coaching_Session {
             if($media_upload) {
                 $bits = file_get_contents($file["tmp_name"]);
                 $filetype = wp_check_filetype($file["name"]);
-                $filename = 'progress_' . $progress_id . '_type_' . $type . '_' . time() . '.' . $filetype['ext'];
+                $filename = 'progress_' . $progress_id . '_type_coaching_session_' . time() . '.' . $filetype['ext'];
                 $upload = wp_upload_bits($filename, null, $bits);
                 return $wpdb->insert($table_name, array(
                         'progress_id' => intval( $progress_id ),
