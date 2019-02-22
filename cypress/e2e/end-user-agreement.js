@@ -5,7 +5,7 @@ describe('Coach End User Agreement', () => {
 
     it('selects file for upload', () => {
         const fileName = 'fixtures/sample-file.json'
-        cy.get('div > input[type="file"]')
+        cy.get('div > input[type=file]')
             .click()
             .type(fileName)
             .get('[type="submit"]')
