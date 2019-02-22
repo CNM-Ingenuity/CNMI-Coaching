@@ -1,4 +1,5 @@
 {
     "baseUrl": "http://cnmi.wpengine.com",
-    "integrationFolder": "cypress/e2e"
+    "integrationFolder": "cypress/e2e",
+    "chromeWebSecurity": false
 }
