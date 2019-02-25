@@ -1,32 +1,34 @@
 describe('Track Coaching Hours', () => {
     const client = 'Jane Doe'
     const sessionDate = '2019-02-10'
-    const minutes = '45'
+    const minutes = '5'
     const comments = 'love this lesson'
+
+    function login() {
+        cy.visit('/login/')
+        cy.get('#user_login').type('matt+cit@11online.us')
+        cy.get('#user_pass').type('pSc3gM0IpbicjGwarXC2NyfP')
+        cy.get('#wp-submit').click()  
+    }
+
+    before(() => { 
+        login()
+    })
+
+    beforeEach(() => {
+        cy.visit('/track-coaching-hours/?certification=1')
+    })
 
     // test submit a form with all valid inputs by a submit button
     it('shows a success message upon submitting a valid form', () => {
-        cy.visit('/login')
-        cy.setCookie('wordpress_logged_in_cabf0dd96b0e4f91d4e511df188b7b4d', 'coachintraining%7C1551045902%7C7gfHHUS2T00RTYZNk9dcsUlGAkdHoC1nD0SHc1ODnnu%7Ca2f45e47a30da63e8bd99f31fae9e29fd79914c0eca3210a048d5e9bdea79522')
-        cy.get('#user_login').type('matt+cit@11online.us')
-        cy.get('#user_pass').type('pSc3gM0IpbicjGwarXC2NyfP')
-        cy.get('#wp-submit').click()
-        cy.url().should('eq', `${Cypress.config().baseUrl}/dashboard/`)
-
-        cy.visit('/track-coaching-hours/?certification=1')
         cy.get('[label="client_name"]').type(client)
         cy.get('[label="date"]').type(sessionDate)
         cy.get('[label="minutes"]').type(minutes)
         cy.get('textarea').type(comments)
         cy.get('[type="submit"]').click()
-        cy.get('.success-message', {timeout: 10000})
-
-        cy.getByText(/^Your coaching hours have been saved.$/)
+        cy.get('.success-message')
+        // cy.getByText(/^Your coaching hours have been saved.$/)
     })
-
-    beforeEach(() => {
-        cy.visit('/track-coaching-hours/?certification=1')
-     })
 
     //each input field accepts input
     it('accepts input for name', () => { 
@@ -110,7 +112,7 @@ describe('Track Coaching Hours', () => {
     })
 
     // an unauthorized user tries to submit a form
-    it.only(`doesn't let a not logged in user submit a form`, () => { 
+    it(`doesn't let a not logged in user submit a form`, () => { 
         // if a user logged in -- log out
         cy.get('#menu-main-menu > :nth-child(6) > a').click()
         cy.reload()
@@ -123,11 +125,5 @@ describe('Track Coaching Hours', () => {
         cy.get('textarea').type(comments)
         cy.get('[type="submit"]').click()
         cy.getByText(/^Sorry*/)
-        // cy.get('.success-message', { timeout: 10000 }
     })
-
-
-
-
-
 })
