@@ -11,23 +11,19 @@ describe('Track Coaching Hours', () => {
         cy.get('#wp-submit').click()  
     }
 
+    function fillInForm() {
+        cy.get('[label="client_name"]').type(client)
+        cy.get('[label="date"]').type(sessionDate)
+        cy.get('[label="minutes"]').type(minutes)
+        cy.get('textarea').type(comments)
+    }
+
     before(() => { 
         login()
     })
 
     beforeEach(() => {
         cy.visit('/track-coaching-hours/?certification=1')
-    })
-
-    // test submit a form with all valid inputs by a submit button
-    it('shows a success message upon submitting a valid form', () => {
-        cy.get('[label="client_name"]').type(client)
-        cy.get('[label="date"]').type(sessionDate)
-        cy.get('[label="minutes"]').type(minutes)
-        cy.get('textarea').type(comments)
-        cy.get('[type="submit"]').click()
-        cy.get('.success-message')
-        // cy.getByText(/^Your coaching hours have been saved.$/)
     })
 
     //each input field accepts input
@@ -111,19 +107,38 @@ describe('Track Coaching Hours', () => {
         cy.getByText(/^This field is required.$/)
     })
 
+    // test submit a form with all valid inputs by a submit button
+    it('shows a success message upon submitting a valid form', () => {
+        fillInForm()
+        cy.get('[type="submit"]').click()
+        cy.get('.success-message').should('have.text', 'Your coaching hours have been saved.')
+    })
+
     // an unauthorized user tries to submit a form
-    it(`doesn't let a not logged in user submit a form`, () => { 
+    it.only(`doesn't let a not logged in user submit a form`, () => { 
         // if a user logged in -- log out
         cy.get('#menu-main-menu > :nth-child(6) > a').click()
         cy.reload()
         cy.visit('/track-coaching-hours/?certification=1')
         cy.get('#menu-main-menu > :nth-child(6) > a').should('have.text', 'Log In')
         // fill in the form
-        cy.get('[label="client_name"]').type(client)
-        cy.get('[label="date"]').type(sessionDate)
-        cy.get('[label="minutes"]').type(minutes)
-        cy.get('textarea').type(comments)
+        fillInForm()
         cy.get('[type="submit"]').click()
-        cy.getByText(/^Sorry*/)
+        cy.getByText(/^Sorry, you don\'t have access to update this information.$/)
+            .should('be.visible')
     })
+/*
+    it.only('shows an error message on a failed submission', () => { 
+        cy.server()
+        cy.route({
+            url: '/track-coaching-hours/?certification=1',
+            method: 'POST',
+            status: 500,
+            response: {}
+        })
+
+        fillInForm()
+        cy.get('[type="submit"]').click()
+    })
+*/
 })
