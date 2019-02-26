@@ -17,6 +17,29 @@ describe('Coach End User Agreement', () => {
         cy.visit('/coach-end-user-agreement/?certification=1')
     })
 
+    it(`displays 'Coach End User Agreement'`, () => {
+        cy.get('.first > h3')
+            .invoke('text')
+            .then((text) => {
+                expect(text.trim()).to.contain('Coach End User Agreement')
+            })
+    })
+
+    it(`has 'In Training' sign`, () => {
+        cy.get('.user-name > p')
+            .invoke('text')
+            .then((text) => {
+                expect(text.trim()).to.contain('In Training')
+            })
+    })
+
+    it(`redirects to dashboard upon clickin on gears icon`, () => {
+        cy.get('.user-name > p > a > .dashicons')
+            .click()
+        cy.url()
+            .should('eq', `${Cypress.config().baseUrl}/dashboard/`)
+    })
+
     it('fails to upload since no file was selected', () => {
         cy.get('div > input[type=file]')
             .click()
@@ -25,51 +48,5 @@ describe('Coach End User Agreement', () => {
             .click()
         cy.getByText(/^Some information is missing*/i)
             .should('be.visible')
-    })
-  
-/*
-    it.only('uploads a selected file', () => {
-        const fileName = './fixture/sample-file.txt'
-        cy.get('div > input[type=file]')
-            .then(($input) => { 
-                $input.setAttribute('name', fileName)
-                return $input
-            })
-
-        cy.get('[type="submit"]')
-            .click()
-        cy.getByText(/^Your end user/i)
-    })
-
-    it.only('uploads a selected file', () => {
-        const fileName = '../fixture/sample-file.txt'
-        cy.get('div > input[type=file]')
-            .then(($input) => {
-                $input.val = fileName
-                // $input.setAttribute('name', fileName)
-                return $input
-            })
-        // .click()       
-
-        cy.get('[type="submit"]')
-            .click()
-        cy.getByText(/^Your end user/i)
-    })
-
-    it.only('uploads a selected file', () => {
-        const fileName = '../fixture/sample-file.txt'
-        cy.get('div > input[type=file]')
-            .then(($input) => {
-                $input.type = 'text'
-                return $input
-            })
-            .type(fileName)
-        // .click()
-
-        cy.get('[type="submit"]')
-            .click()
-        cy.getByText(/^Your end user/i)
-    })
-    */   
-    
+    })   
 })
