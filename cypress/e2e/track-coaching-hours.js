@@ -5,10 +5,13 @@ describe('Track Coaching Hours', () => {
     const comments = 'love this lesson'
 
     function login() {
-        cy.visit('/login/')
-        cy.get('#user_login').type('matt+cit@11online.us')
-        cy.get('#user_pass').type('pSc3gM0IpbicjGwarXC2NyfP')
-        cy.get('#wp-submit').click()  
+        cy.fixture('users/admin-cit')
+            .then((admin) => {
+                cy.visit('/login/')
+                cy.get('#user_login').type(admin.email)
+                cy.get('#user_pass').type(admin.password)
+                cy.get('#wp-submit').click()
+            })
     }
 
     function fillInForm() {
@@ -118,8 +121,8 @@ describe('Track Coaching Hours', () => {
         fillInForm()
         cy.get('[type="submit"]')
             .click()
-        cy.get('.success-message').
-            should('have.text', 'Your coaching hours have been saved.')
+        cy.get('.success-message')
+            .should('have.text', 'Your coaching hours have been saved.')
     })
 
     // an unauthorized user tries to submit a form
