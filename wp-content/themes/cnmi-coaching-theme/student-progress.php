@@ -48,6 +48,10 @@ function show_progress() {
 	$progressID = $_GET['progress'];
 	if($progressID) {
 		$hasAccess = false;
+		$progress = CNMI_Progress::get_progress_by_id($progressID);
+		$eventID = $progress->event_id;
+		$eventTypeForBreadcrumbs = CNMI_Events::get_event_type($eventID);
+		$student = get_user_by('id', $progress->user_id);
 		if( current_user_can('administrator')) {
 			$hasAccess = true;
 		} else {
@@ -68,13 +72,6 @@ function show_progress() {
 			<?php
 			
 		} else {
-			$progress = CNMI_Progress::get_progress_by_id($progressID);
-			
-			$eventID = $progress->event_id;
-			$eventTypeForBreadcrumbs = CNMI_Events::get_event_type($eventID);
-			$student = get_user_by('id', $progress->user_id);
-			
-
 			$sessions_attended = 0;
 			for ($i = 1; $i < 11; $i++) {
 				if($progress->{'attendance_' . $i} === '1') {
