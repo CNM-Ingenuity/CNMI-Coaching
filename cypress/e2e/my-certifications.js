@@ -1,9 +1,12 @@
 describe('My Certifications', () => {
     function login() {
-        cy.visit('/login/')
-        cy.get('#user_login').type('matt+cit@11online.us')
-        cy.get('#user_pass').type('pSc3gM0IpbicjGwarXC2NyfP')
-        cy.get('#wp-submit').click()
+        cy.fixture('users/admin-cit')
+            .then((admin) => {
+                cy.visit('/login/')
+                cy.get('#user_login').type(admin.email)
+                cy.get('#user_pass').type(admin.password)
+                cy.get('#wp-submit').click()
+            })
     }
 
     before(() => {
