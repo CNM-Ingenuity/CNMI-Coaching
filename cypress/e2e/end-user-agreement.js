@@ -1,6 +1,6 @@
 describe('Coach End User Agreement', () => {
     function login() {
-        cy.fixture('admin')
+        cy.fixture('users/admin-cit')
             .then((admin) => {
                 cy.visit('/login/')
                 cy.get('#user_login').type(admin.email)
@@ -24,9 +24,9 @@ describe('Coach End User Agreement', () => {
         cy.get('[type="submit"]')
             .click()
         cy.getByText(/^Some information is missing*/i)
+            .should('be.visible')
     })
-
-    
+  
 /*
     it.only('uploads a selected file', () => {
         const fileName = './fixture/sample-file.txt'
