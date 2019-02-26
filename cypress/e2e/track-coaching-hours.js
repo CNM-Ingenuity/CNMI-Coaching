@@ -76,46 +76,54 @@ describe('Track Coaching Hours', () => {
     it('shows an error if input name field is empty on enter', () => { 
         cy.get('[label="client_name"]').clear().type('{enter}')
         cy.getByText(/^This field is required.$/)
+            .should('be.visible')
     })
 
     it('shows an error if input name field is empty on hitting submit', () => {
         cy.get('[label="client_name"]').clear()
         cy.get('[type="submit"]').click()
         cy.getByText(/^This field is required.$/)
+            .should('be.visible')
     })
 
     it('shows an error if input date field is empty on hitting submit', () => {
         cy.get('[label="date"]').clear()
         cy.get('[type="submit"]').click()
         cy.getByText(/^This field is required.$/)
+            .should('be.visible')
     })
 
     it('shows an error if input minutes field is empty on enter', () => {
         cy.get('[label="minutes"]').clear().type('{enter}')
         cy.getByText(/^This field is required.$/)
+            .should('be.visible')
     })
 
     it('shows an error if input minutes field is empty on hitting submit', () => {
         cy.get('[label="minutes"]').clear()
         cy.get('[type="submit"]').click()
         cy.getByText(/^This field is required.$/)
+            .should('be.visible')
     })
 
     it('shows an error if textarea field is empty on hitting submit', () => {
         cy.get('textarea').clear()
         cy.get('[type="submit"]').click()
         cy.getByText(/^This field is required.$/)
+            .should('be.visible')
     })
 
     // test submit a form with all valid inputs by a submit button
     it('shows a success message upon submitting a valid form', () => {
         fillInForm()
-        cy.get('[type="submit"]').click()
-        cy.get('.success-message').should('have.text', 'Your coaching hours have been saved.')
+        cy.get('[type="submit"]')
+            .click()
+        cy.get('.success-message').
+            should('have.text', 'Your coaching hours have been saved.')
     })
 
     // an unauthorized user tries to submit a form
-    it.only(`doesn't let a not logged in user submit a form`, () => { 
+    it(`doesn't let a not logged in user submit a form`, () => { 
         // if a user logged in -- log out
         cy.get('#menu-main-menu > :nth-child(6) > a').click()
         cy.reload()
@@ -127,18 +135,4 @@ describe('Track Coaching Hours', () => {
         cy.getByText(/^Sorry, you don\'t have access to update this information.$/)
             .should('be.visible')
     })
-/*
-    it.only('shows an error message on a failed submission', () => { 
-        cy.server()
-        cy.route({
-            url: '/track-coaching-hours/?certification=1',
-            method: 'POST',
-            status: 500,
-            response: {}
-        })
-
-        fillInForm()
-        cy.get('[type="submit"]').click()
-    })
-*/
 })
