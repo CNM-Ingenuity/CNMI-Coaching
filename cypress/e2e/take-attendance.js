@@ -46,7 +46,6 @@ describe('Take Attendance', () => {
             .then((text) => {
                 const words = text.split('=');
                 const eventNum = words[words.length - 1]
-                console.log(eventNum)
 
                 cy.get('form#attendance-form > input[name="event_id"]')
                     .should('have.value', eventNum)
@@ -69,5 +68,90 @@ describe('Take Attendance', () => {
             .select(`Session ${sessionNum}`)
             .should('have.value', sessionNum)
     })
-  
+
+    it(`has 'Students In Attendance' section with at least one checkbox that can be checked`, () => {
+        cy.get('fieldset > legend')
+            .invoke('text')
+            .then((text) => {
+                    expect(text.trim()).to.contain('Students In Attendance')
+            })
+        
+        cy.get('fieldset > input[type="checkbox"]:first')
+            .should('have.value', '21')
+            .check()
+            .should('be.checked')
+    })
+
+    it(`allows checking all four checkboxes`, () => {
+        cy.get('fieldset > input[type="checkbox"]')
+            .check(['21', '22', '29', '32'])
+            .should('be.checked')
+            .and('have.length', 4)
+    })
+
+    it.only(`allows saving the attendance for 'Session 3' when at least one checkbox is checked`, () => { 
+        cy.get('select')
+            .select(`Session 2`)
+        
+        cy.get('fieldset > input[type="checkbox"]:nth-of-type(4)')
+            .check({force: true})
+            .should('be.checked')
+            .and('have.value', '32')
+        
+        cy.get('[type="submit"]')
+            .click()
+
+        cy.getByText(/^Attendance has been saved.$/i)
+            .should('be.visible')
+            .and('have.css', 'background')
+    })
+
+    it(`allows saving the attendance for 'Session 6' when all four checkboxes are checked`, () => {
+        cy.get('select')
+            .select(`Session 6`)
+        
+        cy.get('fieldset > input[type="checkbox"]')
+            .check({ force: true })
+            .should('be.checked')
+            .and('have.length', 4)
+       
+        cy.get('[type="submit"]')
+            .click()
+
+        cy.getByText(/^Attendance has been saved.$/i)
+            .should('be.visible')
+            .and('have.css', 'background')
+    })
+
+    it(`displays an error message when trying to submit a form with all checkboxes unchecked`, () => {
+        cy.get('fieldset > input[type="checkbox"]')
+            .should('not.be.checked')
+            .and('have.length', 4)
+        
+        cy.get('[type="submit"]')
+            .click()
+        
+        cy.getByText(/^Some information is missing, please make sure your form is complete.$/i)
+            .should('be.visible')
+            .and('have.css', 'background')
+    })
+
+    it(`displays an error message when trying to submit a form being logged out`, () => {
+        cy.get('#menu-main-menu > :nth-child(6) > a').click()
+        cy.reload()
+        cy.visit('/attendance/?eventID=590')
+        cy.get('#menu-main-menu > :nth-child(6) > a').should('have.text', 'Log In')
+
+
+        cy.get('fieldset > input[type="checkbox"]:nth-of-type(2)')
+            .check()
+            .should('be.checked')
+            .and('have.value', '22')
+
+        cy.get('[type="submit"]')
+            .click()
+
+        cy.getByText(/^Sorry, you don't have access to update this information.$/i)
+            .should('be.visible')
+    })
 })
