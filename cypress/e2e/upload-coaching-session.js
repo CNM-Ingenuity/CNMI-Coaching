@@ -1,9 +1,12 @@
 describe('Upload Coaching Session', () => {
     function login() {
-        cy.visit('/login/')
-        cy.get('#user_login').type('matt+cit@11online.us')
-        cy.get('#user_pass').type('pSc3gM0IpbicjGwarXC2NyfP')
-        cy.get('#wp-submit').click()
+        cy.fixture('users/admin-cit')
+            .then((admin) => {
+                cy.visit('/login/')
+                cy.get('#user_login').type(admin.email)
+                cy.get('#user_pass').type(admin.password)
+                cy.get('#wp-submit').click()
+            })
     }
 
     function selectUseLink() {
@@ -25,6 +28,30 @@ describe('Upload Coaching Session', () => {
     beforeEach(() => {
         cy.visit('/upload-coaching-session/?certification=1')
     })
+
+    it(`displays 'Upload Coaching Session'`, () => {
+        cy.get('.first > h3')
+            .invoke('text')
+            .then((text) => {
+                expect(text.trim()).to.contain('Upload Coaching Session')
+            })
+    })
+
+    it(`has 'In Training' sign`, () => {
+        cy.get('.user-name > p')
+            .invoke('text')
+            .then((text) => {
+                expect(text.trim()).to.contain('In Training')
+            })
+    })
+
+    it(`redirects to dashboard upon clickin on gears icon`, () => {
+        cy.get('.user-name > p > a > .dashicons')
+            .click()
+        cy.url()
+            .should('eq', `${Cypress.config().baseUrl}/dashboard/`)
+    })
+
 
     it(`allows selecting 'Use a Link' item`, () => {
         selectUseLink()
