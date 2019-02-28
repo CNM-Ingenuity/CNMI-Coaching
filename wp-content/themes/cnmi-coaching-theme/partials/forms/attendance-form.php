@@ -31,36 +31,49 @@ if (
 	}
 }
 
-// get students
-$students = CNMI_Progress::get_students_from_event_id($_GET['eventID']);
-?>
-<form id="attendance-form" method="POST">
-	<input name="event_id" type="hidden" value="<?php echo $_GET['eventID']; ?>">
+$user_id = get_current_user_id();
+$memberships = wc_memberships_get_user_active_memberships( $user_id );
+if($memberships){
+	$plan_id = $memberships[0]->{"plan_id"};
+	if($plan_id === 411) {
+		// get students
+		$students = CNMI_Progress::get_students_from_event_id($_GET['eventID']);
+		?>
+		<form id="attendance-form" method="POST">
+			<input name="event_id" type="hidden" value="<?php echo $_GET['eventID']; ?>">
 
-	<label for="session_number">Session</label>
-	<select label="session_number" name="session_number" required>
-		<?php for($i = 1; $i < 11; $i++) {
-			?>
-				<option value="<?php echo $i; ?>">Session <?php echo $i; ?></option>
-			<?php
-		} ?>
-	</select>
-	<fieldset>
-		<legend>Students In Attendance</legend>
-		<?php foreach($students as $student) {
-			?>
+			<label for="session_number">Session</label>
+			<select label="session_number" name="session_number" required>
+				<?php for($i = 1; $i < 11; $i++) {
+					?>
+						<option value="<?php echo $i; ?>">Session <?php echo $i; ?></option>
+					<?php
+				} ?>
+			</select>
+			<fieldset>
+				<legend>Students In Attendance</legend>
+				<?php foreach($students as $student) {
+					?>
 
-			<input type="checkbox" name="student_ids[]" value="<?php echo $student->user_id; ?>"> 
-			<?php echo $student->user_nicename; ?><br/>
+					<input type="checkbox" name="student_ids[]" value="<?php echo $student->user_id; ?>"> 
+					<?php echo $student->user_nicename; ?><br/>
+					
+					<?php
+				} ?>
+			</fieldset>
+
 			
-			<?php
-		} ?>
-	</fieldset>
+			<input type="submit" value="Take Attendance">
+			<?php wp_nonce_field( 'take_attendance', 'take_attendance' ); ?>
+		</form>
+		<script>
+			jQuery("#attendance-form").validate();
+		</script>
+		<?php
+	} else {
+		?>
+			<p class='error-message'>Sorry, you don't have access to this page.</p>
+		<?php
+	}
 
-	
-	<input type="submit" value="Take Attendance">
-	<?php wp_nonce_field( 'take_attendance', 'take_attendance' ); ?>
-</form>
-<script>
-	jQuery("#attendance-form").validate();
-</script>
+}
