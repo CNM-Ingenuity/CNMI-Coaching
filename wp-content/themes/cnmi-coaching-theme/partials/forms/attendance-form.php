@@ -14,7 +14,8 @@ if (
 		isset($_POST['student_ids'])
 	) {
 		$result = CNMI_Progress::take_attendance($_POST['event_id'], $_POST['session_number'], $_POST['student_ids']);
-		if($result) {
+		// this result returns either an int of affected rows or false on failure
+		if(is_int($result)) {
 				?>
 					<p class='success-message'>Attendance has been saved.</p>
 				<?php
