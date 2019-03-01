@@ -1,4 +1,4 @@
-describe('Take Attendance', () => {
+describe('Student Progress', () => {
     function login() {
         cy.fixture('users/admin-cct')
             .then((admin) => {
