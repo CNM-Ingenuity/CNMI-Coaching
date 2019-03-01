@@ -151,11 +151,55 @@ describe('Take Attendance', () => {
 
     })
 
-    // it(`has at least one 'Mark Complete' button`, () => {
-    //     cy.get('.complete-button')
-    //         .should('have.value', 'Mark Complete')
-    //         .its('length')
-    //         .should('be.gt', 0)
-    // })
+    it(`has table titled 'Coaching Letters'`, () => {
+        cy.getByText(/^Coaching Letters$/)
+            .should('be.visible')
+    })
+
+    it(`has table of 'Coaching Letters' with the 'Actions' column`, () => {
+        cy.get('.entry-content > table:nth-of-type(6) > tbody > :nth-child(1)')
+            .find('th:nth-of-type(2)')
+            .should('have.text', 'Actions')
+    })
+
+    it(`has at least one action button in the 'Actions' column of 'Coaching Letters' table that has 'href' attribute`, () => {
+        const letterNum = 1
+        cy.get(`.entry-content > table:nth-of-type(6) > tbody > tr:nth-of-type(${letterNum + 1}) > :nth-child(2) > a`)
+            .should('have.class', 'button')
+            .and('have.attr', 'href')
+    })
+
+    it(`has table titled 'Coaching Agreements'`, () => {
+        cy.getByText(/^Coaching Agreements$/)
+            .should('be.visible')
+    })
+
+    it(`has at least one action button in the 'Actions' column of 'Coaching Agreements' table that has 'href' attribute`, () => {
+        const agreementNum = 1
+        cy.get(`.entry-content > table:nth-of-type(7) > tbody > tr:nth-of-type(${agreementNum + 1}`)
+            .as('firstRow')
+            .find(':first-child')
+            .invoke('text')
+            .then((text) => {
+                expect(text.trim()).to.contain(`Agreement ${agreementNum}`)
+            })
+        
+        cy.get('@firstRow')
+            .find(':nth-child(2) > a')
+            .should('have.class', 'button')
+            .and('have.attr', 'href')
+    })
+
+    it(`has a visible sign 'Certification Complete'`, () => {
+        cy.getByText(/^Certification Complete$/)
+            .should('be.visible')
+    })
+
+    it(`has at least one 'Mark Complete' button`, () => {
+        cy.get('.complete-button')
+            .should('have.value', 'Mark Complete')
+            .its('length')
+            .should('be.gt', 0)
+    })
 
 })
