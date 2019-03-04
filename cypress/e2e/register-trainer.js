@@ -1,4 +1,4 @@
-describe('Review Coaching Session', () => {
+describe('Register Trainer', () => {
     function generateRandomLength() {
         return Math.floor(Math.random() * 10 + 3);
     }
