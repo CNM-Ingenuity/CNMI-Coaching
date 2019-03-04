@@ -1,8 +1,4 @@
 describe('Review Coaching Session', () => {
-    const firstName = 'Ryan'
-    const lastName = 'Smith'
-    const email = 'ryan.smith@company.com'
-
     function generateRandomLength() {
         return Math.floor(Math.random() * 10 + 3);
     }
@@ -114,15 +110,15 @@ describe('Review Coaching Session', () => {
     })
 
     it(`has label 'First Name' and corresponding input field`, () => {   
-        testLabelAndInput('first_name', 1, 'First Name', firstName)
+        testLabelAndInput('first_name', 1, 'First Name', 'Sarah')
     })
 
     it(`has label 'Last Name' and corresponding input field`, () => {
-        testLabelAndInput('last_name', 3, 'Last Name', lastName)
+        testLabelAndInput('last_name', 3, 'Last Name', 'Martinsen')
     })
 
     it(`has label 'Email' and corresponding input field`, () => {
-        testLabelAndInput('email', 5, 'Email', email)
+        testLabelAndInput('email', 5, 'Email', 'sarah.martinsen@gmail.com')
     })
 
     it(`shows an error message below each of input fields that is empty upon hitting the 'Register' button`, () => {
