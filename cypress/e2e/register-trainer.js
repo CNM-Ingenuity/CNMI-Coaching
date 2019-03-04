@@ -3,6 +3,38 @@ describe('Review Coaching Session', () => {
     const lastName = 'Smith'
     const email = 'ryan.smith@company.com'
 
+    function generateRandomLength() {
+        return Math.floor(Math.random() * 10 + 3);
+    }
+
+    function generateFakeName(len) {
+        const charSet1 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        const charSet2 = 'abcdefghijklmnopqrstuvwxyz'
+        const charLen = charSet1.length
+        let currName = ''
+
+        let randomPoz = Math.floor(Math.random() * charLen)
+        currName += charSet1.substring(randomPoz, randomPoz + 1)
+
+        for (let i = 1; i < len; i++) {
+            randomPoz = Math.floor(Math.random() * charLen)
+            currName += charSet2.substring(randomPoz, randomPoz + 1)
+        }
+
+        return currName
+    }
+
+    function generateFakeEmail(firstName, lastName) {
+        return firstName.toLowerCase() + '.' + lastName.toLowerCase() + '@gmail.com'
+    }
+
+    function submitNewTrainer(first, last, email) {
+        cy.get('input[label="first_name"]').type(first)
+        cy.get('input[label="last_name"]').type(last)
+        cy.get('input[label="email"]').type(email)
+        cy.get('input[type="submit"]').click()
+    }
+
     function login() {
         cy.fixture('users/admin-licorg')
             .then((admin) => {
@@ -89,9 +121,65 @@ describe('Review Coaching Session', () => {
         testLabelAndInput('last_name', 3, 'Last Name', lastName)
     })
 
-    it.only(`has label 'Email' and corresponding input field`, () => {
+    it(`has label 'Email' and corresponding input field`, () => {
         testLabelAndInput('email', 5, 'Email', email)
     })
 
+    it(`shows an error message below each of input fields that is empty upon hitting the 'Register' button`, () => {
+        cy.get('input[label]')
+            .as('inputs')
+            .clear()
 
+        cy.get('[type="submit"]').click()
+
+        cy.get('@inputs')
+            .then((colection) => {
+                const colLength = colection.length
+                for (let i = 0; i < colLength; i++) {
+                    cy.get(`#${colection[i].name}-error`)
+                        .should('have.class', 'error')
+                        .should('have.text', 'This field is required.')
+                        .and('be.visible')
+                }
+            })
+    })
+
+    it(`allows submittin the form if all input fields are filled out with a new user data`, () => {
+        const currFirstName = generateFakeName(generateRandomLength())
+        const currLastName = generateFakeName(generateRandomLength())
+        const currEmail = generateFakeEmail(currFirstName, currLastName)
+
+        submitNewTrainer(currFirstName, currLastName, currEmail)
+
+        // there are no error messages on the page
+        cy.get('.error')
+            .should('not.exist')
+        
+        // there is a success message
+        cy.get('p.success-message')
+            .should('be.visible')
+            .should('have.text', 'Trainer successfully created.')
+            .and('have.css', 'background')
+            
+        // all input fields were reset (cleared up)
+        cy.get('input[label="first_name"]')
+            .should('be.empty')
+        cy.get('input[label="last_name"]')
+            .should('be.empty')
+        cy.get('input[label="email"]')
+            .should('be.empty')     
+    })
+
+    it(`shows an error while trying to register an existing trainer`, () => {
+        const currFirstName = generateFakeName(generateRandomLength())
+        const currLastName = generateFakeName(generateRandomLength())
+        const currEmail = generateFakeEmail(currFirstName, currLastName)
+
+        submitNewTrainer(currFirstName, currLastName, currEmail)
+        submitNewTrainer(currFirstName, currLastName, currEmail)
+
+        cy.get('p.error-message')
+            .should('have.text', 'This user already has an account.')
+            .and('be.visible')
+    })
 })
