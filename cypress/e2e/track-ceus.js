@@ -2,6 +2,8 @@ describe('Track CEUs', () => {
     const inputOutside = ['5', 'Advanced C++', 'My company', 'John Smith', '2019-03-18', '2010-06-28', 'https://mywebsite.com', 'https://mywebsite.com/agenda/']
     const textOutside = ['Advanced C++ Curiculum', 'Learn C++ in depth']
 
+    const inputCNM = ['Advanced .NET Development', 'Garry Harris', '2019-01-31', '823471']
+
     function login() {
         cy.fixture('users/admin-cc')
             .then((admin) => {
@@ -142,23 +144,23 @@ describe('Track CEUs', () => {
             .as('inputs')
             .clear()
         
-        getAllTextareas(isOutside)
-            .as('textareas')
-            .clear()
-
-        cy.get('[type="submit"]').click()
-
         for (let i = 0; i < opts.length; i++) {
-            getSpecificInput(isOutside, i+1)
+            getSpecificInput(isOutside, i + 1)
                 .type(opts[i])
                 .should('have.value', opts[i])
         }
-
-        for (let j = 0; j < text.length; j++) {
-            getSpecificTextareas(isOutside, j + 1)
-                .type(text[j])
-                .should('have.value', text[j])
-        }
+        
+        if (isOutside) {
+            getAllTextareas(isOutside)
+                .as('textareas')
+                .clear()
+            
+            for (let j = 0; j < text.length; j++) {
+                getSpecificTextareas(isOutside, j + 1)
+                    .type(text[j])
+                    .should('have.value', text[j])
+            }
+        }   
     }
 
     before(() => {
@@ -224,7 +226,7 @@ describe('Track CEUs', () => {
             .should('have.value', '0')     
     })
 
-    
+    //test 'Outside of CNM' option
     it(`has 'CEUs Requested' label and input`, () => {
         testLabel(true, 1, 'CEUs Requested', 'ceus_requested')
         tesInput(true, 2, 'ceus_requested', '5')
@@ -255,7 +257,7 @@ describe('Track CEUs', () => {
         tesInput(true, 10, 'trainer_name', 'Tim George')
     })
 
-    it.only(`has 'Start Date' label and input`, () => {
+    it(`has 'Start Date' label and input`, () => {
         testLabel(true, 11, 'Start Date', 'start_date')
         tesInput(true, 12, 'start_date', '2019-03-19')
     })
@@ -290,7 +292,7 @@ describe('Track CEUs', () => {
         testEmptyTextareas(true)
     })
 
-    it.only(`allows submitting the form for outside CNM if all input fields are filled out`, () => {
+    it(`allows submitting the form for outside CNM if all input fields are filled out`, () => {
         fillInForm(true, inputOutside, textOutside)
         cy.get('[type="submit"]').click()
 
@@ -301,34 +303,39 @@ describe('Track CEUs', () => {
             .and('eq', 'P')
     })
 
-    
-
-    
-
-
-
-
-
-
-
-
     //test 'Inside of CNM' option
-    
-    it(`shows an error message below each of input fields that is empty upon hitting the 'Submit' button for inside CNM`, () => {
+    it(`has 'Program/Training Title' label and input for CNM`, () => {
+        testLabel(false, 1, 'Program/Training Title', 'program_training_title_cnm')
+        tesInput(false, 2, 'program_training_title_cnm', 'My New Training')
+    })
+
+    it(`has 'Trainer Name' label and input for CNM`, () => {
+        testLabel(false, 3, 'Trainer Name', 'trainer_name_cnm')
+        tesInput(false, 4, 'trainer_name_cnm', 'Tom Martin')
+    })
+
+    it(`has 'Date Completed' label and input for CNM`, () => {
+        testLabel(false, 5, 'Date Completed', 'date_completed')
+        tesInput(false, 6, 'date_completed', '2019-01-29')
+    })
+
+    it(`has 'Verification Code' label and input for CNM`, () => {
+        testLabel(false, 7, 'Verification Code', 'verification_code')
+        tesInput(false, 8, 'verification_code', '912837')
+    })
+
+    it(`shows an error message below each of input fields that is empty upon hitting the 'Submit' button for CNM`, () => {
         testEmptyInputs(false)
     })
 
+    it(`allows submitting the form for CNM if all input fields are filled out`, () => {
+        fillInForm(false, inputCNM, '[]')
+        cy.get('[type="submit"]').click()
 
-
-
-
-    /*
-
-     it('shows an error if input name field is empty on enter', () => {
-        cy.get('[label="client_name"]').clear().type('{enter}')
-        cy.getByText(/^This field is required.$/)
+        cy.getByText(/^Your CEU request has been saved.$/i)
             .should('be.visible')
+            .should('have.class', 'success-message')
+            .should('have.prop', 'tagName')
+            .and('eq', 'P')
     })
-
-    */
 })
