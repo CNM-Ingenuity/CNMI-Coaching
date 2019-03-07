@@ -4,20 +4,6 @@
 		<?php
 			echo wpautop($content['content']);
 	 	?>
-	<p>Requirements:</p>
-	<ul>
-		<?php
-			$count = 0;
-			foreach($content['requirements'] as $requirements){
-				if($count === 0) {
-					echo '<li>' . $requirements . ' Hours</li>';
-				} else {
-					echo '<li>' . $requirements . '</li>';
-				}
-				$count++;
-			}
-		?>
-	</ul>
 	<?php
 		$sessions_attended = 0;
 		for ($i = 1; $i < 11; $i++) {

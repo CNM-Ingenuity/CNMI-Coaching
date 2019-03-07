@@ -118,19 +118,6 @@ class CNMI_Certifications {
         $content = $post->post_content;
     }
 
-    // get our requirements
-    $hours = get_post_meta(
-        $certificationID,
-        '_cnmi_certification_metabox_hours',
-        true
-    );
-    $trainingType = get_post_meta(
-        $certificationID,
-        '_cnmi_certification_metabox_training_type',
-        true
-    );
-    $requirements = [$hours, $trainingType];
-
     // get our assessment link
     $assessment = get_post_meta(
         $certificationID,
@@ -146,7 +133,6 @@ class CNMI_Certifications {
 
     return [
         "content" => $content,
-        "requirements" => $requirements,
         "assessment" => $assessment,
         "certification_download" => $certification_download
     ];
