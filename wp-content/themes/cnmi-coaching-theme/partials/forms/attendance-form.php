@@ -44,11 +44,16 @@ if($memberships){
 
 			<label for="session_number">Session</label>
 			<select label="session_number" name="session_number" required>
-				<?php for($i = 1; $i < 11; $i++) {
-					?>
-						<option value="<?php echo $i; ?>">Session <?php echo $i; ?></option>
-					<?php
-				} ?>
+				<option value="1">Session 1, Day 1, Morning</option>
+				<option value="2">Session 2, Day 1, Afternoon</option>
+				<option value="3">Session 3, Day 2, Morning</option>
+				<option value="4">Session 4, Day 2, Afternoon</option>
+				<option value="5">Session 5, Day 3, Morning</option>
+				<option value="6">Session 6, Day 4, Morning</option>
+				<option value="7">Session 7, Day 4, Afternoon</option>
+				<option value="8">Session 8, Day 5, Morning</option>
+				<option value="9">Session 9, Day 5, Afternoon</option>
+				<option value="10">Session 10, Day 7, Morning</option>
 			</select>
 			<fieldset>
 				<legend>Students In Attendance</legend>
