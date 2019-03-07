@@ -95,6 +95,16 @@ describe('Submit an Event', () => {
         }
     }
 
+    function fillInRequired(selectors, values) {
+        const len = selectors.length
+
+        for (let i = 0; i < len; i++) {
+            cy.get(selectors[i])
+                .clear()
+                .type(values[i])
+                .should('have.value', values[i])
+        }
+    }
 
     before(() => {
         login()
@@ -283,21 +293,12 @@ describe('Submit an Event', () => {
         testText('.tribe-section-cost > .tribe-section-header > h3', 'Event Cost', 'H3')
         testText('tr.tribe-section-content-row > td.tribe-section-content-label > label[for="EventCost"]', 'Cost:', 'LABEL')
         testSpecialElement('#EventCost', true, arr)
+        testInput('EventCost', '$100.00')
         testText('.tribe-section-content-field > p', 'Leave blank to hide the field. Enter a 0 for events that are free.', 'P')
     })
 
-    function fillInRequired(selectors, values) {
-        const len = selectors.length
-
-        for (let i = 0; i < len; i++) {
-            cy.get(selectors[i])
-                .clear()
-                .type(values[i])
-                .should('have.value', values[i])
-        }
-    }
     /*
-    it.only(`has 'Add New Event' label and corresponding items`, () => {
+    it.only(`has 'Add New Event' label and corresponding items upon successful event submision`, () => {
         const selectors = ['#post_title', '#post_content']
         const values = ['React Meetup', 'Discussions about ReactJS']
 
