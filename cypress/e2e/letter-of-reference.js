@@ -9,6 +9,14 @@ describe('Letter of Reference', () => {
             })
     }
 
+    function testText(selector, textContent, tag) {
+        cy.get(selector)
+            .contains(textContent)
+            .should('be.visible')
+            .should('have.prop', 'tagName')
+            .and('eq', tag)
+    }
+
     before(() => {
         login()
     })
@@ -18,19 +26,11 @@ describe('Letter of Reference', () => {
     })
 
     it(`displays 'Submit Letters of Reference'`, () => {
-        cy.get('.first > h3')
-            .invoke('text')
-            .then((text) => {
-                expect(text.trim()).to.contain('Submit Letters of Reference')
-            })
+        testText('.first > h3', 'Submit Letters of Reference', 'H3')
     })
 
-    it(`has 'In Training' sign`, () => {
-        cy.get('.user-name > p')
-            .invoke('text')
-            .then((text) => {
-                expect(text.trim()).to.contain('In Training')
-            })
+    it(`has 'In Training' sign next to the gears icon`, () => {
+        testText('.user-name > p', 'In Training', 'P')
     })
 
     it(`redirects to dashboard upon clickin on gears icon`, () => {
@@ -40,12 +40,32 @@ describe('Letter of Reference', () => {
             .should('eq', `${Cypress.config().baseUrl}/dashboard/`)
     })
 
+    it(`has 'Select file to upload:' label`, () => {
+        testText('#letter-upload-form > div', 'Select file to upload:', 'DIV')
+    })
+
+    it(`has an input for file upload`, () => {
+        cy.get('#letter-upload-form > div input[type="file"]')
+            .should('be.visible')
+            .should('have.attr', 'name', 'file')
+            .and('have.attr', 'type', 'file')
+    })
+
+    it(`has a submit button for file upload`, () => {
+        cy.get('input[type="submit"]')
+            .should('be.visible')
+            .should('have.value', 'Upload File')
+            .should('have.attr', 'name', 'submit')
+            .and('have.attr', 'required')
+    })
+
     it('fails to submit a letter of reference since no file was selected', () => {
         cy.get('div > input[type=file]')
             .click()
 
         cy.get('[type="submit"]')
             .click()
+        
         cy.getByText(/^Some information is missing*/i)
             .should('be.visible')
     })
