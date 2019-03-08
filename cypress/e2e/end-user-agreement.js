@@ -29,6 +29,7 @@ describe('Coach End User Agreement', () => {
         testText('.first > h3', 'Coach End User Agreement', 'H3')
     })
 
+    // depends on the logged in user
     it(`has 'In Training' sign next to the gears icon`, () => {
         testText('.user-name > p', 'In Training', 'P')
     })
