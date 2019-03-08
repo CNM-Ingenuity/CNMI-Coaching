@@ -122,11 +122,12 @@ describe('Submit an Event', () => {
         testText('.first > h3', 'Schedule a Training', 'H3')
     })
 
+    // depends on the logged in user
     it(`says 'Matt Harris' next to the gears icon`, () => {
         testText('.user-name > p', 'Matt Harris', 'P')
     })
 
-    it(`redirects to dashboard upon clickin on gears icon`, () => {
+    it(`redirects to dashboard upon clicking on gears icon`, () => {
         cy.get('.user-name > p > a')
             .should('have.attr', 'href')
             .then((href) => {

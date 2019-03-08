@@ -99,7 +99,7 @@ describe('Register Trainer', () => {
             })
     })
 
-    it(`redirects to dashboard upon clickin on gears icon`, () => {
+    it(`redirects to dashboard upon clicking on gears icon`, () => {
         cy.get('.user-name > p > a')
             .as('myLink')
             .should('have.attr', 'href')
@@ -141,7 +141,7 @@ describe('Register Trainer', () => {
             })
     })
 
-    it(`allows submittin the form if all input fields are filled out with a new user data`, () => {
+    it(`allows submitting the form if all input fields are filled out with a new user data`, () => {
         const currFirstName = generateFakeName(generateRandomLength())
         const currLastName = generateFakeName(generateRandomLength())
         const currEmail = generateFakeEmail(currFirstName, currLastName)

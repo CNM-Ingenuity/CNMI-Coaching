@@ -103,7 +103,7 @@ describe('Review Coaching Session', () => {
             })
     })
 
-    it(`redirects to dashboard upon clickin on gears icon`, () => {
+    it(`redirects to dashboard upon clicking on gears icon`, () => {
         cy.get('.user-name > p > a')
             .as('myLink')
             .should('have.attr', 'href')
@@ -233,7 +233,7 @@ describe('Review Coaching Session', () => {
             })   
     })
 
-    it(`allows submittin the form if all comments textareas are filled out`, () => {
+    it(`allows submitting the form if all comments textareas are filled out`, () => {
         const str = 'My comments'
         cy.get('textarea')
             .each(($el) => { 

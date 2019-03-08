@@ -34,17 +34,12 @@ describe('My Certifications', () => {
         testText('.user-name > p', 'In Training', 'P')
     })
 
-    it(`redirects to dashboard upon clickin on gears icon`, () => {
+    it(`redirects to dashboard upon clicking on gears icon`, () => {
         cy.get('a[href="/dashboard"] > span')
             .click()
         cy.url()
             .should('eq', `${Cypress.config().baseUrl}/dashboard/`)
     })
-
-    // it.only(`has a table with a list of requirements`, () => {
-    //     testText('tbody > :nth-child(1) > :nth-child(1)', 'Requirement', 'TH')
-        
-    // })
 
     it(`each 'Academic Coach Training' box should refer to the corresponding page`, () => {
         cy.get('a[href^="/my-certification?"]')

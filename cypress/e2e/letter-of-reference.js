@@ -34,7 +34,7 @@ describe('Letter of Reference', () => {
         testText('.user-name > p', 'In Training', 'P')
     })
 
-    it(`redirects to dashboard upon clickin on gears icon`, () => {
+    it(`redirects to dashboard upon clicking on gears icon`, () => {
         cy.get('.user-name > p > a > .dashicons')
             .click()
         cy.url()
