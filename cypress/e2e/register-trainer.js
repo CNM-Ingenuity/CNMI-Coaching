@@ -90,6 +90,7 @@ describe('Register Trainer', () => {
             })
     })
 
+    // depends on the logged in user
     it(`says 'Matt Harris' next to the gears icon`, () => {
         cy.get('.user-name > p')
             .invoke('text')
