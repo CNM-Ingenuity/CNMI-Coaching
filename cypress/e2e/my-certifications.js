@@ -9,6 +9,14 @@ describe('My Certifications', () => {
             })
     }
 
+    function testText(selector, textContent, tag) {
+        cy.get(selector)
+            .contains(textContent)
+            .should('be.visible')
+            .should('have.prop', 'tagName')
+            .and('eq', tag)
+    }
+
     before(() => {
         login()
     })
@@ -17,12 +25,13 @@ describe('My Certifications', () => {
         cy.visit('/my-certifications/')
     })
 
-    it(`has 'In Training' sign`, () => {
-        cy.get('.user-name > p')
-            .invoke('text')
-            .then((text) => { 
-                expect(text.trim()).to.contain('In Training')
-            })
+    it(`displays 'My Certifications' title`, () => {
+        testText('.first > h3', 'My Certifications', 'H3')
+    })
+
+    // depends on the logged in user
+    it(`has 'In Training' sign next to the gears icon`, () => {
+        testText('.user-name > p', 'In Training', 'P')
     })
 
     it(`redirects to dashboard upon clickin on gears icon`, () => {
@@ -31,6 +40,11 @@ describe('My Certifications', () => {
         cy.url()
             .should('eq', `${Cypress.config().baseUrl}/dashboard/`)
     })
+
+    // it.only(`has a table with a list of requirements`, () => {
+    //     testText('tbody > :nth-child(1) > :nth-child(1)', 'Requirement', 'TH')
+        
+    // })
 
     it(`each 'Academic Coach Training' box should refer to the corresponding page`, () => {
         cy.get('a[href^="/my-certification?"]')
