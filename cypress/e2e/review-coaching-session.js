@@ -94,6 +94,7 @@ describe('Review Coaching Session', () => {
             })
     })
 
+    // depends on the logged in user
     it(`has 'Certified Trainer' sign`, () => {
         cy.get('.user-name > p')
             .invoke('text')
