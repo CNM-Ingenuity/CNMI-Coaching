@@ -24,7 +24,8 @@ describe('Student Progress', () => {
                 expect(text.trim()).to.contain('In Training')
             })
     })
-
+    
+    // depends on the logged in user
     it(`has 'Certified Trainer' sign`, () => {
         cy.get('.user-name > p')
             .invoke('text')
@@ -33,7 +34,7 @@ describe('Student Progress', () => {
             })
     })
 
-    it(`redirects to dashboard upon clickin on gears icon`, () => {
+    it(`redirects to dashboard upon clicking on gears icon`, () => {
         cy.get('.user-name > p > a > .dashicons')
             .click()
         cy.url()
@@ -195,6 +196,9 @@ describe('Student Progress', () => {
             .should('be.visible')
     })
 
+    /*
+        in order for this test to pass, you need to make sure that the initial form has some incomplete requirements (modify the database via phpMyAdmin)
+    */
     it(`has at least one 'Mark Complete' button`, () => {
         cy.get('.complete-button')
             .should('have.value', 'Mark Complete')
