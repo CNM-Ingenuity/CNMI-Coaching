@@ -29,6 +29,34 @@ describe('Track Coaching Hours', () => {
         cy.visit('/track-coaching-hours/?certification=1')
     })
 
+    it.only(`displays 'Track Coaching Hours' title`, () => {
+        cy.get('.first > h3')
+            .invoke('text')
+            .then((text) => {
+                expect(text.trim()).to.contain('Track Coaching Hours')
+            })
+    })
+
+    // depends on the logged in user
+    it(`has 'In Training' sign next to the gears icon`, () => {
+        cy.get('.user-name > p')
+            .invoke('text')
+            .then((text) => {
+                expect(text.trim()).to.contain('In Training')
+            })
+    })
+
+    it(`redirects to dashboard upon clicking on gears icon`, () => {
+        cy.get('.user-name > p > a')
+            .as('myLink')
+            .should('have.attr', 'href')
+            .then((href) => {
+                cy.visit(href)
+                    .url()
+                    .should('eq', `${Cypress.config().baseUrl}${href}/`)
+            })
+    })
+
     //each input field accepts input
     it('accepts input for name', () => { 
         cy.get('[label="client_name"]')
