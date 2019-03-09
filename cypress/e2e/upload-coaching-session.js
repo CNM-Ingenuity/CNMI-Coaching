@@ -37,6 +37,7 @@ describe('Upload Coaching Session', () => {
             })
     })
 
+    // depends on the logged in user
     it(`has 'In Training' sign`, () => {
         cy.get('.user-name > p')
             .invoke('text')
@@ -45,13 +46,12 @@ describe('Upload Coaching Session', () => {
             })
     })
 
-    it(`redirects to dashboard upon clickin on gears icon`, () => {
+    it(`redirects to dashboard upon clicking on gears icon`, () => {
         cy.get('.user-name > p > a > .dashicons')
             .click()
         cy.url()
             .should('eq', `${Cypress.config().baseUrl}/dashboard/`)
     })
-
 
     it(`allows selecting 'Use a Link' item`, () => {
         selectUseLink()
