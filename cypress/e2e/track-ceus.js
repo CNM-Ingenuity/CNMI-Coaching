@@ -179,6 +179,7 @@ describe('Track CEUs', () => {
             })
     })
 
+    // depends on the logged in user
     it(`says 'Matthew Harris' next to the gears icon`, () => {
         cy.get('.user-name > p')
             .invoke('text')
@@ -187,7 +188,7 @@ describe('Track CEUs', () => {
             })
     })
 
-    it(`redirects to dashboard upon clickin on gears icon`, () => {
+    it(`redirects to dashboard upon clicking on gears icon`, () => {
         cy.get('.user-name > p > a')
             .as('myLink')
             .should('have.attr', 'href')
