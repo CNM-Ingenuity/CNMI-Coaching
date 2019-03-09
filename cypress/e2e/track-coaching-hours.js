@@ -29,7 +29,7 @@ describe('Track Coaching Hours', () => {
         cy.visit('/track-coaching-hours/?certification=1')
     })
 
-    it.only(`displays 'Track Coaching Hours' title`, () => {
+    it(`displays 'Track Coaching Hours' title`, () => {
         cy.get('.first > h3')
             .invoke('text')
             .then((text) => {
