@@ -25,6 +25,7 @@ describe('Take Attendance', () => {
             })
     })
 
+    // depends on the logged in user
     it(`has 'Certified Trainer' sign`, () => {
         cy.get('.user-name > p')
             .invoke('text')
@@ -33,7 +34,7 @@ describe('Take Attendance', () => {
             })
     })
 
-    it(`redirects to dashboard upon clickin on gears icon`, () => {
+    it(`redirects to dashboard upon clicking on gears icon`, () => {
         cy.get('.user-name > p > a > .dashicons')
             .click()
         cy.url()
@@ -63,10 +64,13 @@ describe('Take Attendance', () => {
     })
 
     it(`allows selecting any of ten sessions`, () => {
-        const sessionNum = '4'
-        cy.get('select')
-            .select(`Session ${sessionNum}`)
-            .should('have.value', sessionNum)
+        const sessions = ['Session 1, Day 1, Morning', 'Session 2, Day 1, Afternoon', 'Session 3, Day 2, Morning', 'Session 4, Day 2, Afternoon', 'Session 5, Day 3, Morning', 'Session 6, Day 4, Morning', 'Session 7, Day 4, Afternoon', 'Session 8, Day 5, Morning', 'Session 9, Day 5, Afternoon', 'Session 10, Day 7, Morning']
+
+        for (let i = 0; i < sessions.length; i++) {
+            cy.get('select')
+                .select(sessions[i])
+                .should('have.value', (i+1).toString())
+        }
     })
 
     it(`has 'Students In Attendance' section with at least one checkbox that can be checked`, () => {
@@ -89,9 +93,9 @@ describe('Take Attendance', () => {
             .and('have.length', 4)
     })
 
-    it.only(`allows saving the attendance for 'Session 3' when at least one checkbox is checked`, () => { 
+    it(`allows saving the attendance for 'Session 2' when at least one checkbox is checked`, () => { 
         cy.get('select')
-            .select(`Session 2`)
+            .select(`Session 2, Day 1, Afternoon`)
         
         cy.get('fieldset > input[type="checkbox"]:nth-of-type(4)')
             .check({force: true})
@@ -108,7 +112,7 @@ describe('Take Attendance', () => {
 
     it(`allows saving the attendance for 'Session 6' when all four checkboxes are checked`, () => {
         cy.get('select')
-            .select(`Session 6`)
+            .select(`Session 6, Day 4, Morning`)
         
         cy.get('fieldset > input[type="checkbox"]')
             .check({ force: true })
@@ -136,22 +140,15 @@ describe('Take Attendance', () => {
             .and('have.css', 'background')
     })
 
-    it(`displays an error message when trying to submit a form being logged out`, () => {
+    it(`shows that it's impossible to submit a form being logged out`, () => {
         cy.get('#menu-main-menu > :nth-child(6) > a').click()
         cy.reload()
         cy.visit('/attendance/?eventID=590')
-        cy.get('#menu-main-menu > :nth-child(6) > a').should('have.text', 'Log In')
-
-
-        cy.get('fieldset > input[type="checkbox"]:nth-of-type(2)')
-            .check()
-            .should('be.checked')
-            .and('have.value', '22')
-
+    
+        cy.get('#menu-main-menu > :nth-child(6) > a')
+            .should('have.text', 'Log In')
+        
         cy.get('[type="submit"]')
-            .click()
-
-        cy.getByText(/^Sorry, you don't have access to update this information.$/i)
-            .should('be.visible')
+        .should('not.exist')
     })
 })
