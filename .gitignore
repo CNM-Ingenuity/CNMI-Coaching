@@ -8,3 +8,8 @@ wp-content/themes/cnmi-coaching-theme/style.css
 wp-content/themes/cnmi-coaching-theme/maps/*
 
 wp-content/plugins/11online-blocks/node_modules
+node_modules
+dist
+cypress/videos/*
+cypress/screenshots/*
+cypress/e2e/examples/*
