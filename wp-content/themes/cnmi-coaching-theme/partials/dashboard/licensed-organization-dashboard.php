@@ -6,7 +6,7 @@ get_template_part('partials/elements/top-matter');
 
 	<a href='/my-trainings'>
 		<div class='one-half first my-certifications'>
-			<h3>My Organization's Training</h3>
+			<h3>My Organization's Trainings</h3>
 		</div>
 	</a>
 

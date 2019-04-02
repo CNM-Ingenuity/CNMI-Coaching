@@ -87,9 +87,7 @@ if(wc_memberships_is_user_active_member( get_current_user_id(), 'licensed-org' )
 		 * @param int|string $tribe_event_id The Event ID.
 		 */
 		do_action( 'tribe_events_community_form_after_linked_posts', $tribe_event_id );
-		?>
-
-		<?php tribe_get_template_part( 'community/modules/website' ); ?>
+		?>	
 
 		<?php tribe_get_template_part( 'community/modules/custom' ); ?>
 
