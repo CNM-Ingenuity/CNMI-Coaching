@@ -15,10 +15,10 @@ function show_my_sessions() {
 			$eventTypeForBreadCrumbs => "/my-certification?certification=" . $progressID,
 			get_the_title() => "#"
 		];
-		include(locate_template('partials/elements/breadcrumbs.php'));	
+		include(locate_template('partials/elements/breadcrumbs.php'));
 		include(locate_template('partials/elements/top-matter.php'));
 		$sessions = CNMI_Coaching_Session::get_coaching_sessions_by_progress_id($certification->id);
-
+		
 		?>
 			<table>
 				<tr>
@@ -35,7 +35,7 @@ function show_my_sessions() {
 						<td>Session <?php echo $count; ?></td>
 						<td><?php echo $coaching_session->reviewer_id ? "Reviewed" : "Needs Review"; ?></td>
 						<td>
-							<?php 
+							<?php
 								if($coaching_session->reviewer_id) {
 									?>
 										<a class="button" href="coaching-session-details?session_id=<?php echo $coaching_session->id; ?>">View Feedback</a></td>

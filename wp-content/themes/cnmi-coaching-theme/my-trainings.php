@@ -5,7 +5,7 @@
 remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 
 function show_my_trainings() {
-	
+
 	$linkAddress = '/my-training?training=';
 	$user_id = get_current_user_id();
 	$memberships = wc_memberships_get_user_active_memberships( $user_id );
@@ -14,6 +14,7 @@ function show_my_trainings() {
 		$breadcrumbs = [
 			"My Organization's Trainings" => "/my-trainings"
 		];
+
 		// for the top matter title
 		$eventType = "My Organization's Trainings";
 		include(locate_template('partials/elements/breadcrumbs.php'));

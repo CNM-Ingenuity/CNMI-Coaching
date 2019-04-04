@@ -2,11 +2,16 @@
 /*
  * Template Name: Transcript
  */
-
+remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 
 function show_transcript() {
-
 	$current_user = wp_get_current_user();
+	$breadcrumbs = [
+		"My Certifications" => "/my-certifications",
+		get_the_title() => "#"
+	];
+	include(locate_template('partials/elements/breadcrumbs.php'));
+	include(locate_template('partials/elements/top-matter.php'));
 
 	// add a print button
 	?>

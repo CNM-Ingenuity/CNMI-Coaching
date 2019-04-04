@@ -14,7 +14,8 @@ if($eventStartDate) {
 	$eventStartDate = $eventStartDate->format('m/d/Y');
 }
 $eventTrainer = CNMI_Events::get_event_trainer($eventID);
-$requirementsArray =  CNMI_Certifications::get_event_requirements($eventID);
+//Removed requirements loop
+// $requirementsArray =  CNMI_Certifications::get_event_requirements($eventID);
 $evaluationLink = CNMI_Events::get_event_evaluation_link($eventID);
 $postContent = CNMI_Events::get_event_content($eventID);
 
@@ -28,13 +29,6 @@ $postContent = CNMI_Events::get_event_content($eventID);
 			<?php
 				echo wpautop($postContent);
 		 	?>
-		<p>Requirements:</p>
-		<ul>
-			<?php
-				foreach($requirementsArray as $requirements){
-					echo '<li>' . $requirements . '</li>';
-				}
-			?>
 		</ul>
 		<a class="button item-button" href="<?php echo $evaluationLink;?>"><p>Take Training Evaluation</p><span class="dashicons dashicons-media-text"></span></a>
 	</div>
