@@ -69,7 +69,7 @@
 				<img src="/wp-content/uploads/2019/01/download-arrow.png">
 			</a>
 			<a class="button item-button" href="/coaching-sessions/?certification=<?php echo $progressID;?>">
-				<p>Review Coaching Session</p>
+				<p>View Feedback</p>
 				<img src="/wp-content/uploads/2019/01/download-arrow.png">
 			</a>
 		</div>

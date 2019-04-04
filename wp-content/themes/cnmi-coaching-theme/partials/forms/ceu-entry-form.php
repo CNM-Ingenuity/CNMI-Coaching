@@ -1,7 +1,7 @@
 <?php
-if ( 
-	isset( $_POST['ceu_entry'] ) 
-	&& ! wp_verify_nonce( $_POST['ceu_entry'], 'ceu_entry' ) 
+if (
+	isset( $_POST['ceu_entry'] )
+	&& ! wp_verify_nonce( $_POST['ceu_entry'], 'ceu_entry' )
 ) {
 		print 'Sorry, your nonce did not verify.';
 		exit;
@@ -35,18 +35,18 @@ if (
 
 			// insert here
 			$result = CNMI_CEU_Entry::save_new_ceu_entry_outside_cnm(
-				$_POST['id'], 
-				$_POST['ceus_requested'], 
-				$_POST['certification'], 
-				$_POST['program_training_title'], 
-				$_POST['org_sponsor'],  
-				$_POST['trainer_name'], 
-				$_POST['start_date'], 
-				$_POST['end_date'], 
-				$_POST['program_description'], 
-				$_POST['program_website'], 
-				$_POST['learning_objectives'], 
-				$_POST['agenda_url'] 
+				$_POST['id'],
+				$_POST['ceus_requested'],
+				$_POST['certification'],
+				$_POST['program_training_title'],
+				$_POST['org_sponsor'],
+				$_POST['trainer_name'],
+				$_POST['start_date'],
+				$_POST['end_date'],
+				$_POST['program_description'],
+				$_POST['program_website'],
+				$_POST['learning_objectives'],
+				$_POST['agenda_url']
 			);
 			if($result) {
 				?>
@@ -57,7 +57,7 @@ if (
 					<p class='error-message'>Something went wrong, please try again.</p>
 				<?php
 			}
-				
+
 		} else if (isset($_POST['id']) && $_POST['id'] !='') {
 			?>
 				<p class='error-message'>Some information is missing, please make sure your form is complete.</p>
@@ -78,10 +78,10 @@ if (
 		) {
 			// insert here
 			$result = CNMI_CEU_Entry::save_new_ceu_entry_in_cnm(
-				$_POST['id'], 
-				$_POST['program_training_title_cnm'], 
-				$_POST['trainer_name_cnm'], 
-				$_POST['date_completed'], 
+				$_POST['id'],
+				$_POST['program_training_title_cnm'],
+				$_POST['trainer_name_cnm'],
+				$_POST['date_completed'],
 				$_POST['verification_code']
 			);
 			if($result) {
@@ -95,14 +95,14 @@ if (
 			}
 		}
 	}
-	
+
 }
 ?>
 <form id="ceu-entry-form" action="" method="POST" enctype="multipart/form-data">
 
 	<input name="id" type="hidden" required value="<?php echo $_GET['certification']; ?>">
 
-	<label for="is_outside_cnm">CUEs Outside of CNM?</label>
+	<label for="is_outside_cnm">CEUs Outside of CNM?</label>
 	<select name="is_outside_cnm" id="is_outside_cnm" required>
 		<option value="1">Yes</option>
 		<option value="0">No</option>
@@ -154,7 +154,7 @@ if (
 
 		<label for="program_training_title_cnm">Program/Training Title</label>
 		<input label="program_training_title_cnm" name="program_training_title_cnm" required>
-		
+
 		<label for="trainer_name_cnm">Trainer Name</label>
 		<input label="trainer_name_cnm" name="trainer_name_cnm" required>
 
@@ -165,7 +165,7 @@ if (
 		<input label="verification_code" name="verification_code" required>
 
 	</div>
-	
+
 	<input type="submit" value="Submit" name="submit">
 	<?php wp_nonce_field( 'ceu_entry', 'ceu_entry' ); ?>
 </form>

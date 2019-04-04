@@ -1,7 +1,7 @@
 <?php
-if ( 
-	isset( $_POST['upload_file'] ) 
-	&& ! wp_verify_nonce( $_POST['upload_file'], 'upload_file' ) 
+if (
+	isset( $_POST['upload_file'] )
+	&& ! wp_verify_nonce( $_POST['upload_file'], 'upload_file' )
 ) {
 		print 'Sorry, your nonce did not verify.';
 		exit;
@@ -25,7 +25,9 @@ if (
 }
 ?>
 <form id="letter-upload-form" action="" method="POST" enctype="multipart/form-data">
-	
+	<label>Please upload a .pdf document or an audio or video file( .mov, .mp4,.avi,.wmv, .mp3, etc)</label>
+	</br>
+
 	<input name="id" type="hidden" required value="<?php echo $_GET['certification']; ?>">
 
 	<div>
