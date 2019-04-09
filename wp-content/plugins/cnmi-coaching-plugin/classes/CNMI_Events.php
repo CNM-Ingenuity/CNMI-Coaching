@@ -47,6 +47,17 @@ class CNMI_Events {
         }
     }
 
+    public static function get_event_post_name($id) {
+      $post = get_post($id);
+      if($post)
+      {
+        $slug = $post->post_name;
+        return $slug;
+      } else {
+        return false;
+      }
+    }
+
     public static function get_events_by_coach_id($coach_id) {
         $args = array(
             'post_type' => 'tribe_events',
