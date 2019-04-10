@@ -1,7 +1,7 @@
 <?php
-if ( 
-	isset( $_POST['upload_file'] ) 
-	&& ! wp_verify_nonce( $_POST['upload_file'], 'upload_file' ) 
+if (
+	isset( $_POST['upload_file'] )
+	&& ! wp_verify_nonce( $_POST['upload_file'], 'upload_file' )
 ) {
 		print 'Sorry, your nonce did not verify.';
 		exit;
@@ -23,9 +23,13 @@ if (
 		<?php
 	}
 }
+$text = CNMI_Certifications::get_coaching_end_user_agreement_text($eventID);
+if ($text !== '') {
+	echo '<div class="file-submission-description"><p>' . $text .'</p></div>';
+}
 ?>
 <form id="agreement-upload-form" action="" method="POST" enctype="multipart/form-data">
-	
+
 	<input name="id" type="hidden" required value="<?php echo $_GET['certification']; ?>">
 
 	<div>

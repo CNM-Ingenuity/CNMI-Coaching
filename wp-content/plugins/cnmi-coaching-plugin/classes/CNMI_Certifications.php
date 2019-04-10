@@ -138,4 +138,70 @@ class CNMI_Certifications {
     ];
   }
 
+  public static function get_coaching_session_upload_text($id) {
+    $categoryID = self::get_certification_id_by_event_id($id);
+    $certificationID = self::get_certification_id_by_category_id($categoryID);
+
+    // get our post
+
+    $post = get_post($certificationID);
+
+    // get the metabox content for the upload coaching session page
+    return get_post_meta(
+        $certificationID,
+        '_cnmi_certification_metabox_coaching_session_upload_text',
+        true
+    );
+  }
+  
+  public static function get_letter_upload_text($id) {
+    $categoryID = self::get_certification_id_by_event_id($id);
+    $certificationID = self::get_certification_id_by_category_id($categoryID);
+
+    // get our post
+
+    $post = get_post($certificationID);
+
+    // get the metabox content for the upload coaching session page
+    return get_post_meta(
+        $certificationID,
+        '_cnmi_certification_metabox_letter_upload_text',
+        true
+    );
+  }
+
+  public static function get_track_coaching_hours_text($id) {
+    $categoryID = self::get_certification_id_by_event_id($id);
+    $certificationID = self::get_certification_id_by_category_id($categoryID);
+
+    // get our post
+
+    $post = get_post($certificationID);
+
+    // get the metabox content for the upload coaching session page
+    return get_post_meta(
+        $certificationID,
+        '_cnmi_certification_metabox_track_coaching_hours_text',
+        true
+    );
+  }
+
+  public static function get_coaching_end_user_agreement_text($id) {
+    $categoryID = self::get_certification_id_by_event_id($id);
+    $certificationID = self::get_certification_id_by_category_id($categoryID);
+
+    // get our post
+
+    $post = get_post($certificationID);
+
+    // get the metabox content for the upload coaching session page
+    return get_post_meta(
+        $certificationID,
+        '_cnmi_certification_metabox_coaching_end_user_agreement_text',
+        true
+    );
+  }
+
+
+
 }

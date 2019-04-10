@@ -1,7 +1,7 @@
 <?php
-if ( 
-	isset( $_POST['coaching_hours'] ) 
-	&& ! wp_verify_nonce( $_POST['coaching_hours'], 'coaching_hours' ) 
+if (
+	isset( $_POST['coaching_hours'] )
+	&& ! wp_verify_nonce( $_POST['coaching_hours'], 'coaching_hours' )
 ) {
 		print 'Sorry, your nonce did not verify.';
 		exit;
@@ -33,9 +33,13 @@ if (
 		<?php
 	}
 }
+$text = CNMI_Certifications::get_track_coaching_hours_text($eventID);
+if ($text !== '') {
+	echo '<div class="file-submission-description"><p>' . $text .'</p></div>';
+}
 ?>
 <form id="coaching-hours-form" action="" method="POST" enctype="multipart/form-data">
-	
+
 	<input name="id" type="hidden" required value="<?php echo $_GET['certification']; ?>">
 
 	<label for="client_name">Client Name</label>
@@ -49,7 +53,7 @@ if (
 
 	<label for="comments">Comments</label>
 	<textarea label="comments" name="comments" required></textarea>
-	
+
 	<input type="submit" value="Submit" name="submit">
 	<?php wp_nonce_field( 'coaching_hours', 'coaching_hours' ); ?>
 </form>

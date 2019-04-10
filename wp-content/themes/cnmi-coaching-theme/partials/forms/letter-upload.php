@@ -23,6 +23,10 @@ if (
 		<?php
 	}
 }
+$text = CNMI_Certifications::get_coaching_session_upload_text($eventID);
+if ($text !== '') {
+	echo '<div class="file-submission-description"><p>' . $text .'</p></div>';
+}
 ?>
 <form id="letter-upload-form" action="" method="POST" enctype="multipart/form-data">
 	<label>Please upload a .pdf document or an audio or video file( .mov, .mp4,.avi,.wmv, .mp3, etc)</label>

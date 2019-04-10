@@ -42,6 +42,10 @@ if (
 		<?php
 	}
 }
+$text = CNMI_Certifications::get_coaching_session_upload_text($eventID);
+if ($text !== '') {
+	echo '<div class="file-submission-description"><p>' . $text .'</p></div>';
+}
 ?>
 <form id="coaching-session-upload-form" action="" method="POST" enctype="multipart/form-data">
 	<input name="id" type="hidden" required value="<?php echo $_GET['certification']; ?>">

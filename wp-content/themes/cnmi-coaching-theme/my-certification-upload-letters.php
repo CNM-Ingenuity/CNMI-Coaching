@@ -7,10 +7,10 @@ remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 //* Add custom body class to the head
 add_filter( 'body_class', 'form_body_class' );
 function form_body_class( $classes ) {
-	
+
 	$classes[] = 'progress-form-page';
 	return $classes;
-	
+
 }
 
 function show_letter_upload() {
@@ -24,10 +24,9 @@ function show_letter_upload() {
 			$eventTypeForBreadcrumbs => "/my-certification?certification=" . $progressID,
 			get_the_title() => '#'
 		];
-		include(locate_template('partials/elements/breadcrumbs.php'));	
+		include(locate_template('partials/elements/breadcrumbs.php'));
 		include(locate_template('partials/elements/top-matter.php'));
-		
-		get_template_part('partials/forms/letter-upload');
+		include(locate_template('partials/forms/letter-upload.php'));
 	} else {
 		?>
 			<p>Sorry, page not found.</p>

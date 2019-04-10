@@ -62,6 +62,30 @@ if(!function_exists('cnmi_register_certification_metabox')) {
         'id'               => 'file',
         'type'             => 'file'
     ) );
+    $cmb->add_field( array(
+      'name' => __('Text above Coaching Session Upload', 'cmb2'),
+      'desc' => __('This is where you write the text that goes above the coaching session upload.', 'cmb2'),
+      'id' => $prefix . 'coaching_session_upload_text',
+      'type' => 'textarea',
+    ));
+    $cmb->add_field( array(
+      'name' => __('Text above Letter Upload', 'cmb2'),
+      'desc' => __('This is where you write the text that goes above the letter upload.', 'cmb2'),
+      'id' => $prefix . 'letter_upload_text',
+      'type' => 'textarea',
+    ));
+    $cmb->add_field( array(
+      'name' => __('Text above Track Coaching Hours', 'cmb2'),
+      'desc' => __('This is where you write the text that goes above the coaching upload section.', 'cmb2'),
+      'id' => $prefix . 'track_coaching_hours_text',
+      'type' => 'textarea',
+    ));
+    $cmb->add_field( array(
+      'name' => __('Text above Coaching End User Agreement ', 'cmb2'),
+      'desc' => __('This is where you write the text that goes above the letter upload.', 'cmb2'),
+      'id' => $prefix . 'coaching_end_user_agreement_text',
+      'type' => 'textarea',
+    ));
   }
 }
 
