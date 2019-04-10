@@ -153,7 +153,7 @@ class CNMI_Certifications {
         true
     );
   }
-  
+
   public static function get_letter_upload_text($id) {
     $categoryID = self::get_certification_id_by_event_id($id);
     $certificationID = self::get_certification_id_by_category_id($categoryID);
@@ -186,20 +186,27 @@ class CNMI_Certifications {
     );
   }
 
-  public static function get_coaching_end_user_agreement_text($id) {
+  public static function get_coaching_end_user_agreement_content($id) {
     $categoryID = self::get_certification_id_by_event_id($id);
     $certificationID = self::get_certification_id_by_category_id($categoryID);
 
-    // get our post
-
-    $post = get_post($certificationID);
-
-    // get the metabox content for the upload coaching session page
-    return get_post_meta(
+    // get our assessment link
+    $text = get_post_meta(
         $certificationID,
         '_cnmi_certification_metabox_coaching_end_user_agreement_text',
         true
     );
+
+    $file = get_post_meta(
+        $certificationID,
+        '_cnmi_certification_metabox_coaching_end_user_agreement_file',
+        true
+    );
+
+    return [
+      "text" => $text,
+      "file" => $file
+    ];
   }
 
 

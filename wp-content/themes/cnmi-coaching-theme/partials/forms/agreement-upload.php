@@ -23,9 +23,13 @@ if (
 		<?php
 	}
 }
-$text = CNMI_Certifications::get_coaching_end_user_agreement_text($eventID);
-if ($text !== '') {
-	echo '<div class="file-submission-description"><p>' . $text .'</p></div>';
+//Get the text and file link for the end user agreement
+$content = CNMI_Certifications::get_coaching_end_user_agreement_content($eventID);
+if ($content['text'] !== '') {
+	echo '<div class="file-submission-description"><p>' . $content['text'] .'</p></div>';
+}
+if ($content['file'] !== '') {
+	echo '<div class="agreement-download"><a class="button" href="' . $content['file'] .'" download>Download Agreement</a></div>';
 }
 ?>
 <form id="agreement-upload-form" action="" method="POST" enctype="multipart/form-data">

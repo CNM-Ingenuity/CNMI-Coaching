@@ -86,6 +86,12 @@ if(!function_exists('cnmi_register_certification_metabox')) {
       'id' => $prefix . 'coaching_end_user_agreement_text',
       'type' => 'textarea',
     ));
+    $cmb->add_field( array(
+      'name' => __('End User Agreement Download', 'cmb2'),
+      'desc' => __('Upload the End User Agreement file, or submit a url ', 'cmb2'),
+      'id' => $prefix . 'coaching_end_user_agreement_file',
+      'type' => 'file',
+    ));
   }
 }
 
