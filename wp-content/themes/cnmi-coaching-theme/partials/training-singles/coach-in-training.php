@@ -25,7 +25,7 @@ $postContent = CNMI_Events::get_event_content($eventID);
 		<h3 class="title"><?php echo $eventType; ?></h3>
 		<p class="students">Instructor: <?php echo $eventTrainer; ?></p>
 		<p class="date">Date: <?php echo $eventStartDate; ?></p>
-		<a class="button" href="/event/<?php echo $eventSlug ;?>">Event Details</a>
+		<a class="button" href="/event/<?php echo $eventSlug ;?>">Training Details</a>
 	</div>
 	<div class="description">
 			<?php
