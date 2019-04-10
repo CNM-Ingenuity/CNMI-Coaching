@@ -33,6 +33,7 @@ if ($content['file'] !== '') {
 }
 ?>
 <form id="agreement-upload-form" action="" method="POST" enctype="multipart/form-data">
+	<label>Please upload a .pdf document</label>
 
 	<input name="id" type="hidden" required value="<?php echo $_GET['certification']; ?>">
 
