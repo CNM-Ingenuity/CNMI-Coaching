@@ -13,6 +13,9 @@ foreach ($certifications as $certification) {
 		$eventStartDate = $eventStartDate->format('m/d/Y');
 	}
 	$eventTrainer = CNMI_Events::get_event_trainer($eventID);
+	if(count($certifications) === 1) {
+		echo "<script> window.location.href='". $linkAddress . $certification->id ."';</script> ";
+	}
 	?>
 
 		<a href='<?php echo $linkAddress . $certification->id; ?>'>

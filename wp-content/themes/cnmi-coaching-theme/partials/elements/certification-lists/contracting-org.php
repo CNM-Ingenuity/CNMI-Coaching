@@ -4,6 +4,9 @@ foreach ($events as $event) {
 	$eventID = $event->ID;
 	$eventType = CNMI_Events::get_event_type($eventID);
 	$eventStartDate = CNMI_Events::get_event_start_date($eventID);
+	if(count($events) === 1) {
+			echo "<script> window.location.href='". $linkAddress . $eventID ."';</script> ";
+	}
 	if($eventStartDate) {
 		$eventStartDate = $eventStartDate->format('m/d/Y');
 	}
