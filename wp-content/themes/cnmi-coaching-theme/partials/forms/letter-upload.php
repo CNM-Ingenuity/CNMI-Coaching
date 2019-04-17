@@ -51,7 +51,12 @@ if ($text !== '') {
 			<ul class="file-review">
 				<?php
 					foreach($progress->coaching_letters as $coaching_letters) {
+						$reviewed = '<p>This submission has not beeen reviewed</p>' ;
+						if($coaching_letters->reviewer_id !== null) {
+							$reviewed = '<p>This submission has been reviewed on: ' . $coaching_letters->date .'</p>';
+						}
 						echo '<li><a class="button" href="'. $coaching_letters->url .' " target="_blank" download>Review Submission</a>';
+						echo $reviewed .'</li>';
 					}
 				?>
 			</ul>
