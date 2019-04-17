@@ -1,4 +1,4 @@
-<?php
+.+<?php
 /*
  * Template Name: Student Progress
  */
@@ -7,16 +7,16 @@ remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 //* Add custom body class to the head
 add_filter( 'body_class', 'form_body_class' );
 function form_body_class( $classes ) {
-	
+
 	$classes[] = 'progress-form-page';
 	return $classes;
-	
+
 }
 
 function show_progress() {
-	if ( 
-		isset( $_POST['mark_complete'] ) 
-		&& ! wp_verify_nonce( $_POST['mark_complete'], 'mark_complete' ) 
+	if (
+		isset( $_POST['mark_complete'] )
+		&& ! wp_verify_nonce( $_POST['mark_complete'], 'mark_complete' )
 	) {
 			print 'Sorry, your nonce did not verify.';
 			exit;
@@ -38,8 +38,7 @@ function show_progress() {
 						<p class='error-message'>Something went wrong, please try again.</p>
 					<?php
 				}
-		} else if (isset($_POST['id']) && $_POST['id'] !='') {
-			var_dump($_POST);
+		} else if (isset($_POST['id']) && $_POST['id'] !='') {			
 			?>
 				<p class='error-message'>Some information is missing, please make sure your form is complete.</p>
 			<?php
@@ -63,14 +62,14 @@ function show_progress() {
 				$eventTypeForBreadcrumbs => "/my-training?training=" . $eventID,
 				$eventType => '#'
 			];
-			include(locate_template('partials/elements/breadcrumbs.php'));	
+			include(locate_template('partials/elements/breadcrumbs.php'));
 			include(locate_template('partials/elements/top-matter.php'));
 		}
 		if(!$hasAccess) {
 			?>
 				<p>Sorry, you don't have access to this page.</p>
 			<?php
-			
+
 		} else {
 			$sessions_attended = 0;
 			for ($i = 1; $i < 11; $i++) {
@@ -96,7 +95,7 @@ function show_progress() {
 						?>
 				</table>
 			<?php
-			
+
 
 			$total_training_time = 0;
 			?>
@@ -162,7 +161,7 @@ function show_progress() {
 					<th></th>
 					<th>Actions</th>
 				</tr>
-			<?php 
+			<?php
 			$count = 0;
 			foreach ($progress->coaching_letters as $coaching_letter) {
 				$count++;
@@ -181,7 +180,7 @@ function show_progress() {
 					<th></th>
 					<th>Actions</th>
 				</tr>
-			<?php 
+			<?php
 			$count = 0;
 			foreach ($progress->coaching_agreement as $coaching_agreement) {
 				$count++;
@@ -233,7 +232,7 @@ function show_progress() {
 											<td><?php echo $ceu->trainer_name; ?></td>
 											<td><?php echo $ceu->date_completed; ?></td>
 											<td><?php echo $ceu->verification_code; ?></td>
-										</tr>	
+										</tr>
 									<?php
 								}
 							?>
@@ -244,7 +243,7 @@ function show_progress() {
 				if(count($outsideCNM) > 0) {
 					?>
 						<h4>Non-CNM CEUs</h4>
-							
+
 						<?php
 							foreach($outsideCNM as $ceu) {
 								?>
@@ -313,7 +312,7 @@ function build_complete_form($key, $eventID) {
 			<input type="hidden" name="id" value="<?php echo $progressID; ?>">
 			<input type="hidden" name="event_id" value="<?php echo $eventID; ?>">
 			<input type="hidden" name="key" value="<?php echo $key; ?>">
-		
+
 			<input type="submit" class="complete-button" value="Mark Complete">
 			<?php wp_nonce_field( 'mark_complete', 'mark_complete' ); ?>
 		</form>

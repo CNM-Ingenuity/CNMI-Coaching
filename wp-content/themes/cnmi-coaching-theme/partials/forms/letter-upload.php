@@ -42,6 +42,23 @@ if ($text !== '') {
 	<input type="submit" value="Upload File" name="submit" required>
 	<?php wp_nonce_field( 'upload_file', 'upload_file' ); ?>
 </form>
+<?php
+	$progressID = $_GET['certification'];
+	if($progressID) {
+		$progress = CNMI_Progress::get_progress_by_id($progressID);
+		?>
+			<label>File Uploads</label>
+			<ul class="file-review">
+				<?php
+					foreach($progress->coaching_letters as $coaching_letters) {
+						echo '<li><a class="button" href="'. $coaching_letters->url .' " target="_blank" download>Review Submission</a>';
+					}
+				?>
+			</ul>
+		<?php
+	}
+?>
+
 <script>
 	jQuery("#letter-upload-form").validate();
 </script>

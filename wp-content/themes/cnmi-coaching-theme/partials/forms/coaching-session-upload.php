@@ -71,6 +71,23 @@ if ($text !== '') {
 	<input type="submit" value="Submit" name="submit" required>
 	<?php wp_nonce_field( 'upload_file', 'upload_file' ); ?>
 </form>
+<?php
+	$progressID = $_GET['certification'];
+	if($progressID) {
+		$progress = CNMI_Progress::get_progress_by_id($progressID);
+		?>
+			<label>File Uploads</label>
+			<ul class="file-review">
+				<?php
+					foreach($progress->coaching_sessions as $coaching_session) {
+						echo '<li><a class="button" href="'. $coaching_session->url . '" target="_blank" download>Review Submission</a>';
+					}
+				?>
+			</ul>
+		<?php
+	}
+?>
+
 <script>
 	jQuery("#coaching-session-upload-form").validate();
 	jQuery("#media_upload").change(function() {
