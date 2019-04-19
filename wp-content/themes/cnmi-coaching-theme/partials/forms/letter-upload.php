@@ -23,7 +23,7 @@ if (
 		<?php
 	}
 }
-$text = CNMI_Certifications::get_coaching_session_upload_text($eventID);
+$text = CNMI_Certifications::get_letter_upload_text($eventID);
 if ($text !== '') {
 	echo '<div class="file-submission-description"><p>' . $text .'</p></div>';
 }
