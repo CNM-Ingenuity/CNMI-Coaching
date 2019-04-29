@@ -37,7 +37,7 @@ class CNMI_Letters {
             $table_name  = $wpdb->prefix.COACHING_LETTERS_TABLE_NAME;
             $bits = file_get_contents($file["tmp_name"]);
             $filetype = wp_check_filetype($file["name"]);
-            $filename = 'progress_' . $progress_id . '_type_letter_' . time() . '.' . $filetype['ext'];
+            $filename = date('Y_m_d_') . 'progress_' . $progress_id . '_type_letter_' . time() . '.' . $filetype['ext'];
             $upload = wp_upload_bits($filename, null, $bits);
             return $wpdb->insert($table_name, array(
                     'progress_id' => intval( $progress_id ),
