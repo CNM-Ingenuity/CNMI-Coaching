@@ -2,7 +2,6 @@
 $eventID = $progressID;
 $eventType = CNMI_Events::get_event_type($eventID);
 $breadcrumbs = [
-	"My Organization's Trainings" => "/my-trainings",
 	"Scheduled Trainings" => "/scheduled-trainings",
 	$eventType => "#"
 ];
@@ -19,6 +18,7 @@ $students = CNMI_Progress::get_students_from_event_id($eventID);
 	<h3 class="title"><?php echo $eventType; ?></h3>
 	<p class="students">Date: <?php echo $eventStartDate; ?></p>
 	<p class="date">Students: <?php echo count($students); ?></p>
+	<div><a class="button" href="/event?p=<?php echo $eventID; ?>">Register Additional Students</a></div>
 </div>
 <table>
 	<tr>
