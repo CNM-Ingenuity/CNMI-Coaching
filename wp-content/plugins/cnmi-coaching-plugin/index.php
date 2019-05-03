@@ -116,6 +116,7 @@ function create_custom_tables()
   $sql_coaching_sessions = "CREATE TABLE {$coaching_sessions_table_name} (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
     progress_id mediumint(9) NOT NULL,
+    description varchar(255) NOT NULL,
     url varchar(255) NOT NULL,
     reviewer_id mediumint(9),
     date date,
@@ -158,6 +159,7 @@ function create_custom_tables()
   $sql_coaching_letters = "CREATE TABLE {$coaching_letters_table_name} (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
     progress_id mediumint(9) NOT NULL,
+    description varchar(255) NOT NULL,
     url varchar(255) NOT NULL,
     PRIMARY KEY (id)
   ) COLLATE {$wpdb_collate};";
@@ -166,6 +168,7 @@ function create_custom_tables()
   $sql_coaching_agreement = "CREATE TABLE {$coaching_agreement_table_name} (
     id mediumint(9) NOT NULL AUTO_INCREMENT,
     progress_id mediumint(9) NOT NULL,
+    description varchar(255) NOT NULL,
     url varchar(255) NOT NULL,
     PRIMARY KEY (id)
   ) COLLATE {$wpdb_collate};";
