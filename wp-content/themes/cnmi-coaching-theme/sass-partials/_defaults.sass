@@ -375,7 +375,7 @@ input[type="search"]
     display: none
 
 /* ## Tables
- *---------------------------------------------
+ *---------------------------------------------*/
 
 table
   border-collapse: collapse
@@ -387,6 +387,11 @@ table
     td:first-of-type
       font-family: $headingFont
       padding-right: 15px
+  &.coaching-hours-table
+    td
+      width: 20%
+      &:last-of-type
+        width: 40%
 
 .for-table
   display: inline-block

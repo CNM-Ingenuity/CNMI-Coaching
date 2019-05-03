@@ -1,4 +1,4 @@
-.+<?php
+<?php
 /*
  * Template Name: Student Progress
  */
@@ -87,11 +87,6 @@ function show_progress() {
 						<?php
 						build_complete_section("Training Complete", "training_complete", $progress, $eventID);
 						build_complete_section("Fieldwork", "fieldwork", $progress, $eventID);
-						if( current_user_can('administrator')) {
-							build_complete_section("Assessment Complete", "assessment_complete", $progress, $eventID);
-						} else {
-							build_complete_section("Assessment Complete", "assessment_complete", $progress, $eventID, true);
-						}
 						?>
 				</table>
 			<?php
@@ -100,7 +95,7 @@ function show_progress() {
 			$total_training_time = 0;
 			?>
 				<h5>Coaching Hours</h5>
-				<table>
+				<table class="coaching-hours-table">
 					<tr>
 						<th>Client Name</th>
 						<th>Date</th>
@@ -144,7 +139,14 @@ function show_progress() {
 						<tr>
 							<td>Session <?php echo $count; ?></td>
 							<td><?php echo $coaching_session->reviewer_id ? "Reviewed" : "Needs Review"; ?></td>
-							<td><a class="button" href="review-coaching-session?session=<?php echo $coaching_session->id; ?>">Review</a></td>
+							<td>
+								<?php 
+									if($coaching_session->reviewer_id) { ?>
+										<p class='success-message for-table'>Reviewed</p>
+									<?php } else { ?>
+										<a class="button" href="review-coaching-session?session=<?php echo $coaching_session->id; ?>">Review</a>
+									<?php } ?>
+							</td>
 						</tr>
 					<?php
 			}
@@ -195,7 +197,9 @@ function show_progress() {
 			</table>
 			<table class="first-td-bold">
 			<?php
-			build_complete_section("Certification Complete", "certification_complete", $progress, $eventID);
+			if( current_user_can('administrator')) {
+				build_complete_section("Certification Complete", "certification_complete", $progress, $eventID);
+			}
 			?>
 			</table>
 			<?php

@@ -553,7 +553,7 @@ function redirect_to_dashboard( $redirect_to, $request, $user ) {
     //is there a user to check?
     if (isset($user->roles) && is_array($user->roles)) {
         //check for subscribers
-        if (in_array('subscriber', $user->roles)) {
+        if (in_array('subscriber', $user->roles) || in_array('customer', $user->roles)) {
             // redirect them to another URL, in this case, the homepage 
             $redirect_to =  home_url('/dashboard');
         }
