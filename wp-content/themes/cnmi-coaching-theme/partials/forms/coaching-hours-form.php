@@ -37,7 +37,13 @@ $text = CNMI_Certifications::get_track_coaching_hours_text($eventID);
 if ($text !== '') {
 	echo '<div class="file-submission-description"><p>' . $text .'</p></div>';
 }
+$hours = CNMI_Coaching_Hours::get_coaching_hours_by_progress_id($certification->id);
+$total_training_time = 0;
+foreach ($hours as $coaching_hour) {
+		$total_training_time += $coaching_hour->minutes;
+}
 ?>
+<h6>Coaching Hours Already Tracked: <?php echo floor($total_training_time/60); ?> hours and <?php echo $total_training_time % 60; ?> minutes</h6>
 <form id="coaching-hours-form" action="" method="POST" enctype="multipart/form-data">
 
 	<input name="id" type="hidden" required value="<?php echo $_GET['certification']; ?>">
