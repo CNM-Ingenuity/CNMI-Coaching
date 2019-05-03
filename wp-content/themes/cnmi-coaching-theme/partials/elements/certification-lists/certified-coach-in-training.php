@@ -11,11 +11,12 @@ foreach ($certifications as $certification) {
 		$eventStartDate = $eventStartDate->format('m/d/Y');
 	}
 	$eventTrainer = CNMI_Events::get_event_trainer($eventID);
+	$appendText = strpos($linkAddress, 'training') !== false ? ' Training' : ' Certification';
 	?>
 
 		<a href='<?php echo $linkAddress . $certification->id; ?>'>
 			<div class="item">
-				<h3 class="title"><?php echo $eventType; ?></h3>
+				<h3 class="title"><?php echo $eventType . $appendText; ?></h3>
 				<p class="students">Instructor: <?php echo $eventTrainer; ?></p>
 				<p class="date">Date: <?php echo $eventStartDate; ?></p>
 			</div>

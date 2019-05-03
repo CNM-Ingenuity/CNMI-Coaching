@@ -10,10 +10,11 @@ foreach ($events as $event) {
 	if($eventStartDate) {
 		$eventStartDate = $eventStartDate->format('m/d/Y');
 	}
+	$appendText = strpos($linkAddress, 'training') !== false ? ' Training' : ' Certification';
 	?>
 		<a href='<?php echo $linkAddress . $eventID; ?>'>
 			<div class="item">
-				<h3 class="title"><?php echo $eventType; ?></h3>
+				<h3 class="title"><?php echo $eventType . $appendText; ?></h3>
 				<p class="date">Date: <?php echo $eventStartDate; ?></p>
 			</div>
 		</a>

@@ -1,6 +1,7 @@
 <?php
 $student_id = $_GET['user'];
 $certifications = CNMI_Progress::get_current_student_progress_as_admin($student_id);
+$appendText = strpos($linkAddress, 'training') !== false ? ' Training' : ' Certification';
 $user = get_user_by('id', $student_id);
 ?>
 	<h3>Coach: <?php echo $user->first_name . ' ' . $user->last_name; ?></h3>
@@ -20,7 +21,7 @@ foreach ($certifications as $certification) {
 
 		<a href='<?php echo $linkAddress . $certification->id; ?>'>
 			<div class="item">
-				<h3 class="title"><?php echo $eventType; ?></h3>
+				<h3 class="title"><?php echo $eventType . $appendText; ?></h3>
 				<p class="students">Instructor: <?php echo $eventTrainer; ?></p>
 				<p class="date">Date: <?php echo $eventStartDate; ?></p>
 			</div>
