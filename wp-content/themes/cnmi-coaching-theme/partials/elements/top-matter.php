@@ -21,9 +21,6 @@ $display_name = $user_info->display_name;
         <?php
           echo $display_name;
         ?>
-        <a href='/dashboard'>
-          <span class="dashicons dashicons-admin-generic"></span>
-        </a>
       </p>
 
     </div>
