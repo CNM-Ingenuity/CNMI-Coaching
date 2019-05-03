@@ -564,6 +564,21 @@ function redirect_to_dashboard( $redirect_to, $request, $user ) {
 
 add_filter( 'login_redirect', 'redirect_to_dashboard', 10, 3 );
 
+add_action( 'wp_login_failed', 'my_front_end_login_fail' );  // hook failed login
+
+function my_front_end_login_fail( $username ) {
+	$referrer = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
+	// if there's a valid referrer, and it's not the default log-in screen
+	if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
+		if(!strstr($referrer, '?login=failed')) {
+			wp_redirect( $referrer . '?login=failed' );  // let's append some information (login=failed) to the URL for the theme to use
+		} else {
+			wp_redirect( $referrer );
+		}
+		exit;
+	}
+}
+
 /* Communicty Event Customizations */
 add_filter( 'tribe_events_community_required_fields', 'elevenonline_add_required_fields_to_community_events', 10, 1 );
 
