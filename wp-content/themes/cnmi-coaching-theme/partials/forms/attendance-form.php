@@ -53,7 +53,7 @@ if($memberships){
 				<option value="7">Session 7, Day 4, Afternoon</option>
 				<option value="8">Session 8, Day 5, Morning</option>
 				<option value="9">Session 9, Day 5, Afternoon</option>
-				<option value="10">Session 10, Day 7, Morning</option>
+				<option value="10">Session 10, Day 6, Morning</option>
 			</select>
 			<fieldset>
 				<legend>Students In Attendance</legend>

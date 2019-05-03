@@ -41,52 +41,52 @@ function show_transcript() {
 				</tr>
 				<tr>
 					<td></td>
-					<td>Session 1</td>
+					<td>Session 1, Day 1, Morning</td>
 					<td><?php echo $certification->attendance_1 ? "Yes" : "No"; ?></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>Session 2</td>
+					<td>Session 2, Day 1, Afternoon</td>
 					<td><?php echo $certification->attendance_2 ? "Yes" : "No"; ?></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>Session 3</td>
+					<td>Session 3, Day 2, Morning</td>
 					<td><?php echo $certification->attendance_3 ? "Yes" : "No"; ?></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>Session 4</td>
+					<td>Session 4, Day 2, Afternoon</td>
 					<td><?php echo $certification->attendance_4 ? "Yes" : "No"; ?></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>Session 5</td>
+					<td>Session 5, Day 3, Morning</td>
 					<td><?php echo $certification->attendance_5 ? "Yes" : "No"; ?></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>Session 6</td>
+					<td>Session 6, Day 4, Morning</td>
 					<td><?php echo $certification->attendance_6 ? "Yes" : "No"; ?></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>Session 7</td>
+					<td>Session 7, Day 4, Afternoon</td>
 					<td><?php echo $certification->attendance_7 ? "Yes" : "No"; ?></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>Session 8</td>
+					<td>Session 8, Day 5, Morning</td>
 					<td><?php echo $certification->attendance_8 ? "Yes" : "No"; ?></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>Session 9</td>
+					<td>Session 9, Day 5, Afternoon</td>
 					<td><?php echo $certification->attendance_9 ? "Yes" : "No"; ?></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td>Session 10</td>
+					<td>Session 10, Day 6, Morning</td>
 					<td><?php echo $certification->attendance_10 ? "Yes" : "No"; ?></td>
 				</tr>
 
