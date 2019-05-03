@@ -8,8 +8,8 @@ if (
 } else {
 	if(isset($_POST['id']) && $_POST['id'] !='') {
 		if(isset($_POST['media_upload']) && $_POST['media_upload'] !='') {
-			if($_POST['media_upload'] && isset($_FILES['file']['name']) && $_FILES['file']['name'] != '') {
-				$result = CNMI_Coaching_Session::save_new_media($_POST['id'], $_FILES['file'], true);
+			if($_POST['media_upload'] && isset($_FILES['file']['name']) && $_FILES['file']['name'] != '' && isset($_POST['description']) && $_POST['description'] !='') {
+				$result = CNMI_Coaching_Session::save_new_media($_POST['id'], $_FILES['file'], true, $_POST['description']);
 				if($result) {
 					?>
 						<p class='success-message'>Your coaching session has been saved.</p>
@@ -20,7 +20,7 @@ if (
 					<?php
 				}
 			} else if(isset($_POST['link']) && $_POST['link'] !='') {
-				$result = CNMI_Coaching_Session::save_new_media($_POST['id'], $_POST['link'], false);
+				$result = CNMI_Coaching_Session::save_new_media($_POST['id'], $_POST['link'], false, $_POST['description']);
 				if($result) {
 					?>
 						<p class='success-message'>Your coaching session has been saved.</p>
@@ -54,6 +54,10 @@ if ($text !== '') {
 		<option value="0">Use a Link</option>
 		<option value="1">Upload File</option>
 	</select>
+
+	<label for="description">Description</label>
+	<input label="description" name="description" required>
+	
 	<label>Most common video and audio file formats are accepted( .mov, .mp4,.avi,.wmv, .mp3, etc)</label>
 	</br>
 

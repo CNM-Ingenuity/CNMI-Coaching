@@ -46,7 +46,7 @@ class CNMI_Coaching_Session {
         ));
     }
 
-    public static function save_new_media($progress_id, $file, $media_upload) {
+    public static function save_new_media($progress_id, $file, $media_upload, $description) {
         $has_access = verify_student_access($progress_id);
         if($has_access) {
             global $wpdb;
@@ -59,16 +59,18 @@ class CNMI_Coaching_Session {
                 $upload = wp_upload_bits($filename, null, $bits);
                 return $wpdb->insert($table_name, array(
                         'progress_id' => intval( $progress_id ),
+                        'description' => sanitize_text_field( $description ),
                         'url' => $upload['url']
                     ),
-                    array('%d','%s')
+                    array('%d','%s','%s')
                 );
             } else {
                 return $wpdb->insert($table_name, array(
                         'progress_id' => intval( $progress_id ),
+                        'description' => sanitize_text_field( $description ),
                         'url' => sanitize_text_field( $file )
                     ),
-                    array('%d','%s')
+                    array('%d','%s','%s')
                 );
             }
         } else {

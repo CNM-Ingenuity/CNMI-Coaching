@@ -30,7 +30,7 @@ class CNMI_Agreement {
         ));
     }
 
-    public static function save_new_media($progress_id, $file) {
+    public static function save_new_media($progress_id, $file, $description) {
         $has_access = verify_student_access($progress_id);
         if($has_access) {
             global $wpdb;
@@ -42,9 +42,10 @@ class CNMI_Agreement {
             $upload = wp_upload_bits($filename, null, $bits);
             return $wpdb->insert($table_name, array(
                     'progress_id' => intval( $progress_id ),
+                    'description' => sanitize_text_field( $description ),
                     'url' => $upload['url']
                 ),
-                array('%d','%s')
+                array('%d','%s','%s')
             );
         } else {
             print_no_access();
