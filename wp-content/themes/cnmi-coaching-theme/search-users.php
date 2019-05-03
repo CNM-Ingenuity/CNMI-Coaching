@@ -16,7 +16,7 @@ function search_users() {
 			$search_term = "";
 			if(isset($_POST['usersearch']) && $_POST['usersearch'] != '') {
 				$search_term = sanitize_text_field( $_POST['usersearch'] );
-				$user_query = new WP_User_Query( 
+				$user_name_query = new WP_User_Query( 
 					array( 
 						'role' => 'Subscriber',
 						'search' => '*' . $search_term . '*',
@@ -34,12 +34,22 @@ function search_users() {
 							)
 						)
 					) );
-				$users = $user_query->get_results();
+				$users_name = $user_name_query->get_results();
+				$user_email_query = new WP_User_Query( 
+					array( 
+						'role' => 'Subscriber',
+						'search' => '*' . $search_term . '*',
+						'search_columns' => array( 'user_email' )
+					) );
+				$users_email = $user_email_query->get_results();
+				
+				$totalusers_dup = array_merge($users_name,$users_email);
+				
+				$users = array_unique($totalusers_dup, SORT_REGULAR);
 			}
 			?>
 
 			<form method="post">
-				<label for="usersearch">First Name, Last Name or Email</label>
 				<input label="usersearch" name="usersearch" value="<?php echo $search_term; ?>" placeholder="First Name, Last Name or Email">
 				<br/>
 				<br/>
