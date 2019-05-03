@@ -13,7 +13,7 @@ function login_body_class( $classes ) {
 
 add_action('genesis_entry_content', 'add_login_form_to_page');
 function add_login_form_to_page() {
-	if($_GET['login'] === 'failed') {
+	if(isset($_GET['login']) && $_GET['login'] === 'failed') {
 		?>
 			<p style='text-align: center; color: white;'>We couldn't log you in with those credentials. Please try again.</p>
 		<?php
