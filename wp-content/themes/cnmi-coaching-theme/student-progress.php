@@ -132,12 +132,10 @@ function show_progress() {
 					<th>Actions</th>
 				</tr>
 			<?php
-			$count = 0;
 			foreach ($progress->coaching_sessions as $coaching_session) {
-				$count++;
 					?>
 						<tr>
-							<td>Session <?php echo $count; ?></td>
+							<td><?php echo $coaching_session->description; ?></td>
 							<td><?php echo $coaching_session->reviewer_id ? "Reviewed" : "Needs Review"; ?></td>
 							<td>
 								<?php 
@@ -164,12 +162,10 @@ function show_progress() {
 					<th>Actions</th>
 				</tr>
 			<?php
-			$count = 0;
 			foreach ($progress->coaching_letters as $coaching_letter) {
-				$count++;
 					?>
 						<tr>
-							<td>Letter <?php echo $count; ?></td>
+							<td><?php echo $coaching_letter->description; ?></td>
 							<td><a class="button" target="_blank" href="<?php echo $coaching_letter->url; ?>">Review</a></td>
 						</tr>
 					<?php
@@ -183,12 +179,10 @@ function show_progress() {
 					<th>Actions</th>
 				</tr>
 			<?php
-			$count = 0;
 			foreach ($progress->coaching_agreement as $coaching_agreement) {
-				$count++;
 					?>
 						<tr>
-							<td>Agreement <?php echo $count; ?></td>
+							<td><?php echo $coaching_agreement->description; ?></td>
 							<td><a class="button" target="_blank" href="<?php echo $coaching_agreement->url; ?>">Review</a></td>
 						</tr>
 					<?php

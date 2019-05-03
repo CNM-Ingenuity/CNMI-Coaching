@@ -80,12 +80,8 @@ if ($text !== '') {
 			<ul class="file-review">
 				<?php
 					foreach($progress->coaching_sessions as $coaching_session) {
-						$reviewed = '<p>This submission has not beeen reviewed</p>' ;
-						if($coaching_session->reviewer_id !== null) {
-							$reviewed = '<p>This submission has been reviewed on: ' . $coaching_session->date .'</p>';
-						}
 						echo '<li><a class="button" href="'. $coaching_session->url . '" target="_blank" download>View Submission</a>';
-						echo $reviewed .'</li>';
+						echo $coaching_session->description .'</li>';
 					}
 				?>
 			</ul>

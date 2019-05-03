@@ -32,8 +32,8 @@ function show_my_sessions() {
 			$count++;
 				?>
 					<tr>
-						<td>Session <?php echo $count; ?></td>
-						<td><?php echo $coaching_session->reviewer_id ? "Reviewed" : "Needs Review"; ?></td>
+						<td><?php echo $coaching_session->description; ?></td>
+						<td><?php echo isset($coaching_session->reviewer_id) ? "Reviewed" : "Needs Review"; ?></td>
 						<td>
 							<?php
 								if($coaching_session->reviewer_id) {

@@ -54,12 +54,8 @@ if ($content['file'] !== '') {
 			<ul class="file-review">
 				<?php
 					foreach($progress->coaching_agreement as $coaching_agreement) {
-						$reviewed = '<p>This submission has not beeen reviewed</p>' ;
-						if($coaching_agreement->reviewer_id !== null) {
-							$reviewed = '<p>This submission has been reviewed on: ' . $coaching_agreement->date .'</p>';
-						}
 						echo '<li><a class="button" href="'. $coaching_agreement->url .'" target="_blank" download>View Submission</a>';
-						echo $reviewed .'</li>';
+						echo $coaching_agreement->description .'</li>';
 					}
 				?>
 			</ul>
