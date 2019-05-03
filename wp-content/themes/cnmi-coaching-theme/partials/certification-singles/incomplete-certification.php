@@ -60,10 +60,6 @@
 				<p>View Transcript</p>
 				<img src="/wp-content/uploads/2019/01/download-arrow.png">
 			</a>
-			<a class="button item-button" href="<?php echo $content['assessment'];?>">
-				<p>Take Assessment</p>
-				<span class="dashicons dashicons-media-document"></span>
-			</a>
 			<a class="button item-button" href="/upload-coaching-session/?certification=<?php echo $progressID;?>">
 				<p>Submit Coaching Session</p>
 				<img src="/wp-content/uploads/2019/01/download-arrow.png">

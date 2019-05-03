@@ -27,13 +27,6 @@ if(!function_exists('cnmi_register_certification_metabox')) {
       'id' => $prefix . 'training_type',
       'type' => 'text',
     ));
-    //Not sure if this should be a file or a URL
-    $cmb->add_field( array(
-      'name' => __('Assessment', 'cmb2'),
-      'desc' => __('Assessment', 'cmb2'),
-      'id' => $prefix . 'assessment',
-      'type' => 'text_url',
-    ));
     $cmb->add_field( array(
       'name' => __('Certification Download', 'cmb2'),
       'desc' => __('File that Certified Coaches can download', 'cmb2'),
