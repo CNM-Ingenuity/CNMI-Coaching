@@ -55,7 +55,7 @@ if ($text !== '') {
 		<option value="1">Upload File</option>
 	</select>
 
-	<label for="description">Description</label>
+	<label for="description">File Description</label>
 	<input label="description" name="description" required>
 	
 	<label>Most common video and audio file formats are accepted( .mov, .mp4,.avi,.wmv, .mp3, etc)</label>

@@ -32,7 +32,7 @@ if ($text !== '') {
 	
 	<input name="id" type="hidden" required value="<?php echo $_GET['certification']; ?>">
 
-	<label for="description">Description</label>
+	<label for="description">File Description</label>
 	<input label="description" name="description" required>
 
 	<label>Please upload a .pdf document or an audio or video file( .mov, .mp4,.avi,.wmv, .mp3, etc)</label>

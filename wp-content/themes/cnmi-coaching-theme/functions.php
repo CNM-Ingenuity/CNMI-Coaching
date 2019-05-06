@@ -622,10 +622,15 @@ function elevenonline_save_extra_community_event_data( $post_id, $post, $update 
     		$coaches[] = $coach;
     	}
         update_post_meta( $post_id, '_cnmi_event_metabox_user_multicheckbox', $coaches);
-
-        // set the licensing org
-        update_post_meta( $post_id, '_cnmi_event_metabox_licensing_org_multicheckbox', get_current_user_id());
     }
+
+    // if licensing org, set that data
+    $user_id = get_current_user_id();
+	$memberships = wc_memberships_get_user_active_memberships( $user_id );
+	$plan_id = $memberships[0]->{"plan_id"};
+	if ($plan_id == 410) {
+        update_post_meta( $post_id, '_cnmi_event_metabox_licensing_org_multicheckbox', $user_id);
+	}
 }
 add_action( 'save_post', 'elevenonline_save_extra_community_event_data', 10, 3 );
 

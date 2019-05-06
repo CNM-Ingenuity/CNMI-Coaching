@@ -36,7 +36,7 @@ if ($content['file'] !== '') {
 
 	<input name="id" type="hidden" required value="<?php echo $_GET['certification']; ?>">
 
-	<label for="description">Description</label>
+	<label for="description">File Description</label>
 	<input label="description" name="description" required>
 
 	<label>Please upload a .pdf document</label>
