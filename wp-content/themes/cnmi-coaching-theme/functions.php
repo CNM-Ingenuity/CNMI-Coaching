@@ -435,8 +435,7 @@ function woocommerce_column_override(){
 	return 4;
 }
 add_filter('loop_shop_columns', 'woocommerce_column_override');
-//remove price on shop page
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+
 add_action( 'get_header', 'remove_titles_single_posts' );
 function remove_titles_single_posts() {
     if ( is_singular('product') ) {
