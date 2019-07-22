@@ -234,7 +234,7 @@ function custom_add_to_cart($order_id) {
 								global $wpdb;
 								$table_name  = $wpdb->prefix.'progress';
 								$wpdb->insert(
-									$table_name, 
+									$table_name,
 									array(
 										'user_id' => $user_id,
 										'event_id' => $event_id
@@ -247,7 +247,7 @@ function custom_add_to_cart($order_id) {
 								global $wpdb;
 								$table_name  = $wpdb->prefix.'progress';
 								$wpdb->insert(
-									$table_name, 
+									$table_name,
 									array(
 										'user_id' => $user_id,
 										'event_id' => $event_id
@@ -553,7 +553,7 @@ function redirect_to_dashboard( $redirect_to, $request, $user ) {
     if (isset($user->roles) && is_array($user->roles)) {
         //check for subscribers
         if (in_array('subscriber', $user->roles) || in_array('customer', $user->roles)) {
-            // redirect them to another URL, in this case, the homepage 
+            // redirect them to another URL, in this case, the homepage
             $redirect_to =  home_url('/dashboard');
         }
     }
@@ -595,7 +595,7 @@ function elevenonline_add_required_fields_to_community_events( $fields ) {
 add_filter( 'tribe_community_events_form_errors', 'elevenonline_custom_community_events_error_messages' );
 
 function elevenonline_custom_community_events_error_messages( $errors ) {
-    
+
 	if( is_array($errors) ) {
 		$message = $errors[0]['message'];
 		// replace our bad error message
@@ -613,7 +613,7 @@ function elevenonline_save_extra_community_event_data( $post_id, $post, $update 
     // If this isn't a 'tribe_events' post, don't update it.
     if ( "tribe_events" != $post_type ) return;
 
-    
+
     // Set the coaches
     if ( isset( $_POST['coaches'] ) ) {
     	$coaches = [];
@@ -637,7 +637,7 @@ add_action( 'save_post', 'elevenonline_save_extra_community_event_data', 10, 3 )
 add_action( 'show_user_profile', 'elevenonline_extra_coaching_fields' );
 add_action( 'edit_user_profile', 'elevenonline_extra_coaching_fields' );
 
-function elevenonline_extra_coaching_fields( $currentUser ) { 
+function elevenonline_extra_coaching_fields( $currentUser ) {
 	$users = get_users(  );
 
 	$user_options = array();
@@ -704,15 +704,15 @@ function elevenonline_extra_coaching_fields( $currentUser ) {
 			$( '#your-profile' ).attr("enctype", "multipart/form-data");
 		})(jQuery);
 	</script>
-	<?php 
+	<?php
 }
 
 add_action( 'personal_options_update', 'elevenonline_save_licensing_extra_info' );
 add_action( 'edit_user_profile_update', 'elevenonline_save_licensing_extra_info' );
 
 function elevenonline_save_licensing_extra_info( $user_id ) {
-    if ( !current_user_can( 'edit_user', $user_id ) ) { 
-        return false; 
+    if ( !current_user_can( 'edit_user', $user_id ) ) {
+        return false;
     }
     if( isset($_FILES['licensing_document']['name']) && $_FILES['licensing_document']['name'] != '' ) {
     	$file = $_FILES['licensing_document'];
@@ -729,3 +729,13 @@ function elevenonline_save_licensing_extra_info( $user_id ) {
     	update_user_meta( $user_id, 'licensing_renewal_date', $_POST['licensing_renewal_date'] );
     }
 }
+
+
+/**
+ * Change "Buy Now!" button text
+ */
+function elevenonline_buy_now_button_text( $html ) {
+	$html = str_replace( 'Buy Now!' , 'Register', $html );
+	return $html;
+}
+add_filter( 'tribe_tickets_buy_button', 'elevenonline_buy_now_button_text', 11, 2 );
