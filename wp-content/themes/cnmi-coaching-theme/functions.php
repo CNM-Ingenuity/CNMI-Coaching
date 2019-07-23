@@ -5,7 +5,7 @@ include_once( get_template_directory() . '/lib/init.php' );
 //* Child theme (do not remove)
 define( 'CHILD_THEME_NAME', 'CNM Coaching' );
 define( 'CHILD_THEME_URL', 'http://www.11online.us/' );
-define( 'CHILD_THEME_VERSION', '2.2.2' );
+define( 'CHILD_THEME_VERSION', '2.2.3' );
 
 //* Enqueue Google Fonts
 add_action( 'wp_enqueue_scripts', 'genesis_sample_google_fonts', 100 );
@@ -739,3 +739,21 @@ function elevenonline_buy_now_button_text( $html ) {
 	return $html;
 }
 add_filter( 'tribe_tickets_buy_button', 'elevenonline_buy_now_button_text', 11, 2 );
+
+
+// Fix for the attendee registration page glitch with Genesis
+add_action( 'genesis_before_loop', 'tribe_tickets_fix_etp_attendee_registration_page_for_genesis' );
+function tribe_tickets_fix_etp_attendee_registration_page_for_genesis() {
+	if ( ! function_exists( 'tribe' ) ) {
+		return;
+	}
+	try {
+		if ( tribe( 'tickets.attendee_registration' )->is_on_page() ) {
+			remove_action( 'genesis_entry_content', 'genesis_do_post_content' );
+			add_action( 'genesis_entry_content', 'do_post_content' );
+		}
+	} catch ( Exception $e ) {}
+}
+function do_post_content() {
+	the_content();
+}
