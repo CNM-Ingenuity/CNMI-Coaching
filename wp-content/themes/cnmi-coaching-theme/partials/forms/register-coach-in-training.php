@@ -1,17 +1,17 @@
 <?php
-if ( 
-	isset( $_POST['register_coach_in_training'] ) 
-	&& ! wp_verify_nonce( $_POST['register_coach_in_training'], 'register_coach_in_training' ) 
+if (
+	isset( $_POST['register_coach_in_training'] )
+	&& ! wp_verify_nonce( $_POST['register_coach_in_training'], 'register_coach_in_training' )
 ) {
 		print 'Sorry, your nonce did not verify.';
 		exit;
 } else {
 	if(
-		isset($_POST['email']) && $_POST['email'] !='' 
-		&& 
-		isset($_POST['first_name']) && $_POST['first_name'] !='' 
+		isset($_POST['email']) && $_POST['email'] !=''
 		&&
-		isset($_POST['last_name']) && $_POST['last_name'] !='' 
+		isset($_POST['first_name']) && $_POST['first_name'] !=''
+		&&
+		isset($_POST['last_name']) && $_POST['last_name'] !=''
 	) {
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
@@ -49,7 +49,7 @@ if (
 			global $wpdb;
 			$table_name  = $wpdb->prefix.'progress';
 			$wpdb->insert(
-				$table_name, 
+				$table_name,
 				array(
 					'user_id' => $user_id,
 					'event_id' => $event_id
@@ -78,7 +78,7 @@ if (
 	<label for="email">Email</label>
 	<input label="email" name="email" required type="email">
 
-	<label for="event_id">Which Training</label>
+	<label for="event_id">What type of training did you attend?</label>
 	<select name="event_id">
 		<option value="590">Academic Coach Training</option>
 		<option value="573">Financial Coach Training	</option>
@@ -91,4 +91,3 @@ if (
 <script>
 	jQuery("#register-coach-in-training").validate();
 </script>
-
