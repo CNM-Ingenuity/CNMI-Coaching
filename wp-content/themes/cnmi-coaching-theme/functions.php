@@ -336,8 +336,7 @@ function training_calendar_grid(){
 	$output = "<div class='upcoming-events-section'><div class='wrap'>";
 	$output .= "<h1>Training Calendar</h1>";
 	$count = 0;
-	foreach($events as $event) {
-		var_dump($event);
+	foreach($events as $event) {		
 		$eventStartTime = new DateTime($event->EventStartDate, $tz);
 		$eventEndTime = new DateTime($event->EventEndDate, $tz);
 		if($count % 2 === 0) {
@@ -761,7 +760,7 @@ function do_post_content() {
 
 add_action( 'pre_get_posts', 'restrict_license_org_events' );
 
-//Restrict license org events to events created by that org. 
+//Restrict license org events to events created by that org.
 function restrict_license_org_events( $query ) {
 	 $post_type = $query->get('post_type');
 	if(! is_admin() && $post_type == 'tribe_events'){
