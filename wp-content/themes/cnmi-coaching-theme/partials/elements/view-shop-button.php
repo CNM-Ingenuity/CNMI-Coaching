@@ -6,7 +6,7 @@
   		$productCategory = sanitize_title($eventType);
   		echo do_shortcode("[products category='$productCategory']");
   	?>
-	<a class="button" href="/shop">
+	<a class="button" href="/store">
 		<p> VIEW PUBLIC STORE </p>
 	</a>
-</div>	
+</div>
