@@ -3,6 +3,7 @@ $certification = CNMI_Progress::get_progress_by_id($progressID, false);
 $certificationID = $certification->id;
 $eventID = $certification->event_id;
 $eventType = CNMI_Events::get_event_type($eventID);
+$eventTitle = CNMI_Events::get_event_post_title($eventID);
 $eventSlug = CNMI_Events::get_event_post_name($eventID);
 $breadcrumbs = [
 	"My Trainings" => "/my-trainings",
@@ -22,7 +23,7 @@ $postContent = CNMI_Events::get_event_content($eventID);
 
 ?>
 	<div class="item">
-		<h3 class="title"><?php echo $eventType; ?></h3>
+		<h3 class="title"><?php echo $eventTitle; ?></h3>
 		<p class="students">Instructor: <?php echo $eventTrainer; ?></p>
 		<p class="date">Date: <?php echo $eventStartDate; ?></p>
 		<a class="button" href="/event/<?php echo $eventSlug ;?>">Training Details</a>

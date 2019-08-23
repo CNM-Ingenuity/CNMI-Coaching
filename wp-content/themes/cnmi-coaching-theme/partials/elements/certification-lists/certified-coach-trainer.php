@@ -3,6 +3,7 @@ $events = CNMI_Events::get_events_by_coach_id($user_id);
 foreach ($events as $event) {
 	$eventID = $event->ID;
 	$eventType = CNMI_Events::get_event_type($eventID);
+	$eventTitle = CNMI_Events::get_event_post_title($eventID);
 	$eventStartDate = CNMI_Events::get_event_start_date($eventID);
 	if(count($events) === 1) {
 			echo "<script> window.location.href='". $linkAddress . $event->id ."';</script> ";
@@ -14,7 +15,7 @@ foreach ($events as $event) {
 	?>
 		<a href='<?php echo $linkAddress . $eventID; ?>'>
 			<div class="item">
-				<h3 class="title"><?php echo $eventType . $appendText; ?></h3>
+				<h3 class="title"><?php echo $eventTitle . $appendText; ?></h3>
 				<p class="date">Date: <?php echo $eventStartDate; ?></p>
 			</div>
 		</a>
