@@ -78,7 +78,7 @@ if (
 	<label for="email">Email</label>
 	<input label="email" name="email" required type="email">
 
-	<label for="event_id">What type of training did you attend?</label>
+	<label for="event_id">Which training?</label>
 	<select name="event_id">
 		<option value="590">Academic Coach Training</option>
 		<option value="573">Financial Coach Training	</option>
