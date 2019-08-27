@@ -28,6 +28,7 @@ if (
 		if(! email_exists($user_email)){
 			$user_id = wp_insert_user($user_data);
 			if($user_id) {
+				wp_set_auth_cookie( $user_id, false, is_ssl());
 				?>
 					<p class='success-message'>Trainer successfully created.</p>
 				<?php
@@ -56,6 +57,10 @@ if (
 				),
 				array('%d','%d')
 			);
+			if(isset($_SESSION['last_visited_training'])) {
+				wp_safe_redirect($_SESSION['last_visited_training']);
+				exit;
+			}
 		} else {
 			?>
 				<p class='error-message'>This user already has an account.</p>

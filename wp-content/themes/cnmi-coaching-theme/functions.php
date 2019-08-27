@@ -336,7 +336,7 @@ function training_calendar_grid(){
 	$output = "<div class='upcoming-events-section'><div class='wrap'>";
 	$output .= "<h1>Training Calendar</h1>";
 	$count = 0;
-	foreach($events as $event) {		
+	foreach($events as $event) {
 		$eventStartTime = new DateTime($event->EventStartDate, $tz);
 		$eventEndTime = new DateTime($event->EventEndDate, $tz);
 		if($count % 2 === 0) {
@@ -555,9 +555,12 @@ function redirect_to_dashboard( $redirect_to, $request, $user ) {
         if (in_array('subscriber', $user->roles) || in_array('customer', $user->roles)) {
             // redirect them to another URL, in this case, the homepage
             $redirect_to =  home_url('/dashboard');
+						//Redirect to the most recently visited training, if set.
+						if(isset($_SESSION['last_visited_training'])) {
+						 		$redirect_to =  $_SESSION['last_visited_training'];
+						}
         }
     }
-
     return $redirect_to;
 }
 
@@ -566,7 +569,8 @@ add_filter( 'login_redirect', 'redirect_to_dashboard', 10, 3 );
 add_action( 'wp_login_failed', 'my_front_end_login_fail' );  // hook failed login
 
 function my_front_end_login_fail( $username ) {
-	$referrer = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
+	$referrer = $_SERVER['HTTP_REFERER'];
+	// where did the post submission come from?
 	// if there's a valid referrer, and it's not the default log-in screen
 	if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
 		if(!strstr($referrer, '?login=failed')) {
@@ -757,9 +761,25 @@ function tribe_tickets_fix_etp_attendee_registration_page_for_genesis() {
 function do_post_content() {
 	the_content();
 }
+//Set last visited training  variable for redirection after login or registration.
+add_action('genesis_footer', 'eo_set_last_visited_training');
+function eo_set_last_visited_training() {
+	if(!is_user_logged_in() && tribe_is_event() && is_single()){
+		$obj_id = get_queried_object_id();
+		$current_url = get_permalink( $obj_id );
+	 $_SESSION['last_visited_training'] = $current_url;
+	}
+}
+
+//clear last visited training on logout.
+add_action('wp_logout', 'eo_clear_last_visited_training');
+function eo_clear_last_visited_training() {
+	if($_SESSION['last_visited_training']){
+		unset($_SESSION['last_visited_training']);
+	}
+}
 
 add_action( 'pre_get_posts', 'restrict_license_org_events' );
-
 //Restrict license org events to events created by that org.
 function restrict_license_org_events( $query ) {
 	 $post_type = $query->get('post_type');
