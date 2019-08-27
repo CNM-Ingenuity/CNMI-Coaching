@@ -60,6 +60,9 @@ if (
 			if(isset($_SESSION['last_visited_training'])) {
 				wp_safe_redirect($_SESSION['last_visited_training']);
 				exit;
+			} else {
+				wp_safe_redirect('/dashboard');
+				exit;
 			}
 		} else {
 			?>
